@@ -32,21 +32,14 @@ static OCPropertyAttributes parseAttributes(NSArray *stringAttributes) {
 }
 
 
-@interface OCPropertyMirror ()
-
-@property (nonatomic, readonly) NSArray *stringAttributes;
-
-@end
-
-
 @implementation OCPropertyMirror
 
 - (instancetype)initWithDefiningClass:(OCClassMirror *)definingClass property:(objc_property_t)aProperty {
 	if (self = [super init]) {
 		_mirroredProperty = aProperty;
 		_definingClass = definingClass;
-		_stringAttributes = parseStringAttributes(property_getAttributes(_mirroredProperty));
-		_attributes = parseAttributes(_stringAttributes);
+		NSArray *stringAttributes = parseStringAttributes(property_getAttributes(_mirroredProperty));
+		_attributes = parseAttributes(stringAttributes);
 	}
 	return self;
 }

@@ -24,9 +24,6 @@
 - (void)testAllSubclasses {
 	OCClassMirror *classMirror = reflect([OCRootClass class]);
 	NSArray *allSubclasses = [classMirror allSubclasses];
-	for (OCClassMirror *classMirror in allSubclasses) {
-		NSLog(@"%@", classMirror.name);
-	}
 	XCTAssertEqual([allSubclasses count], 4);
 }
 

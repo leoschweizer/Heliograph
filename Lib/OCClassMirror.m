@@ -7,6 +7,7 @@
 - (instancetype)initWithClass:(Class)aClass {
 	if (self = [super init]) {
 		_mirroredClass = aClass;
+		_name = NSStringFromClass(aClass);
 	}
 	return self;
 }
@@ -73,10 +74,6 @@
 - (OCClassMirror *)superclass {
 	Class superclass = class_getSuperclass(self.mirroredClass);
 	return superclass ? [[OCClassMirror alloc] initWithClass:superclass] : nil;
-}
-
-- (NSString *)name {
-	return NSStringFromClass(self.mirroredClass);
 }
 
 @end

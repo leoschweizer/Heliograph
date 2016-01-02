@@ -1,9 +1,11 @@
 #ifndef OCReflect_h
 #define OCReflect_h
 
+@class NSObject;
 @class OCClassMirror;
+@class OCObjectMirror;
 
-__attribute__((overloadable)) OCClassMirror * reflect(Class this);
-__attribute__((overloadable)) id reflect(id this);
+extern OCClassMirror * reflect(Class this) __attribute__((overloadable));
+extern OCObjectMirror * reflect(NSObject *this) __attribute__((overloadable));
 
 #endif

@@ -1,7 +1,12 @@
 #import <Foundation/Foundation.h>
 
 
-@interface OCClassMirror : NSObject
+@interface OCTypeMirror : NSObject
+
+@end
+
+
+@interface OCClassMirror : OCTypeMirror
 
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) Class mirroredClass;

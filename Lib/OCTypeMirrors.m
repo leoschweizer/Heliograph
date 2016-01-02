@@ -1,6 +1,11 @@
-#import "OCClassMirror.h"
+#import "OCTypeMirrors.h"
 #import <objc/runtime.h>
 #import "OCMethodMirror.h"
+
+
+@implementation OCTypeMirror
+
+@end
 
 
 @implementation OCClassMirror
@@ -96,7 +101,6 @@
 	}
 	
 	free(classes);
-	
 	return [NSArray arrayWithArray:result];
 	
 }

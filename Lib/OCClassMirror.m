@@ -43,6 +43,10 @@
 	
 }
 
+- (NSString *)description {
+	return [NSString stringWithFormat:@"<OCClassMirror on %@>", self.name];
+}
+
 - (NSArray *)subclasses {
 	
 	int numClasses = objc_getClassList(NULL, 0);

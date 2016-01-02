@@ -27,6 +27,11 @@
 	XCTAssertEqual([allSubclasses count], 4);
 }
 
+- (void)testDescription {
+	NSString *description = [NSString stringWithFormat:@"%@", reflect([NSString class])];
+	XCTAssertEqualObjects(description, @"<OCClassMirror on NSString>");
+}
+
 - (void)testSubclasses {
 	OCClassMirror *classMirror = reflect([OCRootClass class]);
 	NSArray *subclasses = [classMirror subclasses];

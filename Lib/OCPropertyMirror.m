@@ -15,8 +15,7 @@ static NSArray * parseStringAttributes(const char * attributes) {
 	NSString *result = [NSString stringWithUTF8String:attributes];
 	// The string starts with a T followed by the @encode type and a comma,
 	// and finishes with a V followed by the name of the backing instance
-	// variable. Between these, the attributes are specified by descriptors
-	// and separated by commas.
+	// variable. Between these, the attributes are separated by commas.
 	return [result componentsSeparatedByString:@","];
 }
 
@@ -48,8 +47,28 @@ static OCPropertyAttributes parseAttributes(NSArray *stringAttributes) {
 	return self.attributes & OCPropertyAttributesCopy;
 }
 
+- (BOOL)isDynamic {
+	return self.attributes & OCPropertyAttributesDynamic;
+}
+
+- (BOOL)isNonatomic {
+	return self.attributes & OCPropertyAttributesNonatomic;
+}
+
 - (BOOL)isReadonly {
 	return self.attributes & OCPropertyAttributesReadonly;
+}
+
+- (BOOL)isRetained {
+	return self.attributes & OCPropertyAttributesRetain;
+}
+
+- (BOOL)isWeak {
+	return self.attributes & OCPropertyAttributesWeak;
+}
+
+- (BOOL)isGarbageCollected {
+	return self.attributes & OCPropertyAttributesGarbageCollection;
 }
 
 - (NSString *)name {

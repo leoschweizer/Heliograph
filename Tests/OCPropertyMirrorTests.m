@@ -21,28 +21,28 @@
 	XCTAssertEqualObjects([mirror name], @"property1");
 }
 
-- (void)testReadonlyProperty {
+- (void)testProperty1 {
 	OCPropertyMirror *mirror = [self.properties objectForKey:@"property1"];
 	XCTAssertNotNil(mirror);
 	XCTAssertTrue([mirror isReadonly]);
-}
-
-- (void)testCopiedProperty {
-	OCPropertyMirror *mirror = [self.properties objectForKey:@"property1"];
-	XCTAssertNotNil(mirror);
 	XCTAssertTrue([mirror isCopied]);
+	XCTAssertTrue([mirror isNonatomic]);
+	XCTAssertFalse([mirror isGarbageCollected]);
+	XCTAssertFalse([mirror isDynamic]);
+	XCTAssertFalse([mirror isWeak]);
+	XCTAssertFalse([mirror isRetained]);
 }
 
-- (void)testReadwriteProperty {
+- (void)testProperty2 {
 	OCPropertyMirror *mirror = [self.properties objectForKey:@"property2"];
 	XCTAssertNotNil(mirror);
 	XCTAssertFalse([mirror isReadonly]);
-}
-
-- (void)testNoncopiedProperty {
-	OCPropertyMirror *mirror = [self.properties objectForKey:@"property2"];
-	XCTAssertNotNil(mirror);
 	XCTAssertFalse([mirror isCopied]);
+	XCTAssertFalse([mirror isNonatomic]);
+	XCTAssertFalse([mirror isGarbageCollected]);
+	XCTAssertFalse([mirror isDynamic]);
+	XCTAssertTrue([mirror isWeak]);
+	XCTAssertFalse([mirror isRetained]);
 }
 
 @end

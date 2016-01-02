@@ -25,7 +25,12 @@ typedef NS_OPTIONS(NSUInteger, OCPropertyAttributes) {
 - (instancetype)initWithDefiningClass:(OCClassMirror *)definingClass property:(objc_property_t)aProperty;
 
 - (BOOL)isCopied;
+- (BOOL)isDynamic;
+- (BOOL)isNonatomic;
 - (BOOL)isReadonly;
+- (BOOL)isRetained;
+- (BOOL)isWeak;
+- (BOOL)isGarbageCollected;
 
 - (NSString *)name;
 

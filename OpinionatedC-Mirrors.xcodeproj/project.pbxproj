@@ -13,6 +13,7 @@
 		B349BE3B1C37E29600B66CB5 /* OCClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE391C37E29600B66CB5 /* OCClassMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B349BE3C1C37E29600B66CB5 /* OCClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE3A1C37E29600B66CB5 /* OCClassMirror.m */; };
 		B349BE421C37E70800B66CB5 /* OCReflect.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE411C37E69300B66CB5 /* OCReflect.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B349BE451C37ECB500B66CB5 /* OCTestHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE441C37ECB500B66CB5 /* OCTestHierarchy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 		B349BE391C37E29600B66CB5 /* OCClassMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCClassMirror.h; sourceTree = "<group>"; };
 		B349BE3A1C37E29600B66CB5 /* OCClassMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCClassMirror.m; sourceTree = "<group>"; };
 		B349BE411C37E69300B66CB5 /* OCReflect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCReflect.h; sourceTree = "<group>"; };
+		B349BE431C37ECB500B66CB5 /* OCTestHierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTestHierarchy.h; sourceTree = "<group>"; };
+		B349BE441C37ECB500B66CB5 /* OCTestHierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTestHierarchy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,8 @@
 			children = (
 				B349BE341C37E1C300B66CB5 /* Info.plist */,
 				B349BE351C37E1C300B66CB5 /* OCClassMirrorTests.m */,
+				B349BE431C37ECB500B66CB5 /* OCTestHierarchy.h */,
+				B349BE441C37ECB500B66CB5 /* OCTestHierarchy.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B349BE381C37E26600B66CB5 /* OCClassMirrorTests.m in Sources */,
+				B349BE451C37ECB500B66CB5 /* OCTestHierarchy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

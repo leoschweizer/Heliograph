@@ -21,6 +21,9 @@ typedef NS_OPTIONS(NSUInteger, OCPropertyAttributes) {
 @property (nonatomic, readonly) OCClassMirror *definingClass;
 @property (nonatomic, readonly) objc_property_t mirroredProperty;
 @property (nonatomic, readonly) OCPropertyAttributes attributes;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *getterName;
+@property (nonatomic, readonly) NSString *setterName;
 
 - (instancetype)initWithDefiningClass:(OCClassMirror *)definingClass property:(objc_property_t)aProperty;
 
@@ -31,7 +34,5 @@ typedef NS_OPTIONS(NSUInteger, OCPropertyAttributes) {
 - (BOOL)isRetained;
 - (BOOL)isWeak;
 - (BOOL)isGarbageCollected;
-
-- (NSString *)name;
 
 @end

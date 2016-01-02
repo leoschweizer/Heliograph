@@ -43,6 +43,15 @@
 	XCTAssertFalse([mirror isDynamic]);
 	XCTAssertTrue([mirror isWeak]);
 	XCTAssertFalse([mirror isRetained]);
+	XCTAssertEqualObjects(mirror.getterName, @"property2");
+	XCTAssertEqualObjects(mirror.setterName, @"setProperty2:");
+}
+
+- (void)testPropertyBaz {
+	OCPropertyMirror *mirror = [self.properties objectForKey:@"baz"];
+	XCTAssertNotNil(mirror);
+	XCTAssertEqualObjects(mirror.getterName, @"getBar");
+	XCTAssertEqualObjects(mirror.setterName, @"setFoo:");
 }
 
 @end

@@ -31,6 +31,25 @@ static OCPropertyAttributes parseAttributes(NSArray *stringAttributes) {
 }
 
 
+static NSString *parseGetterName(NSArray *stringAttributes, NSString *propertyName) {
+	for (NSString *attribute in stringAttributes) {
+		if ([attribute hasPrefix:@"G"]) {
+			return [attribute substringFromIndex:1];
+		}
+	}
+	return [propertyName copy];
+}
+
+static NSString *parseSetterName(NSArray *stringAttributes, NSString *propertyName) {
+	for (NSString *attribute in stringAttributes) {
+		if ([attribute hasPrefix:@"S"]) {
+			return [attribute substringFromIndex:1];
+		}
+	}
+	return [NSString stringWithFormat:@"set%@:", [propertyName capitalizedString]];
+}
+
+
 @implementation OCPropertyMirror
 
 - (instancetype)initWithDefiningClass:(OCClassMirror *)definingClass property:(objc_property_t)aProperty {
@@ -39,6 +58,9 @@ static OCPropertyAttributes parseAttributes(NSArray *stringAttributes) {
 		_definingClass = definingClass;
 		NSArray *stringAttributes = parseStringAttributes(property_getAttributes(_mirroredProperty));
 		_attributes = parseAttributes(stringAttributes);
+		_name = [NSString stringWithUTF8String:property_getName(self.mirroredProperty)];
+		_getterName = parseGetterName(stringAttributes, _name);
+		_setterName = parseSetterName(stringAttributes, _name);
 	}
 	return self;
 }
@@ -69,10 +91,6 @@ static OCPropertyAttributes parseAttributes(NSArray *stringAttributes) {
 
 - (BOOL)isGarbageCollected {
 	return self.attributes & OCPropertyAttributesGarbageCollection;
-}
-
-- (NSString *)name {
-	return [NSString stringWithUTF8String:property_getName(self.mirroredProperty)];
 }
 
 @end

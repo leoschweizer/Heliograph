@@ -51,7 +51,14 @@
 }
 
 - (NSString *)description {
+	if ([self isMetaclass]) {
+		return [NSString stringWithFormat:@"<OCClassMirror on %@ class>", self.name];
+	}
 	return [NSString stringWithFormat:@"<OCClassMirror on %@>", self.name];
+}
+
+- (BOOL)isMetaclass {
+	return class_isMetaClass(self.mirroredClass);
 }
 
 - (NSDictionary *)methodDictionary {

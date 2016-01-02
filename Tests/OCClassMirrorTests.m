@@ -29,9 +29,9 @@
 
 - (void)testMetaclassMirror {
 	OCClassMirror *mirror = reflect([OCDescendant2 class]);
-	NSLog(@"%@", mirror);
+	XCTAssertFalse([mirror isMetaclass]);
 	OCClassMirror *metaMirror = [mirror classMirror];
-	NSLog(@"%@", metaMirror);
+	XCTAssertTrue([metaMirror isMetaclass]);
 }
 
 - (void)testMethods {
@@ -56,6 +56,8 @@
 - (void)testDescription {
 	NSString *description = [NSString stringWithFormat:@"%@", reflect([NSString class])];
 	XCTAssertEqualObjects(description, @"<OCClassMirror on NSString>");
+	NSString *metaDescription = [NSString stringWithFormat:@"%@", [reflect([NSString class]) classMirror]];
+	XCTAssertEqualObjects(metaDescription, @"<OCClassMirror on NSString class>");
 }
 
 - (void)testSubclasses {

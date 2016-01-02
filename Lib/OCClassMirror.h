@@ -24,6 +24,11 @@
 - (OCClassMirror *)classMirror;
 
 /**
+ * Answers YES if the mirrored class is a metaclass, otherwise NO.
+ */
+- (BOOL)isMetaclass;
+
+/**
  * Answers an array of OCClassMirrors reflecting the receiver's mirrored subclasses.
  */
 - (NSArray *)subclasses;

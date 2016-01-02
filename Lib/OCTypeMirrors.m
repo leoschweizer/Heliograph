@@ -1,6 +1,7 @@
 #import "OCTypeMirrors.h"
 #import <objc/runtime.h>
 #import "OCMethodMirror.h"
+#import "OCPropertyMirror.h"
 
 
 @implementation OCTypeMirror
@@ -81,6 +82,18 @@
 	free(methods);
 	return [NSDictionary dictionaryWithDictionary:methodDict];
 	
+}
+
+- (NSDictionary *)properties {
+	NSMutableDictionary *result = [NSMutableDictionary dictionary];
+	unsigned int outCount, i;
+	objc_property_t *properties = class_copyPropertyList(self.mirroredClass, &outCount);
+	for (i = 0; i < outCount; i++) {
+		objc_property_t property = properties[i];
+		OCPropertyMirror *mirror = [[OCPropertyMirror alloc] initWithDefiningClass:self property:property];
+		[result setObject:mirror forKey:mirror.name];
+	}
+	return [NSDictionary dictionaryWithDictionary:result];
 }
 
 - (NSArray *)subclasses {

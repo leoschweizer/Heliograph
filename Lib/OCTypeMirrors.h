@@ -34,6 +34,11 @@
 - (BOOL)isMetaclass;
 
 /**
+ *
+ */
+- (NSDictionary *)properties;
+
+/**
  * Answers an array of OCClassMirrors reflecting the receiver's mirrored subclasses.
  */
 - (NSArray *)subclasses;

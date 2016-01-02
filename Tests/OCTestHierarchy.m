@@ -29,3 +29,8 @@
 @implementation OCDescendant1Descendant2
 
 @end
+
+
+@implementation OCPropertyClass
+
+@end

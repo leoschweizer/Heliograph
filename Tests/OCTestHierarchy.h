@@ -29,3 +29,10 @@
 @interface OCDescendant1Descendant2 : OCDescendant1
 
 @end
+
+
+@interface OCPropertyClass : NSObject
+
+@property (nonatomic, readonly, copy) NSString *property1;
+
+@end

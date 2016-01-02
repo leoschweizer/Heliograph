@@ -38,4 +38,14 @@
 	XCTAssertEqual([subclasses count], 2);
 }
 
+- (void)testSuperclass {
+	OCClassMirror *mirror = reflect([NSValue class]);
+	XCTAssertEqual([[mirror superclass] mirroredClass], [NSObject class]);
+}
+
+- (void)testSuperclassMissing {
+	OCClassMirror *mirror = reflect([NSObject class]);
+	XCTAssertNil([mirror superclass]);
+}
+
 @end

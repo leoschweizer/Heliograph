@@ -70,6 +70,11 @@
 	
 }
 
+- (OCClassMirror *)superclass {
+	Class superclass = class_getSuperclass(self.mirroredClass);
+	return superclass ? [[OCClassMirror alloc] initWithClass:superclass] : nil;
+}
+
 - (NSString *)name {
 	return NSStringFromClass(self.mirroredClass);
 }

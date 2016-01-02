@@ -15,4 +15,9 @@
 	XCTAssertEqual(classMirror.mirroredClass, testClass);
 }
 
+- (void)testInitFromReflect {
+	OCClassMirror *classMirror = reflect([NSNumber class]);
+	XCTAssertEqual(classMirror.mirroredClass, [NSNumber class]);
+}
+
 @end

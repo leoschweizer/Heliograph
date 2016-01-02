@@ -62,6 +62,7 @@
 }
 
 - (NSDictionary *)methodDictionary {
+	
 	NSMutableDictionary *methodDict = [NSMutableDictionary dictionary];
 	unsigned int methodCount = 0;
 	Method *methods = class_copyMethodList(self.mirroredClass, &methodCount);

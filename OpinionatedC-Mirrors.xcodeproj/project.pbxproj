@@ -14,6 +14,8 @@
 		B349BE3C1C37E29600B66CB5 /* OCClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE3A1C37E29600B66CB5 /* OCClassMirror.m */; };
 		B349BE421C37E70800B66CB5 /* OCReflect.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE411C37E69300B66CB5 /* OCReflect.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B349BE451C37ECB500B66CB5 /* OCTestHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE441C37ECB500B66CB5 /* OCTestHierarchy.m */; };
+		B349BE481C380C5300B66CB5 /* OCMethodMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE461C380C5300B66CB5 /* OCMethodMirror.h */; };
+		B349BE491C380C5300B66CB5 /* OCMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE471C380C5300B66CB5 /* OCMethodMirror.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		B349BE411C37E69300B66CB5 /* OCReflect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCReflect.h; sourceTree = "<group>"; };
 		B349BE431C37ECB500B66CB5 /* OCTestHierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTestHierarchy.h; sourceTree = "<group>"; };
 		B349BE441C37ECB500B66CB5 /* OCTestHierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTestHierarchy.m; sourceTree = "<group>"; };
+		B349BE461C380C5300B66CB5 /* OCMethodMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMethodMirror.h; sourceTree = "<group>"; };
+		B349BE471C380C5300B66CB5 /* OCMethodMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCMethodMirror.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 				B349BE391C37E29600B66CB5 /* OCClassMirror.h */,
 				B349BE3A1C37E29600B66CB5 /* OCClassMirror.m */,
 				B349BE411C37E69300B66CB5 /* OCReflect.h */,
+				B349BE461C380C5300B66CB5 /* OCMethodMirror.h */,
+				B349BE471C380C5300B66CB5 /* OCMethodMirror.m */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -107,6 +113,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B349BE481C380C5300B66CB5 /* OCMethodMirror.h in Headers */,
 				B349BE421C37E70800B66CB5 /* OCReflect.h in Headers */,
 				B349BE3B1C37E29600B66CB5 /* OCClassMirror.h in Headers */,
 				B349BE321C37E1B800B66CB5 /* OpinionatedCMirrors.h in Headers */,
@@ -210,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B349BE3C1C37E29600B66CB5 /* OCClassMirror.m in Sources */,
+				B349BE491C380C5300B66CB5 /* OCMethodMirror.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

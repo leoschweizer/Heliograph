@@ -8,6 +8,8 @@
 
 @interface OCDescendant1 : OCRootClass
 
+- (void)methodDefinedInDescendant1;
+
 @end
 
 
@@ -17,6 +19,9 @@
 
 
 @interface OCDescendant1Descendant1 : OCDescendant1
+
++ (void)classMethodDefinedInDescendant1Descendant1;
+- (void)methodDefinedInDescendant1Descendant1;
 
 @end
 

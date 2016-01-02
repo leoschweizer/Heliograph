@@ -1,5 +1,6 @@
 #import "OCClassMirror.h"
 #import <objc/runtime.h>
+#import "OCMethodMirror.h"
 
 
 @implementation OCClassMirror
@@ -44,8 +45,29 @@
 	
 }
 
+- (OCClassMirror *)classMirror {
+	Class class = object_getClass(self.mirroredClass);
+	return class ? [[OCClassMirror alloc] initWithClass:class] : nil;
+}
+
 - (NSString *)description {
 	return [NSString stringWithFormat:@"<OCClassMirror on %@>", self.name];
+}
+
+- (NSDictionary *)methodDictionary {
+	NSMutableDictionary *methodDict = [NSMutableDictionary dictionary];
+	unsigned int methodCount = 0;
+	Method *methods = class_copyMethodList(self.mirroredClass, &methodCount);
+	
+	for (unsigned int i = 0; i < methodCount; i++) {
+		Method method = methods[i];
+		OCMethodMirror *methodMirror = [[OCMethodMirror alloc] initWithDefiningClass:self method:method];
+		[methodDict setObject:methodMirror forKey:NSStringFromSelector(methodMirror.selector)];
+	}
+	
+	free(methods);
+	return [NSDictionary dictionaryWithDictionary:methodDict];
+	
 }
 
 - (NSArray *)subclasses {

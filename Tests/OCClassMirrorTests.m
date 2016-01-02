@@ -27,4 +27,10 @@
 	XCTAssertEqual([allSubclasses count], 4);
 }
 
+- (void)testSubclasses {
+	OCClassMirror *classMirror = reflect([OCRootClass class]);
+	NSArray *subclasses = [classMirror subclasses];
+	XCTAssertEqual([subclasses count], 2);
+}
+
 @end

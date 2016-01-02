@@ -12,9 +12,14 @@
 - (instancetype)initWithClass:(Class)aClass;
 
 /**
- * Answers an Array of the receiver's subclasses and the receiver's descendant's 
- * subclasses.
+ * Answers an array of OCClassMirrors reflecting the receiver's subclasses 
+ * and the receiver's descendant's subclasses.
  */
 - (NSArray *)allSubclasses;
+
+/**
+ * Answers an array of OCClassMirrors reflecting the receiver's subclasses.
+ */
+- (NSArray *)subclasses;
 
 @end

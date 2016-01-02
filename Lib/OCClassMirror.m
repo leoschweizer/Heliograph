@@ -43,6 +43,29 @@
 	
 }
 
+- (NSArray *)subclasses {
+	
+	int numClasses = objc_getClassList(NULL, 0);
+	Class *classes = NULL;
+	
+	classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numClasses);
+	numClasses = objc_getClassList(classes, numClasses);
+	
+	NSMutableArray *result = [NSMutableArray array];
+	for (NSInteger i = 0; i < numClasses; i++) {
+		Class superClass = class_getSuperclass(classes[i]);
+		if (superClass == self.mirroredClass) {
+			OCClassMirror *mirror = [[OCClassMirror alloc] initWithClass:classes[i]];
+			[result addObject:mirror];
+		}
+	}
+	
+	free(classes);
+	
+	return [NSArray arrayWithArray:result];
+	
+}
+
 - (NSString *)name {
 	return NSStringFromClass(self.mirroredClass);
 }

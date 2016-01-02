@@ -34,5 +34,6 @@
 @interface OCPropertyClass : NSObject
 
 @property (nonatomic, readonly, copy) NSString *property1;
+@property (atomic, readwrite, weak) id property2;
 
 @end

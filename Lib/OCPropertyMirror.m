@@ -1,5 +1,6 @@
 #import "OCPropertyMirror.h"
 #import <objc/runtime.h>
+#import "OCClassMirror.h"
 #import "OCTypeMirrors.h"
 
 
@@ -58,6 +59,14 @@ static NSString *parseBackingInstanceVariableName(NSArray *stringAttributes) {
 	return [attribute substringFromIndex:1];
 }
 
+static OCTypeMirror *parseType(NSArray *stringAttributes) {
+	NSString *attribute = [stringAttributes firstObject];
+	if (![attribute hasPrefix:@"T"]) {
+		return nil;
+	}
+	return [OCTypeMirror createForEncoding:[attribute substringFromIndex:1]];
+}
+
 
 @interface OCPropertyMirror ()
 
@@ -78,6 +87,7 @@ static NSString *parseBackingInstanceVariableName(NSArray *stringAttributes) {
 		_getterName = parseGetterName(stringAttributes, _name);
 		_setterName = parseSetterName(stringAttributes, _name);
 		_backingInstanceVariableName = parseBackingInstanceVariableName(stringAttributes);
+		_type = parseType(stringAttributes);
 	}
 	return self;
 }

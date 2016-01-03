@@ -3,6 +3,7 @@
 
 
 @class OCClassMirror;
+@class OCTypeMirror;
 @class OCInstanceVariableMirror;
 
 
@@ -23,6 +24,7 @@ typedef NS_OPTIONS(NSUInteger, OCPropertyAttributes) {
 @property (nonatomic, readonly) OCClassMirror *definingClass;
 @property (nonatomic, readonly) objc_property_t mirroredProperty;
 @property (nonatomic, readonly) OCPropertyAttributes attributes;
+@property (nonatomic, readonly) OCTypeMirror *type;
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSString *getterName;
 @property (nonatomic, readonly) NSString *setterName;

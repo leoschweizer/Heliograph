@@ -1,144 +1,78 @@
 #import "OCTypeMirrors.h"
 #import <objc/runtime.h>
-#import "OCMethodMirror.h"
-#import "OCPropertyMirror.h"
-#import "OCInstanceVariableMirror.h"
+#import "OCClassMirror.h"
 
 
 @implementation OCTypeMirror
 
++ (NSDictionary *)typeEncodings {
+	static dispatch_once_t onceToken;
+	static NSDictionary *_dict = nil;
+	dispatch_once(&onceToken, ^{
+		_dict = @{
+			@(@encode(id)[0]) : [OCObjectTypeMirror class],
+			@(@encode(Class)[0]) : [OCClassTypeMirror class],
+			@(@encode(char)[0]) : [OCCharTypeMirror class],
+			@(@encode(int)[0]) : [OCIntTypeMirror class],
+			@(@encode(_Bool)[0]) : [OCBoolTypeMirror class]
+		};
+	});
+	return _dict;
+}
+
++ (instancetype)createForEncoding:(NSString *)encoding {
+	Class class = [[self typeEncodings] objectForKey:@([encoding characterAtIndex:0])];
+	if (class) {
+		return [[class alloc] initWithEncoding:encoding];
+	}
+	return nil;
+}
+
+- (instancetype)initWithEncoding:(NSString *)encoding {
+	return self = [super init];
+}
+
 @end
 
 
-@implementation OCClassMirror
+@implementation OCObjectTypeMirror
 
-- (instancetype)initWithClass:(Class)aClass {
-	if (self = [super init]) {
-		_mirroredClass = aClass;
-		_name = NSStringFromClass(aClass);
+- (instancetype)initWithEncoding:(NSString *)encoding {
+	if (self = [super initWithEncoding:encoding]) {
+		if (encoding.length >= 4) {
+			NSString *className = [encoding substringWithRange:NSMakeRange(2, encoding.length - 3)];
+			Class class = objc_getClass([className cStringUsingEncoding:NSUTF8StringEncoding]);
+			if (class) {
+				_classMirror = [[OCClassMirror alloc] initWithClass:class];
+			}
+		}
 	}
 	return self;
 }
 
-- (NSArray *)allSubclasses {
-	
-	int numClasses = objc_getClassList(NULL, 0);
-	Class *classes = NULL;
-	
-	classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numClasses);
-	numClasses = objc_getClassList(classes, numClasses);
-	
-	NSMutableArray *result = [NSMutableArray array];
-	for (NSInteger i = 0; i < numClasses; i++) {
-		
-		Class superClass = classes[i];
-		
-		do {
-			superClass = class_getSuperclass(superClass);
-		} while(superClass && superClass != self.mirroredClass);
-		
-		if (!superClass) {
-			continue;
-		}
-		
-		OCClassMirror *mirror = [[OCClassMirror alloc] initWithClass:classes[i]];
-		[result addObject:mirror];
-		
-	}
-	
-	free(classes);
-	
-	return [NSArray arrayWithArray:result];
-	
-}
+@end
 
-- (OCClassMirror *)classMirror {
-	Class class = object_getClass(self.mirroredClass);
-	return class ? [[OCClassMirror alloc] initWithClass:class] : nil;
-}
 
-- (NSString *)description {
-	if ([self isMetaclass]) {
-		return [NSString stringWithFormat:@"<OCClassMirror on %@ class>", self.name];
-	}
-	return [NSString stringWithFormat:@"<OCClassMirror on %@>", self.name];
-}
+@implementation OCClassTypeMirror
 
-- (NSDictionary *)instanceVariables {
-	
-	NSMutableDictionary *result = [NSMutableDictionary dictionary];
-	unsigned int instanceVariableCount;
-	Ivar *instanceVariables = class_copyIvarList(self.mirroredClass, &instanceVariableCount);
-	
-	for (int i = 0; i < instanceVariableCount; i++) {
-		Ivar var = instanceVariables[i];
-		OCInstanceVariableMirror *mirror = [[OCInstanceVariableMirror alloc] initWithDefiningClass:self instanceVariable:var];
-		[result setObject:mirror forKey:mirror.name];
-	}
-	
-	free(instanceVariables);
-	return [NSDictionary dictionaryWithDictionary:result];
-	
-}
+@end
 
-- (BOOL)isMetaclass {
-	return class_isMetaClass(self.mirroredClass);
-}
 
-- (NSDictionary *)methodDictionary {
-	
-	NSMutableDictionary *methodDict = [NSMutableDictionary dictionary];
-	unsigned int methodCount = 0;
-	Method *methods = class_copyMethodList(self.mirroredClass, &methodCount);
-	
-	for (unsigned int i = 0; i < methodCount; i++) {
-		Method method = methods[i];
-		OCMethodMirror *methodMirror = [[OCMethodMirror alloc] initWithDefiningClass:self method:method];
-		[methodDict setObject:methodMirror forKey:NSStringFromSelector(methodMirror.selector)];
-	}
-	
-	free(methods);
-	return [NSDictionary dictionaryWithDictionary:methodDict];
-	
-}
+@implementation OCPrimitiveTypeMirror
 
-- (NSDictionary *)properties {
-	NSMutableDictionary *result = [NSMutableDictionary dictionary];
-	unsigned int outCount, i;
-	objc_property_t *properties = class_copyPropertyList(self.mirroredClass, &outCount);
-	for (i = 0; i < outCount; i++) {
-		objc_property_t property = properties[i];
-		OCPropertyMirror *mirror = [[OCPropertyMirror alloc] initWithDefiningClass:self property:property];
-		[result setObject:mirror forKey:mirror.name];
-	}
-	return [NSDictionary dictionaryWithDictionary:result];
-}
+@end
 
-- (NSArray *)subclasses {
-	
-	int numClasses = objc_getClassList(NULL, 0);
-	Class *classes = NULL;
-	
-	classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numClasses);
-	numClasses = objc_getClassList(classes, numClasses);
-	
-	NSMutableArray *result = [NSMutableArray array];
-	for (NSInteger i = 0; i < numClasses; i++) {
-		Class superClass = class_getSuperclass(classes[i]);
-		if (superClass == self.mirroredClass) {
-			OCClassMirror *mirror = [[OCClassMirror alloc] initWithClass:classes[i]];
-			[result addObject:mirror];
-		}
-	}
-	
-	free(classes);
-	return [NSArray arrayWithArray:result];
-	
-}
 
-- (OCClassMirror *)superclass {
-	Class superclass = class_getSuperclass(self.mirroredClass);
-	return superclass ? [[OCClassMirror alloc] initWithClass:superclass] : nil;
-}
+@implementation OCCharTypeMirror
+
+@end
+
+
+@implementation OCIntTypeMirror
+
+@end
+
+
+@implementation OCBoolTypeMirror
 
 @end

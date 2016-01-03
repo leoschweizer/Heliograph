@@ -51,3 +51,8 @@
 }
 
 @end
+
+
+@implementation OCTypeTestClass
+
+@end

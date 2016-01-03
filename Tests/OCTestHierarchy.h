@@ -49,3 +49,15 @@
 @property id propertyWithSynthesizedIvar;
 
 @end
+
+
+@interface OCTypeTestClass : NSObject
+
+@property NSString *stringProperty;
+@property id idProperty;
+@property Class classProperty;
+@property char charProperty;
+@property int intProperty;
+@property _Bool boolProperty;
+
+@end

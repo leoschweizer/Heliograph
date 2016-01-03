@@ -1,56 +1,45 @@
 #import <Foundation/Foundation.h>
 
 
+@class OCClassMirror;
+
+
 @interface OCTypeMirror : NSObject
+
++ (instancetype)createForEncoding:(NSString *)encoding;
+
+- (instancetype)initWithEncoding:(NSString *)encoding;
 
 @end
 
 
-@interface OCClassMirror : OCTypeMirror
+@interface OCObjectTypeMirror : OCTypeMirror
 
-@property (nonatomic, readonly) NSString *name;
-@property (nonatomic, readonly) Class mirroredClass;
-@property (nonatomic, readonly) NSDictionary *methodDictionary;
+@property (nonatomic, readonly) OCClassMirror *classMirror;
 
-/**
- * Answers an OCClassMirror instance reflecting aClass.
- */
-- (instancetype)initWithClass:(Class)aClass;
+@end
 
-/**
- * Answers an array of OCClassMirrors reflecting the receiver's mirrored subclasses
- * and the receiver's descendant's subclasses.
- */
-- (NSArray *)allSubclasses;
 
-/**
- *
- */
-- (OCClassMirror *)classMirror;
+@interface OCClassTypeMirror : OCTypeMirror
 
-/**
- * 
- */
-- (NSDictionary *)instanceVariables;
+@end
 
-/**
- * Answers YES if the mirrored class is a metaclass, otherwise NO.
- */
-- (BOOL)isMetaclass;
 
-/**
- *
- */
-- (NSDictionary *)properties;
+@interface OCPrimitiveTypeMirror : OCTypeMirror
 
-/**
- * Answers an array of OCClassMirrors reflecting the receiver's mirrored subclasses.
- */
-- (NSArray *)subclasses;
+@end
 
-/**
- * Answers an OCClassMirror reflecting the receiver's mirrored superclass.
- */
-- (OCClassMirror *)superclass;
+
+@interface OCCharTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCIntTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCBoolTypeMirror : OCPrimitiveTypeMirror
 
 @end

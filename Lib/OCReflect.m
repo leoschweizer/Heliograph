@@ -1,5 +1,5 @@
 #import "OCReflect.h"
-#import <OpinionatedCMirrors/OCTypeMirrors.h>
+#import <OpinionatedCMirrors/OCClassMirror.h>
 #import <OpinionatedCMirrors/OCValueMirrors.h>
 
 

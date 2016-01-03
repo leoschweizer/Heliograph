@@ -27,6 +27,9 @@
 		B349BE5C1C392C9400B66CB5 /* OCInstanceVariableMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE5A1C392C9400B66CB5 /* OCInstanceVariableMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B349BE5D1C392C9400B66CB5 /* OCInstanceVariableMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE5B1C392C9400B66CB5 /* OCInstanceVariableMirror.m */; };
 		B349BE5F1C392EC200B66CB5 /* OCInstanceVariableMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE5E1C392EC200B66CB5 /* OCInstanceVariableMirrorTests.m */; };
+		B349BE621C3957C300B66CB5 /* OCClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE601C3957C300B66CB5 /* OCClassMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B349BE631C3957C300B66CB5 /* OCClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE611C3957C300B66CB5 /* OCClassMirror.m */; };
+		B349BE651C39618C00B66CB5 /* OCTypeMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE641C39618C00B66CB5 /* OCTypeMirrorTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,9 @@
 		B349BE5A1C392C9400B66CB5 /* OCInstanceVariableMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCInstanceVariableMirror.h; sourceTree = "<group>"; };
 		B349BE5B1C392C9400B66CB5 /* OCInstanceVariableMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCInstanceVariableMirror.m; sourceTree = "<group>"; };
 		B349BE5E1C392EC200B66CB5 /* OCInstanceVariableMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCInstanceVariableMirrorTests.m; sourceTree = "<group>"; };
+		B349BE601C3957C300B66CB5 /* OCClassMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCClassMirror.h; sourceTree = "<group>"; };
+		B349BE611C3957C300B66CB5 /* OCClassMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCClassMirror.m; sourceTree = "<group>"; };
+		B349BE641C39618C00B66CB5 /* OCTypeMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTypeMirrorTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				B349BE2F1C37E1B800B66CB5 /* Info.plist */,
+				B349BE601C3957C300B66CB5 /* OCClassMirror.h */,
+				B349BE611C3957C300B66CB5 /* OCClassMirror.m */,
 				B349BE5A1C392C9400B66CB5 /* OCInstanceVariableMirror.h */,
 				B349BE5B1C392C9400B66CB5 /* OCInstanceVariableMirror.m */,
 				B349BE461C380C5300B66CB5 /* OCMethodMirror.h */,
@@ -135,6 +143,7 @@
 				B349BE581C386B9100B66CB5 /* OCPropertyMirrorTests.m */,
 				B349BE431C37ECB500B66CB5 /* OCTestHierarchy.h */,
 				B349BE441C37ECB500B66CB5 /* OCTestHierarchy.m */,
+				B349BE641C39618C00B66CB5 /* OCTypeMirrorTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -146,6 +155,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B349BE621C3957C300B66CB5 /* OCClassMirror.h in Headers */,
 				B349BE481C380C5300B66CB5 /* OCMethodMirror.h in Headers */,
 				B349BE421C37E70800B66CB5 /* OCReflect.h in Headers */,
 				B349BE5C1C392C9400B66CB5 /* OCInstanceVariableMirror.h in Headers */,
@@ -258,6 +268,7 @@
 				B349BE5D1C392C9400B66CB5 /* OCInstanceVariableMirror.m in Sources */,
 				B349BE571C384A9C00B66CB5 /* OCPropertyMirror.m in Sources */,
 				B349BE491C380C5300B66CB5 /* OCMethodMirror.m in Sources */,
+				B349BE631C3957C300B66CB5 /* OCClassMirror.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +281,7 @@
 				B349BE451C37ECB500B66CB5 /* OCTestHierarchy.m in Sources */,
 				B349BE5F1C392EC200B66CB5 /* OCInstanceVariableMirrorTests.m in Sources */,
 				B349BE591C386B9100B66CB5 /* OCPropertyMirrorTests.m in Sources */,
+				B349BE651C39618C00B66CB5 /* OCTypeMirrorTests.m in Sources */,
 				B349BE531C3840FD00B66CB5 /* OCObjectMirrorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

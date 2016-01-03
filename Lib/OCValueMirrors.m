@@ -1,5 +1,5 @@
 #import "OCValueMirrors.h"
-#import "OCTypeMirrors.h"
+#import "OCClassMirror.h"
 
 
 @implementation OCValueMirror

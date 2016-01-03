@@ -34,3 +34,16 @@
 @implementation OCPropertyClass
 
 @end
+
+
+@implementation OCInstanceVariableClass {
+	id privateIvar;
+}
+
+@synthesize propertyWithSynthesizedIvar = _propertyWithSynthesizedIvarBaz;
+
+- (id)propertyWithoutIvar {
+	return nil;
+}
+
+@end

@@ -29,6 +29,11 @@
 - (OCClassMirror *)classMirror;
 
 /**
+ * 
+ */
+- (NSDictionary *)instanceVariables;
+
+/**
  * Answers YES if the mirrored class is a metaclass, otherwise NO.
  */
 - (BOOL)isMetaclass;

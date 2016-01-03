@@ -38,3 +38,14 @@
 @property (setter=setFoo:, getter=getBar) BOOL baz;
 
 @end
+
+
+@interface OCInstanceVariableClass : NSObject {
+	id publicIvar;
+}
+
+@property (nonatomic, readonly) id propertyWithoutIvar;
+@property id propertyWithIvar;
+@property id propertyWithSynthesizedIvar;
+
+@end

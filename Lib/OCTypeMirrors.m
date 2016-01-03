@@ -2,6 +2,7 @@
 #import <objc/runtime.h>
 #import "OCMethodMirror.h"
 #import "OCPropertyMirror.h"
+#import "OCInstanceVariableMirror.h"
 
 
 @implementation OCTypeMirror
@@ -61,6 +62,23 @@
 		return [NSString stringWithFormat:@"<OCClassMirror on %@ class>", self.name];
 	}
 	return [NSString stringWithFormat:@"<OCClassMirror on %@>", self.name];
+}
+
+- (NSDictionary *)instanceVariables {
+	
+	NSMutableDictionary *result = [NSMutableDictionary dictionary];
+	unsigned int instanceVariableCount;
+	Ivar *instanceVariables = class_copyIvarList(self.mirroredClass, &instanceVariableCount);
+	
+	for (int i = 0; i < instanceVariableCount; i++) {
+		Ivar var = instanceVariables[i];
+		OCInstanceVariableMirror *mirror = [[OCInstanceVariableMirror alloc] initWithDefiningClass:self instanceVariable:var];
+		[result setObject:mirror forKey:mirror.name];
+	}
+	
+	free(instanceVariables);
+	return [NSDictionary dictionaryWithDictionary:result];
+	
 }
 
 - (BOOL)isMetaclass {

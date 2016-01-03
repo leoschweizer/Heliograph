@@ -1,4 +1,4 @@
 # Heliograph
-[![Build Status](https://travis-ci.org/leoschweizer/OpinionatedC-Mirrors.svg?branch=master)](https://travis-ci.org/leoschweizer/OpinionatedC-Mirrors)
-[![Coverage Status](https://coveralls.io/repos/leoschweizer/OpinionatedC-Mirrors/badge.svg?branch=master&service=github)](https://coveralls.io/github/leoschweizer/OpinionatedC-Mirrors?branch=master)
+[![Build Status](https://travis-ci.org/leoschweizer/Heliograph.svg?branch=master)](https://travis-ci.org/leoschweizer/Heliograph)
+[![Coverage Status](https://coveralls.io/repos/leoschweizer/Heliograph/badge.svg?branch=master&service=github)](https://coveralls.io/github/leoschweizer/Heliograph?branch=master)
 

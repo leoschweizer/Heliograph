@@ -49,4 +49,9 @@
 	XCTAssertNil(mirror2);
 }
 
+- (void)testInstanceVariableType {
+	OCInstanceVariableMirror *mirror = [self.instanceVariables objectForKey:@"privateIvar"];
+	XCTAssertEqual([[mirror type] class], [OCCharTypeMirror class]);
+}
+
 @end

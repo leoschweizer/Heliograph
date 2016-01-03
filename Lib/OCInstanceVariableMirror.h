@@ -3,6 +3,7 @@
 
 
 @class OCClassMirror;
+@class OCTypeMirror;
 
 
 @interface OCInstanceVariableMirror : NSObject
@@ -12,5 +13,11 @@
 @property (nonatomic, readonly) NSString *name;
 
 - (instancetype)initWithDefiningClass:(OCClassMirror *)definingClass instanceVariable:(Ivar)instanceVariable;
+
+/**
+ * Answers an OCTypeMirror reflecting the receiver's mirrored instance 
+ * variable's type.
+ */
+- (OCTypeMirror *)type;
 
 @end

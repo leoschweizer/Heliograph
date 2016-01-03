@@ -41,7 +41,7 @@
 
 
 @implementation OCInstanceVariableClass {
-	id privateIvar;
+	char privateIvar;
 }
 
 @synthesize propertyWithSynthesizedIvar = _propertyWithSynthesizedIvarBaz;

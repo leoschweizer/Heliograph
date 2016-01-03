@@ -29,4 +29,14 @@
 	XCTAssertEqual([typeMirror class], [OCVoidTypeMirror class]);
 }
 
+- (void)testArgumentTypes {
+	OCClassMirror *class = reflect([NSString class]);
+	NSDictionary *methodDict = [class methodDictionary];
+	OCMethodMirror *method = [methodDict objectForKey:@"stringByFoldingWithOptions:locale:"];
+	NSArray *argumentTypes = [method argumentTypes];
+	XCTAssertEqual([argumentTypes count], 2);
+	XCTAssertEqual([[argumentTypes firstObject] class], [OCUnsignedLongLongTypeMirror class]);
+	XCTAssertEqual([[argumentTypes lastObject] class], [OCObjectTypeMirror class]);
+}
+
 @end

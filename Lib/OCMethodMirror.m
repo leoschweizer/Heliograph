@@ -13,6 +13,18 @@
 	return self;
 }
 
+- (NSArray *)argumentTypes {
+	NSMutableArray *result = [NSMutableArray array];
+	unsigned int numberOfArguments = method_getNumberOfArguments(self.mirroredMethod);
+	for (int i = 2; i < numberOfArguments; i++) {
+		char *encoding = method_copyArgumentType(self.mirroredMethod, i);
+		OCTypeMirror *mirror = [OCTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
+		[result addObject:mirror];
+		free(encoding);
+	}
+	return [NSArray arrayWithArray:result];
+}
+
 - (NSUInteger)numberOfArguments {
 	// we don't want to take account of self and _cmd here, hence subtract 2
 	return method_getNumberOfArguments(self.mirroredMethod) - 2;

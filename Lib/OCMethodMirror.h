@@ -26,6 +26,12 @@
 - (instancetype)initWithDefiningClass:(OCClassMirror *)classMirror method:(Method)aMethod;
 
 /**
+ * Answers an NSArray of OCTypeMirrors reflecting the types of the arguments of
+ * the receiver's mirrored method.
+ */
+- (NSArray *)argumentTypes;
+
+/**
  * Answers the number of arguments of the receiver's mirrored method, not
  * including the implicit self and _cmd arguments.
  */

@@ -14,6 +14,7 @@
 			@(@encode(Class)[0]) : [OCClassTypeMirror class],
 			@(@encode(char)[0]) : [OCCharTypeMirror class],
 			@(@encode(int)[0]) : [OCIntTypeMirror class],
+			@(@encode(unsigned long long)[0]) : [OCUnsignedLongLongTypeMirror class],
 			@(@encode(_Bool)[0]) : [OCBoolTypeMirror class],
 			@(@encode(void)[0]) : [OCVoidTypeMirror class]
 		};
@@ -73,6 +74,11 @@
 
 
 @implementation OCIntTypeMirror
+
+@end
+
+
+@implementation OCUnsignedLongLongTypeMirror
 
 @end
 

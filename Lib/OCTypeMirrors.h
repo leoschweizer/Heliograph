@@ -42,6 +42,11 @@
 @end
 
 
+@interface OCUnsignedLongLongTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
 @interface OCBoolTypeMirror : OCPrimitiveTypeMirror
 
 @end

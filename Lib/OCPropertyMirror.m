@@ -1,5 +1,6 @@
 #import "OCPropertyMirror.h"
 #import <objc/runtime.h>
+#import "OCTypeMirrors.h"
 
 
 static NSString * const cPropertyAttributeReadonly = @"R";
@@ -49,6 +50,21 @@ static NSString *parseSetterName(NSArray *stringAttributes, NSString *propertyNa
 	return [NSString stringWithFormat:@"set%@:", [propertyName capitalizedString]];
 }
 
+static NSString *parseBackingInstanceVariableName(NSArray *stringAttributes) {
+	NSString *attribute = [stringAttributes lastObject];
+	if (![attribute hasPrefix:@"V"]) {
+		return nil;
+	}
+	return [attribute substringFromIndex:1];
+}
+
+
+@interface OCPropertyMirror ()
+
+@property (nonatomic, readonly) NSString *backingInstanceVariableName;
+
+@end
+
 
 @implementation OCPropertyMirror
 
@@ -61,8 +77,17 @@ static NSString *parseSetterName(NSArray *stringAttributes, NSString *propertyNa
 		_name = [NSString stringWithUTF8String:property_getName(self.mirroredProperty)];
 		_getterName = parseGetterName(stringAttributes, _name);
 		_setterName = parseSetterName(stringAttributes, _name);
+		_backingInstanceVariableName = parseBackingInstanceVariableName(stringAttributes);
 	}
 	return self;
+}
+
+- (OCInstanceVariableMirror *)backingInstanceVariable {
+	if (!self.backingInstanceVariableName) {
+		return nil;
+	}
+	NSDictionary *instanceVariables = [self.definingClass instanceVariables];
+	return [instanceVariables objectForKey:self.backingInstanceVariableName];
 }
 
 - (BOOL)isCopied {

@@ -54,4 +54,17 @@
 	XCTAssertEqualObjects(mirror.setterName, @"setFoo:");
 }
 
+- (void)testBackingInstanceVariable {
+	OCPropertyMirror *property = [self.properties objectForKey:@"property2"];
+	OCInstanceVariableMirror *instanceVariable = [property backingInstanceVariable];
+	XCTAssertNotNil(instanceVariable);
+	XCTAssertEqualObjects(instanceVariable.name, @"_property2");
+}
+
+- (void)testBackingInstanceVariableMissing {
+	OCPropertyMirror *property = [self.properties objectForKey:@"property1"];
+	OCInstanceVariableMirror *instanceVariable = [property backingInstanceVariable];
+	XCTAssertNil(instanceVariable);
+}
+
 @end

@@ -33,6 +33,10 @@
 
 @implementation OCPropertyClass
 
+- (NSString *)property1 {
+	return @"Foo";
+}
+
 @end
 
 

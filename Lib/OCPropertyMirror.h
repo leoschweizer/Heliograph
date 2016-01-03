@@ -3,6 +3,8 @@
 
 
 @class OCClassMirror;
+@class OCInstanceVariableMirror;
+
 
 typedef NS_OPTIONS(NSUInteger, OCPropertyAttributes) {
 	OCPropertyAttributesNone                = 0,
@@ -27,12 +29,48 @@ typedef NS_OPTIONS(NSUInteger, OCPropertyAttributes) {
 
 - (instancetype)initWithDefiningClass:(OCClassMirror *)definingClass property:(objc_property_t)aProperty;
 
+/**
+ * Answers an OCInstanceVariableMirror reflecting the instance variable backing
+ * the receiver's mirrored property.
+ */
+- (OCInstanceVariableMirror *)backingInstanceVariable;
+
+/**
+ * Answers YES when the receiver's mirrored property is a copy of the value 
+ * last assigned (copy).
+ */
 - (BOOL)isCopied;
+
+/**
+ * Answers YES when the receiver's mirrored proeprty is is dynamic (@dynamic).
+ */
 - (BOOL)isDynamic;
+
+/**
+ * Answers YES when the receiver's mirrored property is non-atomic (nonatomic).
+ */
 - (BOOL)isNonatomic;
+
+/**
+ * Answers YES when the receiver's mirrored property is read-only (readonly).
+ */
 - (BOOL)isReadonly;
+
+/**
+ * Answers YES when the receiver's mirrored property is a reference to the
+ * value last assigned (retain).
+ */
 - (BOOL)isRetained;
+
+/**
+ * Answers YES when the receiver's mirrored property is a weak reference (__weak).
+ */
 - (BOOL)isWeak;
+
+/**
+ * Answers YES when the receiver's mirrored property is eligible for 
+ * garbage collection.
+ */
 - (BOOL)isGarbageCollected;
 
 @end

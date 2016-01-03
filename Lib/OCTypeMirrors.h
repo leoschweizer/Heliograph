@@ -6,6 +6,8 @@
 
 @interface OCTypeMirror : NSObject
 
+@property (nonatomic, readonly) NSString *encoding;
+
 + (instancetype)createForEncoding:(NSString *)encoding;
 
 - (instancetype)initWithEncoding:(NSString *)encoding;
@@ -41,5 +43,15 @@
 
 
 @interface OCBoolTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCVoidTypeMirror : OCTypeMirror
+
+@end
+
+
+@interface OCUnknownTypeMirror : OCTypeMirror
 
 @end

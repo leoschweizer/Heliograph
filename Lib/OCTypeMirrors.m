@@ -14,7 +14,8 @@
 			@(@encode(Class)[0]) : [OCClassTypeMirror class],
 			@(@encode(char)[0]) : [OCCharTypeMirror class],
 			@(@encode(int)[0]) : [OCIntTypeMirror class],
-			@(@encode(_Bool)[0]) : [OCBoolTypeMirror class]
+			@(@encode(_Bool)[0]) : [OCBoolTypeMirror class],
+			@(@encode(void)[0]) : [OCVoidTypeMirror class]
 		};
 	});
 	return _dict;
@@ -25,11 +26,14 @@
 	if (class) {
 		return [[class alloc] initWithEncoding:encoding];
 	}
-	return nil;
+	return [[OCUnknownTypeMirror alloc] initWithEncoding:encoding];
 }
 
 - (instancetype)initWithEncoding:(NSString *)encoding {
-	return self = [super init];
+	if (self = [super init]) {
+		_encoding = encoding;
+	}
+	return self;
 }
 
 @end
@@ -74,5 +78,15 @@
 
 
 @implementation OCBoolTypeMirror
+
+@end
+
+
+@implementation OCVoidTypeMirror
+
+@end
+
+
+@implementation OCUnknownTypeMirror
 
 @end

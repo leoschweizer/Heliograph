@@ -21,14 +21,38 @@ typedef NS_OPTIONS(NSUInteger, OCPropertyAttributes) {
 
 @interface OCPropertyMirror : NSObject
 
+/**
+ * The OCClassMirror reflecting the receiver's mirrored propertie's defining class.
+ */
 @property (nonatomic, readonly) OCClassMirror *definingClass;
+
+/**
+ * The reflected property.
+ */
 @property (nonatomic, readonly) objc_property_t mirroredProperty;
+
+/**
+ * The attributes of the receiver's mirrored property (see OCPropertyAttributes).
+ */
 @property (nonatomic, readonly) OCPropertyAttributes attributes;
+
+/**
+ * The OCTypeMirror reflecting the receiver's mirrored propertie's type.
+ */
 @property (nonatomic, readonly) OCTypeMirror *type;
+
+/**
+ * The name of the receiver's mirrored property.
+ */
 @property (nonatomic, readonly) NSString *name;
+
 @property (nonatomic, readonly) NSString *getterName;
 @property (nonatomic, readonly) NSString *setterName;
 
+/**
+ * Answers an OCPropertyMirror reflecting aProperty. Don't call this yourself,
+ * use reflect(...).properties instead to retrieve instances of this class.
+ */
 - (instancetype)initWithDefiningClass:(OCClassMirror *)definingClass property:(objc_property_t)aProperty;
 
 /**

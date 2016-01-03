@@ -10,13 +10,30 @@
 	static NSDictionary *_dict = nil;
 	dispatch_once(&onceToken, ^{
 		_dict = @{
-			@(@encode(id)[0]) : [OCObjectTypeMirror class],
-			@(@encode(Class)[0]) : [OCClassTypeMirror class],
-			@(@encode(char)[0]) : [OCCharTypeMirror class],
-			@(@encode(int)[0]) : [OCIntTypeMirror class],
-			@(@encode(unsigned long long)[0]) : [OCUnsignedLongLongTypeMirror class],
-			@(@encode(_Bool)[0]) : [OCBoolTypeMirror class],
-			@(@encode(void)[0]) : [OCVoidTypeMirror class]
+			@('@') : [OCObjectTypeMirror class],
+			@('#') : [OCClassTypeMirror class],
+			@('c') : [OCCharTypeMirror class],
+			@('s') : [OCShortTypeMirror class],
+			@('i') : [OCIntTypeMirror class],
+			@('l') : [OCLongTypeMirror class],
+			@('q') : [OCLongLongTypeMirror class],
+			@('C') : [OCUnsignedCharTypeMirror class],
+			@('S') : [OCUnsignedShortTypeMirror class],
+			@('I') : [OCUnsignedIntTypeMirror class],
+			@('L') : [OCUnsignedLongTypeMirror class],
+			@('Q') : [OCUnsignedLongLongTypeMirror class],
+			@('f') : [OCFloatTypeMirror class],
+			@('d') : [OCDoubleTypeMirror class],
+			@('B') : [OCBoolTypeMirror class],
+			@('*') : [OCCharacterStringTypeMirror class],
+			@(':') : [OCSelectorTypeMirror class],
+			@('v') : [OCVoidTypeMirror class],
+			@('[') : [OCArrayTypeMirror class],
+			@('{') : [OCStructureTypeMirror class],
+			@('(') : [OCUnionTypeMirror class],
+			@('b') : [OCBitFieldTypeMirror class],
+			@('^') : [OCPointerTypeMirror class],
+			@('?') : [OCUnknownTypeMirror class]
 		};
 	});
 	return _dict;
@@ -73,7 +90,42 @@
 @end
 
 
+@implementation OCShortTypeMirror
+
+@end
+
+
 @implementation OCIntTypeMirror
+
+@end
+
+
+@implementation OCLongTypeMirror
+
+@end
+
+
+@implementation OCLongLongTypeMirror
+
+@end
+
+
+@implementation OCUnsignedCharTypeMirror
+
+@end
+
+
+@implementation OCUnsignedShortTypeMirror
+
+@end
+
+
+@implementation OCUnsignedIntTypeMirror
+
+@end
+
+
+@implementation OCUnsignedLongTypeMirror
 
 @end
 
@@ -83,12 +135,57 @@
 @end
 
 
+@implementation OCFloatTypeMirror
+
+@end
+
+
+@implementation OCDoubleTypeMirror
+
+@end
+
+
 @implementation OCBoolTypeMirror
 
 @end
 
 
+@implementation OCCharacterStringTypeMirror
+
+@end
+
+
+@implementation OCSelectorTypeMirror
+
+@end
+
+
 @implementation OCVoidTypeMirror
+
+@end
+
+
+@implementation OCArrayTypeMirror
+
+@end
+
+
+@implementation OCStructureTypeMirror
+
+@end
+
+
+@implementation OCUnionTypeMirror
+
+@end
+
+
+@implementation OCBitFieldTypeMirror
+
+@end
+
+
+@implementation OCPointerTypeMirror
 
 @end
 

@@ -37,7 +37,52 @@
 @end
 
 
+@interface OCShortTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
 @interface OCIntTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCLongTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCLongLongTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCUnsignedCharTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCUnsignedShortTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCUnsignedIntTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCUnsignedLongTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCFloatTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCDoubleTypeMirror : OCPrimitiveTypeMirror
 
 @end
 
@@ -52,7 +97,42 @@
 @end
 
 
+@interface OCCharacterStringTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
+@interface OCSelectorTypeMirror : OCPrimitiveTypeMirror
+
+@end
+
+
 @interface OCVoidTypeMirror : OCTypeMirror
+
+@end
+
+
+@interface OCArrayTypeMirror : OCTypeMirror
+
+@end
+
+
+@interface OCStructureTypeMirror : OCTypeMirror
+
+@end
+
+
+@interface OCUnionTypeMirror : OCTypeMirror
+
+@end
+
+
+@interface OCBitFieldTypeMirror : OCTypeMirror
+
+@end
+
+
+@interface OCPointerTypeMirror : OCTypeMirror
 
 @end
 

@@ -2,10 +2,10 @@ language: objective-c
 
 install:
   - bundle install --without=documentation --path=${BUNDLE_PATH:-vendor/bundle}
-  - bundle exec slather setup OpinionatedC-Mirrors.xcodeproj
+  - bundle exec slather setup Heliograph.xcodeproj
 
-xcode_project: OpinionatedC-Mirrors.xcodeproj
-xcode_scheme: OpinionatedC-Mirrors
+xcode_project: Heliograph.xcodeproj
+xcode_scheme: Heliograph
 
 cache:
   - bundler

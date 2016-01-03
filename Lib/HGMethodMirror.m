@@ -1,11 +1,11 @@
-#import "OCMethodMirror.h"
+#import "HGMethodMirror.h"
 #import <objc/runtime.h>
-#import "OCTypeMirrors.h"
+#import "HGTypeMirrors.h"
 
 
-@implementation OCMethodMirror
+@implementation HGMethodMirror
 
-- (instancetype)initWithDefiningClass:(OCClassMirror *)classMirror method:(Method)method {
+- (instancetype)initWithDefiningClass:(HGClassMirror *)classMirror method:(Method)method {
 	if (self = [super init]) {
 		_definingClass = classMirror;
 		_mirroredMethod = method;
@@ -18,7 +18,7 @@
 	unsigned int numberOfArguments = method_getNumberOfArguments(self.mirroredMethod);
 	for (int i = 2; i < numberOfArguments; i++) {
 		char *encoding = method_copyArgumentType(self.mirroredMethod, i);
-		OCTypeMirror *mirror = [OCTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
+		HGTypeMirror *mirror = [HGTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
 		[result addObject:mirror];
 		free(encoding);
 	}
@@ -34,9 +34,9 @@
 	return method_getName(self.mirroredMethod);
 }
 
-- (OCTypeMirror *)returnType {
+- (HGTypeMirror *)returnType {
 	char *encoding = method_copyReturnType(self.mirroredMethod);
-	OCTypeMirror *mirror = [OCTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
+	HGTypeMirror *mirror = [HGTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
 	free(encoding);
 	return mirror;
 }

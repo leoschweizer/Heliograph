@@ -1,43 +1,43 @@
 #import <XCTest/XCTest.h>
-#import <OpinionatedCMirrors/OpinionatedCMirrors.h>
-#import "OCTestHierarchy.h"
+#import <Heliograph/Heliograph.h>
+#import "HGTestHierarchy.h"
 
 
-@interface OCClassMirrorsTests : XCTestCase
+@interface HGClassMirrorsTests : XCTestCase
 
 @end
 
 
-@implementation OCClassMirrorsTests
+@implementation HGClassMirrorsTests
 
 - (void)testInit {
 	Class testClass = [NSString class];
-	OCClassMirror *classMirror = [[OCClassMirror alloc] initWithClass:testClass];
+	HGClassMirror *classMirror = [[HGClassMirror alloc] initWithClass:testClass];
 	XCTAssertEqual(classMirror.mirroredClass, testClass);
 }
 
 - (void)testInitFromReflect {
-	OCClassMirror *classMirror = reflect([NSNumber class]);
+	HGClassMirror *classMirror = reflect([NSNumber class]);
 	XCTAssertEqual(classMirror.mirroredClass, [NSNumber class]);
 }
 
 - (void)testAllSubclasses {
-	OCClassMirror *classMirror = reflect([OCRootClass class]);
+	HGClassMirror *classMirror = reflect([HGRootClass class]);
 	NSArray *allSubclasses = [classMirror allSubclasses];
 	XCTAssertEqual([allSubclasses count], 4);
 }
 
 - (void)testMetaclassMirror {
-	OCClassMirror *mirror = reflect([OCDescendant2 class]);
+	HGClassMirror *mirror = reflect([HGDescendant2 class]);
 	XCTAssertFalse([mirror isMetaclass]);
-	OCClassMirror *metaMirror = [mirror classMirror];
+	HGClassMirror *metaMirror = [mirror classMirror];
 	XCTAssertTrue([metaMirror isMetaclass]);
 }
 
 - (void)testMethods {
-	OCClassMirror *mirror1 = reflect([OCDescendant1 class]);
+	HGClassMirror *mirror1 = reflect([HGDescendant1 class]);
 	NSDictionary *methods1 = mirror1.methodDictionary;
-	OCClassMirror *mirror2 = reflect([OCDescendant1Descendant1 class]);
+	HGClassMirror *mirror2 = reflect([HGDescendant1Descendant1 class]);
 	NSDictionary *methods2 = mirror2.methodDictionary;
 	XCTAssertEqual([methods1 count], 1);
 	XCTAssertNotNil([methods1 objectForKey:@"methodDefinedInDescendant1"]);
@@ -46,8 +46,8 @@
 }
 
 - (void)testMetaclassMethods {
-	OCClassMirror *mirror = reflect([OCDescendant1Descendant1 class]);
-	OCClassMirror *metaMirror = [mirror classMirror];
+	HGClassMirror *mirror = reflect([HGDescendant1Descendant1 class]);
+	HGClassMirror *metaMirror = [mirror classMirror];
 	NSDictionary *methodDictionary = metaMirror.methodDictionary;
 	XCTAssertEqual([methodDictionary count], 1);
 	XCTAssertNotNil([methodDictionary objectForKey:@"classMethodDefinedInDescendant1Descendant1"]);
@@ -55,24 +55,24 @@
 
 - (void)testDescription {
 	NSString *description = [NSString stringWithFormat:@"%@", reflect([NSString class])];
-	XCTAssertEqualObjects(description, @"<OCClassMirror on NSString>");
+	XCTAssertEqualObjects(description, @"<HGClassMirror on NSString>");
 	NSString *metaDescription = [NSString stringWithFormat:@"%@", [reflect([NSString class]) classMirror]];
-	XCTAssertEqualObjects(metaDescription, @"<OCClassMirror on NSString class>");
+	XCTAssertEqualObjects(metaDescription, @"<HGClassMirror on NSString class>");
 }
 
 - (void)testSubclasses {
-	OCClassMirror *classMirror = reflect([OCRootClass class]);
+	HGClassMirror *classMirror = reflect([HGRootClass class]);
 	NSArray *subclasses = [classMirror subclasses];
 	XCTAssertEqual([subclasses count], 2);
 }
 
 - (void)testSuperclass {
-	OCClassMirror *mirror = reflect([NSValue class]);
+	HGClassMirror *mirror = reflect([NSValue class]);
 	XCTAssertEqual([[mirror superclass] mirroredClass], [NSObject class]);
 }
 
 - (void)testSuperclassMissing {
-	OCClassMirror *mirror = reflect([NSObject class]);
+	HGClassMirror *mirror = reflect([NSObject class]);
 	XCTAssertNil([mirror superclass]);
 }
 

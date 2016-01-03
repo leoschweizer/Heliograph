@@ -1,19 +1,19 @@
 #import <Foundation/Foundation.h>
 
 
-@interface OCClassMirror : NSObject
+@interface HGClassMirror : NSObject
 
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) Class mirroredClass;
 @property (nonatomic, readonly) NSDictionary *methodDictionary;
 
 /**
- * Answers an OCClassMirror instance reflecting aClass.
+ * Answers an HGClassMirror instance reflecting aClass.
  */
 - (instancetype)initWithClass:(Class)aClass;
 
 /**
- * Answers an array of OCClassMirrors reflecting the receiver's mirrored subclasses
+ * Answers an array of HGClassMirrors reflecting the receiver's mirrored subclasses
  * and the receiver's descendant's subclasses.
  */
 - (NSArray *)allSubclasses;
@@ -21,7 +21,7 @@
 /**
  *
  */
-- (OCClassMirror *)classMirror;
+- (HGClassMirror *)classMirror;
 
 /**
  *
@@ -39,13 +39,13 @@
 - (NSDictionary *)properties;
 
 /**
- * Answers an array of OCClassMirrors reflecting the receiver's mirrored subclasses.
+ * Answers an array of HGClassMirrors reflecting the receiver's mirrored subclasses.
  */
 - (NSArray *)subclasses;
 
 /**
- * Answers an OCClassMirror reflecting the receiver's mirrored superclass.
+ * Answers an HGClassMirror reflecting the receiver's mirrored superclass.
  */
-- (OCClassMirror *)superclass;
+- (HGClassMirror *)superclass;
 
 @end

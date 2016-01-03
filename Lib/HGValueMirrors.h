@@ -1,15 +1,15 @@
 #import <Foundation/Foundation.h>
 
 
-@class OCClassMirror;
+@class HGClassMirror;
 
 
-@interface OCValueMirror : NSObject
+@interface HGValueMirror : NSObject
 
 @end
 
 
-@interface OCObjectMirror : OCValueMirror
+@interface HGObjectMirror : HGValueMirror
 
 /**
  * The reflected object.
@@ -17,25 +17,25 @@
 @property (nonatomic, readonly) id mirroredObject;
 
 /**
- * Answers an OCObjectMirror instance reflecting anObject.
+ * Answers an HGObjectMirror instance reflecting anObject.
  */
 - (instancetype)initWithObject:(id)anObject;
 
 /**
  * Answers a NSDictionary mapping each of the receiver's class method selectors
- * to a corresponding OCMethodMirror instance.
+ * to a corresponding HGMethodMirror instance.
  */
 - (NSDictionary *)classMethods;
 
 /**
- * Answers an OCClassMirror instance reflecting the class of the receiver's
+ * Answers an HGClassMirror instance reflecting the class of the receiver's
  * mirroredObject.
  */
-- (OCClassMirror *)classMirror;
+- (HGClassMirror *)classMirror;
 
 /**
  * Answers a NSDictionary mapping each of the receiver's instance method
- * selectors to a corresponding OCMethodMirror instance.
+ * selectors to a corresponding HGMethodMirror instance.
  */
 - (NSDictionary *)instanceMethods;
 

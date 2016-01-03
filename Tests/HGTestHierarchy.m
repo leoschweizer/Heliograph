@@ -1,24 +1,24 @@
-#import "OCTestHierarchy.h"
+#import "HGTestHierarchy.h"
 
 
-@implementation OCRootClass
+@implementation HGRootClass
 
 @end
 
 
-@implementation OCDescendant1
+@implementation HGDescendant1
 
 - (void)methodDefinedInDescendant1 {}
 
 @end
 
 
-@implementation OCDescendant2
+@implementation HGDescendant2
 
 @end
 
 
-@implementation OCDescendant1Descendant1
+@implementation HGDescendant1Descendant1
 
 + (void)classMethodDefinedInDescendant1Descendant1 {}
 - (void)methodDefinedInDescendant1Descendant1 {}
@@ -26,12 +26,12 @@
 @end
 
 
-@implementation OCDescendant1Descendant2
+@implementation HGDescendant1Descendant2
 
 @end
 
 
-@implementation OCPropertyClass
+@implementation HGPropertyClass
 
 - (NSString *)property1 {
 	return @"Foo";
@@ -40,7 +40,7 @@
 @end
 
 
-@implementation OCInstanceVariableClass {
+@implementation HGInstanceVariableClass {
 	char privateIvar;
 }
 
@@ -53,6 +53,6 @@
 @end
 
 
-@implementation OCTypeTestClass
+@implementation HGTypeTestClass
 
 @end

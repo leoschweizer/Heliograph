@@ -1,24 +1,24 @@
 #import <Foundation/Foundation.h>
 
 
-@interface OCRootClass : NSObject
+@interface HGRootClass : NSObject
 
 @end
 
 
-@interface OCDescendant1 : OCRootClass
+@interface HGDescendant1 : HGRootClass
 
 - (void)methodDefinedInDescendant1;
 
 @end
 
 
-@interface OCDescendant2 : OCRootClass
+@interface HGDescendant2 : HGRootClass
 
 @end
 
 
-@interface OCDescendant1Descendant1 : OCDescendant1
+@interface HGDescendant1Descendant1 : HGDescendant1
 
 + (void)classMethodDefinedInDescendant1Descendant1;
 - (void)methodDefinedInDescendant1Descendant1;
@@ -26,12 +26,12 @@
 @end
 
 
-@interface OCDescendant1Descendant2 : OCDescendant1
+@interface HGDescendant1Descendant2 : HGDescendant1
 
 @end
 
 
-@interface OCPropertyClass : NSObject
+@interface HGPropertyClass : NSObject
 
 @property (nonatomic, readonly, copy) NSString *property1;
 @property (atomic, readwrite, weak) id property2;
@@ -40,7 +40,7 @@
 @end
 
 
-@interface OCInstanceVariableClass : NSObject {
+@interface HGInstanceVariableClass : NSObject {
 	id publicIvar;
 }
 
@@ -51,7 +51,7 @@
 @end
 
 
-@interface OCTypeTestClass : NSObject
+@interface HGTypeTestClass : NSObject
 
 @property NSString *stringProperty;
 @property id idProperty;

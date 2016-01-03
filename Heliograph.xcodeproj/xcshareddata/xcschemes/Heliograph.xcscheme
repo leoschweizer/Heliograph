@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B349BE131C37E17A00B66CB5"
-               BuildableName = "OpinionatedCMirrors.framework"
-               BlueprintName = "OpinionatedCMirrors"
-               ReferencedContainer = "container:OpinionatedC-Mirrors.xcodeproj">
+               BuildableName = "Heliograph.framework"
+               BlueprintName = "Heliograph"
+               ReferencedContainer = "container:Heliograph.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B349BE1D1C37E17B00B66CB5"
-               BuildableName = "OpinionatedCMirrorsTests.xctest"
-               BlueprintName = "OpinionatedCMirrorsTests"
-               ReferencedContainer = "container:OpinionatedC-Mirrors.xcodeproj">
+               BuildableName = "Heliograph-Tests.xctest"
+               BlueprintName = "Heliograph-Tests"
+               ReferencedContainer = "container:Heliograph.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B349BE131C37E17A00B66CB5"
-            BuildableName = "OpinionatedCMirrors.framework"
-            BlueprintName = "OpinionatedCMirrors"
-            ReferencedContainer = "container:OpinionatedC-Mirrors.xcodeproj">
+            BuildableName = "Heliograph.framework"
+            BlueprintName = "Heliograph"
+            ReferencedContainer = "container:Heliograph.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B349BE131C37E17A00B66CB5"
-            BuildableName = "OpinionatedCMirrors.framework"
-            BlueprintName = "OpinionatedCMirrors"
-            ReferencedContainer = "container:OpinionatedC-Mirrors.xcodeproj">
+            BuildableName = "Heliograph.framework"
+            BlueprintName = "Heliograph"
+            ReferencedContainer = "container:Heliograph.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B349BE131C37E17A00B66CB5"
-            BuildableName = "OpinionatedCMirrors.framework"
-            BlueprintName = "OpinionatedCMirrors"
-            ReferencedContainer = "container:OpinionatedC-Mirrors.xcodeproj">
+            BuildableName = "Heliograph.framework"
+            BlueprintName = "Heliograph"
+            ReferencedContainer = "container:Heliograph.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

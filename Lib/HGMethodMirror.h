@@ -2,16 +2,16 @@
 #import <objc/runtime.h>
 
 
-@class OCClassMirror;
-@class OCTypeMirror;
+@class HGClassMirror;
+@class HGTypeMirror;
 
 
-@interface OCMethodMirror : NSObject
+@interface HGMethodMirror : NSObject
 
 /**
- * The OCClassMirror reflecting the receiver's mirrored method's defining class.
+ * The HGClassMirror reflecting the receiver's mirrored method's defining class.
  */
-@property (nonatomic, readonly) OCClassMirror *definingClass;
+@property (nonatomic, readonly) HGClassMirror *definingClass;
 
 /**
  * The reflected method.
@@ -19,14 +19,14 @@
 @property (nonatomic, readonly) Method mirroredMethod;
 
 /**
- * Answers an instance of OCMethodMirror reflecting aMethod. Don't call this
+ * Answers an instance of HGMethodMirror reflecting aMethod. Don't call this
  * directly, use [reflect(...) methodDictionary] to retrieve instances of
  * this class.
  */
-- (instancetype)initWithDefiningClass:(OCClassMirror *)classMirror method:(Method)aMethod;
+- (instancetype)initWithDefiningClass:(HGClassMirror *)classMirror method:(Method)aMethod;
 
 /**
- * Answers an NSArray of OCTypeMirrors reflecting the types of the arguments of
+ * Answers an NSArray of HGTypeMirrors reflecting the types of the arguments of
  * the receiver's mirrored method.
  */
 - (NSArray *)argumentTypes;
@@ -38,10 +38,10 @@
 - (NSUInteger)numberOfArguments;
 
 /**
- * Answers an OCTypeMirror reflecting the return type of the receiver's mirrored
+ * Answers an HGTypeMirror reflecting the return type of the receiver's mirrored
  * method.
  */
-- (OCTypeMirror *)returnType;
+- (HGTypeMirror *)returnType;
 
 /**
  * Answers the selector of the receiver's mirrored method.

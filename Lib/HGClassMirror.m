@@ -1,11 +1,11 @@
-#import "OCClassMirror.h"
+#import "HGClassMirror.h"
 #import <objc/runtime.h>
-#import "OCMethodMirror.h"
-#import "OCPropertyMirror.h"
-#import "OCInstanceVariableMirror.h"
+#import "HGMethodMirror.h"
+#import "HGPropertyMirror.h"
+#import "HGInstanceVariableMirror.h"
 
 
-@implementation OCClassMirror
+@implementation HGClassMirror
 
 - (instancetype)initWithClass:(Class)aClass {
 	if (self = [super init]) {
@@ -36,7 +36,7 @@
 			continue;
 		}
 		
-		OCClassMirror *mirror = [[OCClassMirror alloc] initWithClass:classes[i]];
+		HGClassMirror *mirror = [[HGClassMirror alloc] initWithClass:classes[i]];
 		[result addObject:mirror];
 		
 	}
@@ -47,16 +47,16 @@
 	
 }
 
-- (OCClassMirror *)classMirror {
+- (HGClassMirror *)classMirror {
 	Class class = object_getClass(self.mirroredClass);
-	return class ? [[OCClassMirror alloc] initWithClass:class] : nil;
+	return class ? [[HGClassMirror alloc] initWithClass:class] : nil;
 }
 
 - (NSString *)description {
 	if ([self isMetaclass]) {
-		return [NSString stringWithFormat:@"<OCClassMirror on %@ class>", self.name];
+		return [NSString stringWithFormat:@"<HGClassMirror on %@ class>", self.name];
 	}
-	return [NSString stringWithFormat:@"<OCClassMirror on %@>", self.name];
+	return [NSString stringWithFormat:@"<HGClassMirror on %@>", self.name];
 }
 
 - (NSDictionary *)instanceVariables {
@@ -67,7 +67,7 @@
 	
 	for (int i = 0; i < instanceVariableCount; i++) {
 		Ivar var = instanceVariables[i];
-		OCInstanceVariableMirror *mirror = [[OCInstanceVariableMirror alloc] initWithDefiningClass:self instanceVariable:var];
+		HGInstanceVariableMirror *mirror = [[HGInstanceVariableMirror alloc] initWithDefiningClass:self instanceVariable:var];
 		[result setObject:mirror forKey:mirror.name];
 	}
 	
@@ -88,7 +88,7 @@
 	
 	for (unsigned int i = 0; i < methodCount; i++) {
 		Method method = methods[i];
-		OCMethodMirror *methodMirror = [[OCMethodMirror alloc] initWithDefiningClass:self method:method];
+		HGMethodMirror *methodMirror = [[HGMethodMirror alloc] initWithDefiningClass:self method:method];
 		[methodDict setObject:methodMirror forKey:NSStringFromSelector(methodMirror.selector)];
 	}
 	
@@ -103,7 +103,7 @@
 	objc_property_t *properties = class_copyPropertyList(self.mirroredClass, &outCount);
 	for (i = 0; i < outCount; i++) {
 		objc_property_t property = properties[i];
-		OCPropertyMirror *mirror = [[OCPropertyMirror alloc] initWithDefiningClass:self property:property];
+		HGPropertyMirror *mirror = [[HGPropertyMirror alloc] initWithDefiningClass:self property:property];
 		[result setObject:mirror forKey:mirror.name];
 	}
 	return [NSDictionary dictionaryWithDictionary:result];
@@ -121,7 +121,7 @@
 	for (NSInteger i = 0; i < numClasses; i++) {
 		Class superClass = class_getSuperclass(classes[i]);
 		if (superClass == self.mirroredClass) {
-			OCClassMirror *mirror = [[OCClassMirror alloc] initWithClass:classes[i]];
+			HGClassMirror *mirror = [[HGClassMirror alloc] initWithClass:classes[i]];
 			[result addObject:mirror];
 		}
 	}
@@ -131,9 +131,9 @@
 	
 }
 
-- (OCClassMirror *)superclass {
+- (HGClassMirror *)superclass {
 	Class superclass = class_getSuperclass(self.mirroredClass);
-	return superclass ? [[OCClassMirror alloc] initWithClass:superclass] : nil;
+	return superclass ? [[HGClassMirror alloc] initWithClass:superclass] : nil;
 }
 
 @end

@@ -2,29 +2,29 @@
 #import <objc/runtime.h>
 
 
-@class OCClassMirror;
-@class OCTypeMirror;
-@class OCInstanceVariableMirror;
+@class HGClassMirror;
+@class HGTypeMirror;
+@class HGInstanceVariableMirror;
 
 
-typedef NS_OPTIONS(NSUInteger, OCPropertyAttributes) {
-	OCPropertyAttributesNone                = 0,
-	OCPropertyAttributesReadonly            = 1 << 0,
-	OCPropertyAttributesCopy                = 1 << 1,
-	OCPropertyAttributesRetain              = 1 << 2,
-	OCPropertyAttributesNonatomic           = 1 << 3,
-	OCPropertyAttributesDynamic             = 1 << 4,
-	OCPropertyAttributesWeak                = 1 << 5,
-	OCPropertyAttributesGarbageCollection   = 1 << 6
+typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
+	HGPropertyAttributesNone                = 0,
+	HGPropertyAttributesReadonly            = 1 << 0,
+	HGPropertyAttributesCopy                = 1 << 1,
+	HGPropertyAttributesRetain              = 1 << 2,
+	HGPropertyAttributesNonatomic           = 1 << 3,
+	HGPropertyAttributesDynamic             = 1 << 4,
+	HGPropertyAttributesWeak                = 1 << 5,
+	HGPropertyAttributesGarbageCollection   = 1 << 6
 };
 
 
-@interface OCPropertyMirror : NSObject
+@interface HGPropertyMirror : NSObject
 
 /**
- * The OCClassMirror reflecting the receiver's mirrored propertie's defining class.
+ * The HGClassMirror reflecting the receiver's mirrored propertie's defining class.
  */
-@property (nonatomic, readonly) OCClassMirror *definingClass;
+@property (nonatomic, readonly) HGClassMirror *definingClass;
 
 /**
  * The reflected property.
@@ -32,14 +32,14 @@ typedef NS_OPTIONS(NSUInteger, OCPropertyAttributes) {
 @property (nonatomic, readonly) objc_property_t mirroredProperty;
 
 /**
- * The attributes of the receiver's mirrored property (see OCPropertyAttributes).
+ * The attributes of the receiver's mirrored property (see HGPropertyAttributes).
  */
-@property (nonatomic, readonly) OCPropertyAttributes attributes;
+@property (nonatomic, readonly) HGPropertyAttributes attributes;
 
 /**
- * The OCTypeMirror reflecting the receiver's mirrored propertie's type.
+ * The HGTypeMirror reflecting the receiver's mirrored propertie's type.
  */
-@property (nonatomic, readonly) OCTypeMirror *type;
+@property (nonatomic, readonly) HGTypeMirror *type;
 
 /**
  * The name of the receiver's mirrored property.
@@ -50,16 +50,16 @@ typedef NS_OPTIONS(NSUInteger, OCPropertyAttributes) {
 @property (nonatomic, readonly) NSString *setterName;
 
 /**
- * Answers an OCPropertyMirror reflecting aProperty. Don't call this yourself,
+ * Answers an HGPropertyMirror reflecting aProperty. Don't call this yourself,
  * use reflect(...).properties instead to retrieve instances of this class.
  */
-- (instancetype)initWithDefiningClass:(OCClassMirror *)definingClass property:(objc_property_t)aProperty;
+- (instancetype)initWithDefiningClass:(HGClassMirror *)definingClass property:(objc_property_t)aProperty;
 
 /**
- * Answers an OCInstanceVariableMirror reflecting the instance variable backing
+ * Answers an HGInstanceVariableMirror reflecting the instance variable backing
  * the receiver's mirrored property.
  */
-- (OCInstanceVariableMirror *)backingInstanceVariable;
+- (HGInstanceVariableMirror *)backingInstanceVariable;
 
 /**
  * Answers YES when the receiver's mirrored property is a copy of the value 

@@ -1,7 +1,7 @@
-#import "OCPropertyMirror.h"
+#import "HGPropertyMirror.h"
 #import <objc/runtime.h>
-#import "OCClassMirror.h"
-#import "OCTypeMirrors.h"
+#import "HGClassMirror.h"
+#import "HGTypeMirrors.h"
 
 
 static NSString * const cPropertyAttributeReadonly = @"R";
@@ -21,15 +21,15 @@ static NSArray * parseStringAttributes(const char * attributes) {
 	return [result componentsSeparatedByString:@","];
 }
 
-static OCPropertyAttributes parseAttributes(NSArray *stringAttributes) {
-	return OCPropertyAttributesNone |
-		([stringAttributes containsObject:cPropertyAttributeReadonly] ? OCPropertyAttributesReadonly : 0) |
-		([stringAttributes containsObject:cPropertyAttributeCopy] ? OCPropertyAttributesCopy :0 ) |
-		([stringAttributes containsObject:cPropertyAttributeRetain] ? OCPropertyAttributesRetain : 0) |
-		([stringAttributes containsObject:cPropertyAttributeNonatomic] ? OCPropertyAttributesNonatomic : 0) |
-		([stringAttributes containsObject:cPropertyAttributeDynamic] ? OCPropertyAttributesDynamic : 0) |
-		([stringAttributes containsObject:cPropertyAttributeWeak] ? OCPropertyAttributesWeak : 0) |
-		([stringAttributes containsObject:cPropertyAttributeGarbageCollection] ? OCPropertyAttributesGarbageCollection : 0);
+static HGPropertyAttributes parseAttributes(NSArray *stringAttributes) {
+	return HGPropertyAttributesNone |
+		([stringAttributes containsObject:cPropertyAttributeReadonly] ? HGPropertyAttributesReadonly : 0) |
+		([stringAttributes containsObject:cPropertyAttributeCopy] ? HGPropertyAttributesCopy :0 ) |
+		([stringAttributes containsObject:cPropertyAttributeRetain] ? HGPropertyAttributesRetain : 0) |
+		([stringAttributes containsObject:cPropertyAttributeNonatomic] ? HGPropertyAttributesNonatomic : 0) |
+		([stringAttributes containsObject:cPropertyAttributeDynamic] ? HGPropertyAttributesDynamic : 0) |
+		([stringAttributes containsObject:cPropertyAttributeWeak] ? HGPropertyAttributesWeak : 0) |
+		([stringAttributes containsObject:cPropertyAttributeGarbageCollection] ? HGPropertyAttributesGarbageCollection : 0);
 }
 
 
@@ -59,25 +59,25 @@ static NSString *parseBackingInstanceVariableName(NSArray *stringAttributes) {
 	return [attribute substringFromIndex:1];
 }
 
-static OCTypeMirror *parseType(NSArray *stringAttributes) {
+static HGTypeMirror *parseType(NSArray *stringAttributes) {
 	NSString *attribute = [stringAttributes firstObject];
 	if (![attribute hasPrefix:@"T"]) {
 		return nil;
 	}
-	return [OCTypeMirror createForEncoding:[attribute substringFromIndex:1]];
+	return [HGTypeMirror createForEncoding:[attribute substringFromIndex:1]];
 }
 
 
-@interface OCPropertyMirror ()
+@interface HGPropertyMirror ()
 
 @property (nonatomic, readonly) NSString *backingInstanceVariableName;
 
 @end
 
 
-@implementation OCPropertyMirror
+@implementation HGPropertyMirror
 
-- (instancetype)initWithDefiningClass:(OCClassMirror *)definingClass property:(objc_property_t)aProperty {
+- (instancetype)initWithDefiningClass:(HGClassMirror *)definingClass property:(objc_property_t)aProperty {
 	if (self = [super init]) {
 		_mirroredProperty = aProperty;
 		_definingClass = definingClass;
@@ -92,7 +92,7 @@ static OCTypeMirror *parseType(NSArray *stringAttributes) {
 	return self;
 }
 
-- (OCInstanceVariableMirror *)backingInstanceVariable {
+- (HGInstanceVariableMirror *)backingInstanceVariable {
 	if (!self.backingInstanceVariableName) {
 		return nil;
 	}
@@ -101,31 +101,31 @@ static OCTypeMirror *parseType(NSArray *stringAttributes) {
 }
 
 - (BOOL)isCopied {
-	return self.attributes & OCPropertyAttributesCopy;
+	return self.attributes & HGPropertyAttributesCopy;
 }
 
 - (BOOL)isDynamic {
-	return self.attributes & OCPropertyAttributesDynamic;
+	return self.attributes & HGPropertyAttributesDynamic;
 }
 
 - (BOOL)isNonatomic {
-	return self.attributes & OCPropertyAttributesNonatomic;
+	return self.attributes & HGPropertyAttributesNonatomic;
 }
 
 - (BOOL)isReadonly {
-	return self.attributes & OCPropertyAttributesReadonly;
+	return self.attributes & HGPropertyAttributesReadonly;
 }
 
 - (BOOL)isRetained {
-	return self.attributes & OCPropertyAttributesRetain;
+	return self.attributes & HGPropertyAttributesRetain;
 }
 
 - (BOOL)isWeak {
-	return self.attributes & OCPropertyAttributesWeak;
+	return self.attributes & HGPropertyAttributesWeak;
 }
 
 - (BOOL)isGarbageCollected {
-	return self.attributes & OCPropertyAttributesGarbageCollection;
+	return self.attributes & HGPropertyAttributesGarbageCollection;
 }
 
 @end

@@ -1,28 +1,28 @@
 #import <XCTest/XCTest.h>
-#import <OpinionatedCMirrors/OpinionatedCMirrors.h>
-#import "OCTestHierarchy.h"
+#import <Heliograph/Heliograph.h>
+#import "HGTestHierarchy.h"
 
 
-@interface OCPropertyMirrorTests : XCTestCase
+@interface HGPropertyMirrorTests : XCTestCase
 
 @property (nonatomic, readwrite) NSDictionary *properties;
 
 @end
 
 
-@implementation OCPropertyMirrorTests
+@implementation HGPropertyMirrorTests
 
 - (void)setUp {
-	self.properties = [reflect([OCPropertyClass class]) properties];
+	self.properties = [reflect([HGPropertyClass class]) properties];
 }
 
 - (void)testName {
-	OCPropertyMirror *mirror = [self.properties objectForKey:@"property1"];
+	HGPropertyMirror *mirror = [self.properties objectForKey:@"property1"];
 	XCTAssertEqualObjects([mirror name], @"property1");
 }
 
 - (void)testProperty1 {
-	OCPropertyMirror *mirror = [self.properties objectForKey:@"property1"];
+	HGPropertyMirror *mirror = [self.properties objectForKey:@"property1"];
 	XCTAssertNotNil(mirror);
 	XCTAssertTrue([mirror isReadonly]);
 	XCTAssertTrue([mirror isCopied]);
@@ -34,7 +34,7 @@
 }
 
 - (void)testProperty2 {
-	OCPropertyMirror *mirror = [self.properties objectForKey:@"property2"];
+	HGPropertyMirror *mirror = [self.properties objectForKey:@"property2"];
 	XCTAssertNotNil(mirror);
 	XCTAssertFalse([mirror isReadonly]);
 	XCTAssertFalse([mirror isCopied]);
@@ -48,22 +48,22 @@
 }
 
 - (void)testPropertyBaz {
-	OCPropertyMirror *mirror = [self.properties objectForKey:@"baz"];
+	HGPropertyMirror *mirror = [self.properties objectForKey:@"baz"];
 	XCTAssertNotNil(mirror);
 	XCTAssertEqualObjects(mirror.getterName, @"getBar");
 	XCTAssertEqualObjects(mirror.setterName, @"setFoo:");
 }
 
 - (void)testBackingInstanceVariable {
-	OCPropertyMirror *property = [self.properties objectForKey:@"property2"];
-	OCInstanceVariableMirror *instanceVariable = [property backingInstanceVariable];
+	HGPropertyMirror *property = [self.properties objectForKey:@"property2"];
+	HGInstanceVariableMirror *instanceVariable = [property backingInstanceVariable];
 	XCTAssertNotNil(instanceVariable);
 	XCTAssertEqualObjects(instanceVariable.name, @"_property2");
 }
 
 - (void)testBackingInstanceVariableMissing {
-	OCPropertyMirror *property = [self.properties objectForKey:@"property1"];
-	OCInstanceVariableMirror *instanceVariable = [property backingInstanceVariable];
+	HGPropertyMirror *property = [self.properties objectForKey:@"property1"];
+	HGInstanceVariableMirror *instanceVariable = [property backingInstanceVariable];
 	XCTAssertNil(instanceVariable);
 }
 

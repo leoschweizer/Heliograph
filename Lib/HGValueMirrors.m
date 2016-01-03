@@ -1,13 +1,13 @@
-#import "OCValueMirrors.h"
-#import "OCClassMirror.h"
+#import "HGValueMirrors.h"
+#import "HGClassMirror.h"
 
 
-@implementation OCValueMirror
+@implementation HGValueMirror
 
 @end
 
 
-@implementation OCObjectMirror
+@implementation HGObjectMirror
 
 - (instancetype)initWithObject:(id)anObject {
 	if (self = [super init]) {
@@ -20,8 +20,8 @@
 	return [[[self classMirror] classMirror] methodDictionary];
 }
 
-- (OCClassMirror *)classMirror {
-	return [[OCClassMirror alloc] initWithClass:[self.mirroredObject class]];
+- (HGClassMirror *)classMirror {
+	return [[HGClassMirror alloc] initWithClass:[self.mirroredObject class]];
 }
 
 - (NSDictionary *)instanceMethods {

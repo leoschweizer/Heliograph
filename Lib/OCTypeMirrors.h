@@ -112,27 +112,27 @@
 @end
 
 
-@interface OCArrayTypeMirror : OCTypeMirror
+@interface OCArrayTypeMirror : OCPrimitiveTypeMirror
 
 @end
 
 
-@interface OCStructureTypeMirror : OCTypeMirror
+@interface OCStructureTypeMirror : OCPrimitiveTypeMirror
 
 @end
 
 
-@interface OCUnionTypeMirror : OCTypeMirror
+@interface OCUnionTypeMirror : OCPrimitiveTypeMirror
 
 @end
 
 
-@interface OCBitFieldTypeMirror : OCTypeMirror
+@interface OCBitFieldTypeMirror : OCPrimitiveTypeMirror
 
 @end
 
 
-@interface OCPointerTypeMirror : OCTypeMirror
+@interface OCPointerTypeMirror : OCPrimitiveTypeMirror
 
 @end
 

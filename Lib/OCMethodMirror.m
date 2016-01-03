@@ -1,5 +1,6 @@
 #import "OCMethodMirror.h"
 #import <objc/runtime.h>
+#import "OCTypeMirrors.h"
 
 
 @implementation OCMethodMirror
@@ -19,6 +20,13 @@
 
 - (SEL)selector {
 	return method_getName(self.mirroredMethod);
+}
+
+- (OCTypeMirror *)returnType {
+	char *encoding = method_copyReturnType(self.mirroredMethod);
+	OCTypeMirror *mirror = [OCTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
+	free(encoding);
+	return mirror;
 }
 
 @end

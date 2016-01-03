@@ -20,4 +20,13 @@
 	XCTAssertEqual([method2 numberOfArguments], 2);
 }
 
+- (void)testReturnType {
+	OCClassMirror *class = reflect([NSMutableString class]);
+	NSDictionary *methodDict = [class methodDictionary];
+	OCMethodMirror *method = [methodDict objectForKey:@"deleteCharactersInRange:"];
+	XCTAssertNotNil(method);
+	id typeMirror = [method returnType];
+	XCTAssertEqual([typeMirror class], [OCVoidTypeMirror class]);
+}
+
 @end

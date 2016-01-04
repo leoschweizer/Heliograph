@@ -71,6 +71,8 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 @interface HGPropertyMirror ()
 
 @property (nonatomic, readonly) NSString *backingInstanceVariableName;
+@property (nonatomic, readonly) NSString *getterName;
+@property (nonatomic, readonly) NSString *setterName;
 
 @end
 
@@ -100,6 +102,11 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 	return [instanceVariables objectForKey:self.backingInstanceVariableName];
 }
 
+- (HGMethodMirror *)getter {
+	NSDictionary *methods = [self.definingClass methodDictionary];
+	return [methods objectForKey:self.getterName];
+}
+
 - (BOOL)isCopied {
 	return self.attributes & HGPropertyAttributesCopy;
 }
@@ -126,6 +133,11 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 
 - (BOOL)isGarbageCollected {
 	return self.attributes & HGPropertyAttributesGarbageCollection;
+}
+
+- (HGMethodMirror *)setter {
+	NSDictionary *methods = [self.definingClass methodDictionary];
+	return [methods objectForKey:self.setterName];
 }
 
 @end

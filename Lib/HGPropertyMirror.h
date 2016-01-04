@@ -5,6 +5,7 @@
 @class HGClassMirror;
 @class HGTypeMirror;
 @class HGInstanceVariableMirror;
+@class HGMethodMirror;
 
 
 typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
@@ -46,9 +47,6 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
  */
 @property (nonatomic, readonly) NSString *name;
 
-@property (nonatomic, readonly) NSString *getterName;
-@property (nonatomic, readonly) NSString *setterName;
-
 /**
  * Answers an HGPropertyMirror reflecting aProperty. Don't call this yourself,
  * use reflect(...).properties instead to retrieve instances of this class.
@@ -60,6 +58,12 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
  * the receiver's mirrored property.
  */
 - (HGInstanceVariableMirror *)backingInstanceVariable;
+
+/**
+ * Answers an HGMethodMirror reflecting the receiver's mirrored propertie's 
+ * getter method.
+ */
+- (HGMethodMirror *)getter;
 
 /**
  * Answers YES when the receiver's mirrored property is a copy of the value 
@@ -98,5 +102,11 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
  * garbage collection.
  */
 - (BOOL)isGarbageCollected;
+
+/**
+ * Answers an HGMethodMirror reflecting the receiver's mirrored propertie's
+ * setter method.
+ */
+- (HGMethodMirror *)setter;
 
 @end

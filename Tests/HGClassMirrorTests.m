@@ -76,4 +76,11 @@
 	XCTAssertNil([mirror superclass]);
 }
 
+- (void)testAdoptedProtocols {
+	HGClassMirror *mirror = reflect([NSObject class]);
+	NSArray *adoptedProtocols = [mirror adoptedProtocols];
+	XCTAssertEqual([adoptedProtocols count], 1);
+	XCTAssertEqualObjects([[adoptedProtocols firstObject] mirroredProtocol], @protocol(NSObject));
+}
+
 @end

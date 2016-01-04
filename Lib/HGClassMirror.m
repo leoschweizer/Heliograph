@@ -3,6 +3,7 @@
 #import "HGMethodMirror.h"
 #import "HGPropertyMirror.h"
 #import "HGInstanceVariableMirror.h"
+#import "HGProtocolMirror.h"
 
 
 @implementation HGClassMirror
@@ -13,6 +14,19 @@
 		_name = NSStringFromClass(aClass);
 	}
 	return self;
+}
+
+- (NSArray *)adoptedProtocols {
+	NSMutableArray *result = [NSMutableArray array];
+	unsigned int protocolCount = 0;
+	Protocol * __unsafe_unretained *protocols = class_copyProtocolList(self.mirroredClass, &protocolCount);
+	for (int i = 0; i < protocolCount; i++) {
+		Protocol *protocol = protocols[i];
+		HGProtocolMirror *mirror = [[HGProtocolMirror alloc] initWithProtocol:protocol];
+		[result addObject:mirror];
+	}
+	free(protocols);
+	return [NSArray arrayWithArray:result];
 }
 
 - (NSArray *)allSubclasses {

@@ -13,6 +13,12 @@
 - (instancetype)initWithClass:(Class)aClass;
 
 /**
+ * Answers an NSArray of OCProtocolMirrors reflecting the protocols adopted
+ * by the receiver's mirrored class.
+ */
+- (NSArray *)adoptedProtocols;
+
+/**
  * Answers an array of HGClassMirrors reflecting the receiver's mirrored subclasses
  * and the receiver's descendant's subclasses.
  */

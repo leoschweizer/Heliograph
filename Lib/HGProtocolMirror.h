@@ -7,4 +7,10 @@
 
 - (instancetype)initWithProtocol:(Protocol *)aProtocol;
 
+/**
+ * Answers an NSArray of OCProtocolMirrors reflecting the protocols adopted
+ * by the receiver's mirrored protocol.
+ */
+- (NSArray *)adoptedProtocols;
+
 @end

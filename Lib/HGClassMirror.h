@@ -26,6 +26,12 @@
 - (NSArray *)allSubclasses;
 
 /**
+ * Answers an HGClassMirror reflecting the class of the receiver's mirrored 
+ * class (that is, the metaclass).
+ */
+- (HGClassMirror *)classMirror;
+
+/**
  * Answers an NSDictionary mapping instance variable names to HGInstanceVariableMirror
  * instances reflecting the instance variables defined by the receiver's mirrored class.
  */
@@ -62,10 +68,5 @@
  * Answers an HGClassMirror reflecting the receiver's mirrored superclass.
  */
 - (HGClassMirror *)superclass;
-
-/**
- * Answers the type of th receiver's mirrored class (that is, the metaclass).
- */
-- (HGClassMirror *)type;
 
 @end

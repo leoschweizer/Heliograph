@@ -30,7 +30,7 @@
 - (void)testMetaclassMirror {
 	HGClassMirror *mirror = reflect([HGDescendant2 class]);
 	XCTAssertFalse([mirror isMetaclass]);
-	HGClassMirror *metaMirror = [mirror type];
+	HGClassMirror *metaMirror = [mirror classMirror];
 	XCTAssertTrue([metaMirror isMetaclass]);
 }
 
@@ -47,7 +47,7 @@
 
 - (void)testMetaclassMethods {
 	HGClassMirror *mirror = reflect([HGDescendant1Descendant1 class]);
-	HGClassMirror *metaMirror = [mirror type];
+	HGClassMirror *metaMirror = [mirror classMirror];
 	NSDictionary *methodDictionary = [metaMirror methods];
 	XCTAssertEqual([methodDictionary count], 1);
 	XCTAssertNotNil([methodDictionary objectForKey:@"classMethodDefinedInDescendant1Descendant1"]);
@@ -56,7 +56,7 @@
 - (void)testDescription {
 	NSString *description = [NSString stringWithFormat:@"%@", reflect([NSString class])];
 	XCTAssertEqualObjects(description, @"<HGClassMirror on NSString>");
-	NSString *metaDescription = [NSString stringWithFormat:@"%@", [reflect([NSString class]) type]];
+	NSString *metaDescription = [NSString stringWithFormat:@"%@", [reflect([NSString class]) classMirror]];
 	XCTAssertEqualObjects(metaDescription, @"<HGClassMirror on NSString class>");
 }
 

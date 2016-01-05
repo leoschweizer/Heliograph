@@ -60,6 +60,11 @@
 	
 }
 
+- (HGClassMirror *)classMirror {
+	Class class = object_getClass(self.mirroredClass);
+	return class ? [[HGClassMirror alloc] initWithClass:class] : nil;
+}
+
 - (NSString *)description {
 	if ([self isMetaclass]) {
 		return [NSString stringWithFormat:@"<HGClassMirror on %@ class>", self.name];
@@ -146,11 +151,6 @@
 - (HGClassMirror *)superclass {
 	Class superclass = class_getSuperclass(self.mirroredClass);
 	return superclass ? [[HGClassMirror alloc] initWithClass:superclass] : nil;
-}
-
-- (HGClassMirror *)type {
-	Class class = object_getClass(self.mirroredClass);
-	return class ? [[HGClassMirror alloc] initWithClass:class] : nil;
 }
 
 @end

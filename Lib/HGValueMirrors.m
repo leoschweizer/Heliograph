@@ -1,5 +1,6 @@
 #import "HGValueMirrors.h"
 #import "HGClassMirror.h"
+#import <objc/runtime.h>
 
 
 @implementation HGValueMirror
@@ -21,7 +22,8 @@
 }
 
 - (HGClassMirror *)classMirror {
-	return [[HGClassMirror alloc] initWithClass:[self.mirroredObject class]];
+	Class class = object_getClass(self.mirroredObject);
+	return [[HGClassMirror alloc] initWithClass:class];
 }
 
 - (NSDictionary *)instanceMethods {

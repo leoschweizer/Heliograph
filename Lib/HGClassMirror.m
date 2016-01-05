@@ -11,7 +11,6 @@
 - (instancetype)initWithClass:(Class)aClass {
 	if (self = [super init]) {
 		_mirroredClass = aClass;
-		_name = NSStringFromClass(aClass);
 	}
 	return self;
 }
@@ -61,11 +60,6 @@
 	
 }
 
-- (HGClassMirror *)classMirror {
-	Class class = object_getClass(self.mirroredClass);
-	return class ? [[HGClassMirror alloc] initWithClass:class] : nil;
-}
-
 - (NSString *)description {
 	if ([self isMetaclass]) {
 		return [NSString stringWithFormat:@"<HGClassMirror on %@ class>", self.name];
@@ -94,21 +88,25 @@
 	return class_isMetaClass(self.mirroredClass);
 }
 
-- (NSDictionary *)methodDictionary {
+- (NSDictionary *)methods {
 	
-	NSMutableDictionary *methodDict = [NSMutableDictionary dictionary];
+	NSMutableDictionary *result = [NSMutableDictionary dictionary];
 	unsigned int methodCount = 0;
 	Method *methods = class_copyMethodList(self.mirroredClass, &methodCount);
 	
 	for (unsigned int i = 0; i < methodCount; i++) {
 		Method method = methods[i];
 		HGMethodMirror *methodMirror = [[HGMethodMirror alloc] initWithDefiningClass:self method:method];
-		[methodDict setObject:methodMirror forKey:NSStringFromSelector(methodMirror.selector)];
+		[result setObject:methodMirror forKey:NSStringFromSelector(methodMirror.selector)];
 	}
 	
 	free(methods);
-	return [NSDictionary dictionaryWithDictionary:methodDict];
+	return [NSDictionary dictionaryWithDictionary:result];
 	
+}
+
+- (NSString *)name {
+	return [NSString stringWithUTF8String:class_getName(self.mirroredClass)];
 }
 
 - (NSDictionary *)properties {
@@ -148,6 +146,11 @@
 - (HGClassMirror *)superclass {
 	Class superclass = class_getSuperclass(self.mirroredClass);
 	return superclass ? [[HGClassMirror alloc] initWithClass:superclass] : nil;
+}
+
+- (HGClassMirror *)type {
+	Class class = object_getClass(self.mirroredClass);
+	return class ? [[HGClassMirror alloc] initWithClass:class] : nil;
 }
 
 @end

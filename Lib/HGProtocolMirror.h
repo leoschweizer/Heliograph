@@ -3,8 +3,14 @@
 
 @interface HGProtocolMirror : NSObject
 
+/**
+ * The reflected protocol.
+ */
 @property (nonatomic, readonly) Protocol *mirroredProtocol;
 
+/**
+ * Answers an HGProtocolMirror instance reflecting aProtocol.
+ */
 - (instancetype)initWithProtocol:(Protocol *)aProtocol;
 
 /**

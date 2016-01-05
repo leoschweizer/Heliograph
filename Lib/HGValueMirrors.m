@@ -17,7 +17,7 @@
 }
 
 - (NSDictionary *)classMethods {
-	return [[[self classMirror] classMirror] methodDictionary];
+	return [[[self classMirror] classMirror] methods];
 }
 
 - (HGClassMirror *)classMirror {
@@ -25,7 +25,7 @@
 }
 
 - (NSDictionary *)instanceMethods {
-	return [[self classMirror] methodDictionary];
+	return [[self classMirror] methods];
 }
 
 @end

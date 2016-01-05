@@ -105,7 +105,7 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 }
 
 - (HGMethodMirror *)getter {
-	NSDictionary *methods = [self.definingClass methodDictionary];
+	NSDictionary *methods = [self.definingClass methods];
 	return [methods objectForKey:self.getterName];
 }
 
@@ -138,7 +138,7 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 }
 
 - (HGMethodMirror *)setter {
-	NSDictionary *methods = [self.definingClass methodDictionary];
+	NSDictionary *methods = [self.definingClass methods];
 	return [methods objectForKey:self.setterName];
 }
 

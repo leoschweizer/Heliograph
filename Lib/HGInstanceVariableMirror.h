@@ -7,7 +7,10 @@
 
 @interface HGInstanceVariableMirror : NSObject
 
-
+/**
+ * The HGClassMirror reflecting the receiver's mirrored instance variables'
+ * defining class.
+ */
 @property (nonatomic, readonly) HGClassMirror *definingClass;
 
 /**

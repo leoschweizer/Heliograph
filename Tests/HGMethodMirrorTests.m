@@ -11,7 +11,7 @@
 
 - (void)testNumberOfArguments {
 	HGClassMirror *class = reflect([NSString class]);
-	NSDictionary *methodDict = [class methodDictionary];
+	NSDictionary *methodDict = [class methods];
 	HGMethodMirror *method1 = [methodDict objectForKey:@"UTF8String"];
 	XCTAssertNotNil(method1);
 	XCTAssertEqual([method1 numberOfArguments], 0);
@@ -22,7 +22,7 @@
 
 - (void)testReturnType {
 	HGClassMirror *class = reflect([NSMutableString class]);
-	NSDictionary *methodDict = [class methodDictionary];
+	NSDictionary *methodDict = [class methods];
 	HGMethodMirror *method = [methodDict objectForKey:@"deleteCharactersInRange:"];
 	XCTAssertNotNil(method);
 	id typeMirror = [method returnType];
@@ -31,7 +31,7 @@
 
 - (void)testArgumentTypes {
 	HGClassMirror *class = reflect([NSString class]);
-	NSDictionary *methodDict = [class methodDictionary];
+	NSDictionary *methodDict = [class methods];
 	HGMethodMirror *method = [methodDict objectForKey:@"stringByFoldingWithOptions:locale:"];
 	NSArray *argumentTypes = [method argumentTypes];
 	XCTAssertEqual([argumentTypes count], 2);

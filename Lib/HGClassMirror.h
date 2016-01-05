@@ -3,9 +3,10 @@
 
 @interface HGClassMirror : NSObject
 
-@property (nonatomic, readonly) NSString *name;
+/**
+ * The mirrored class.
+ */
 @property (nonatomic, readonly) Class mirroredClass;
-@property (nonatomic, readonly) NSDictionary *methodDictionary;
 
 /**
  * Answers an HGClassMirror instance reflecting aClass.
@@ -25,12 +26,8 @@
 - (NSArray *)allSubclasses;
 
 /**
- *
- */
-- (HGClassMirror *)classMirror;
-
-/**
- *
+ * Answers an NSDictionary mapping instance variable names to HGInstanceVariableMirror
+ * instances reflecting the instance variables defined by the receiver's mirrored class.
  */
 - (NSDictionary *)instanceVariables;
 
@@ -40,7 +37,19 @@
 - (BOOL)isMetaclass;
 
 /**
- *
+ * Answers an NSDictionary mapping selector names to HGMethodMirror instances
+ * reflecting the methods defined by the receiver's mirrored class.
+ */
+- (NSDictionary *)methods;
+
+/**
+ * Answers the name of the receiver's mirrored class.
+ */
+- (NSString *)name;
+
+/**
+ * Answers an NSDictionary mapping property names to HGPropertyMirror instances
+ * reflecting the properties defined by the receiver's mirrored class.
  */
 - (NSDictionary *)properties;
 
@@ -53,5 +62,10 @@
  * Answers an HGClassMirror reflecting the receiver's mirrored superclass.
  */
 - (HGClassMirror *)superclass;
+
+/**
+ * Answers the type of th receiver's mirrored class (that is, the metaclass).
+ */
+- (HGClassMirror *)type;
 
 @end

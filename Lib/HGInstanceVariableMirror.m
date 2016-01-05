@@ -1,5 +1,13 @@
 #import "HGInstanceVariableMirror.h"
+#import "HGInstanceVariableMirror-Runtime.h"
 #import "HGTypeMirrors.h"
+
+
+@interface HGInstanceVariableMirror ()
+
+@property (nonatomic, readonly) Ivar mirroredInstanceVariable;
+
+@end
 
 
 @implementation HGInstanceVariableMirror

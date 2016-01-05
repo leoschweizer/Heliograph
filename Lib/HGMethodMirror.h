@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
 
 
 @class HGClassMirror;
@@ -12,18 +11,6 @@
  * The HGClassMirror reflecting the receiver's mirrored method's defining class.
  */
 @property (nonatomic, readonly) HGClassMirror *definingClass;
-
-/**
- * The reflected method.
- */
-@property (nonatomic, readonly) Method mirroredMethod;
-
-/**
- * Answers an instance of HGMethodMirror reflecting aMethod. Don't call this
- * directly, use [reflect(...) methodDictionary] to retrieve instances of
- * this class.
- */
-- (instancetype)initWithDefiningClass:(HGClassMirror *)classMirror method:(Method)aMethod;
 
 /**
  * Answers an NSArray of HGTypeMirrors reflecting the types of the arguments of

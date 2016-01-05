@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
 
 
 @class HGClassMirror;
@@ -28,11 +27,6 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
 @property (nonatomic, readonly) HGClassMirror *definingClass;
 
 /**
- * The reflected property.
- */
-@property (nonatomic, readonly) objc_property_t mirroredProperty;
-
-/**
  * The attributes of the receiver's mirrored property (see HGPropertyAttributes).
  */
 @property (nonatomic, readonly) HGPropertyAttributes attributes;
@@ -46,12 +40,6 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
  * The name of the receiver's mirrored property.
  */
 @property (nonatomic, readonly) NSString *name;
-
-/**
- * Answers an HGPropertyMirror reflecting aProperty. Don't call this yourself,
- * use reflect(...).properties instead to retrieve instances of this class.
- */
-- (instancetype)initWithDefiningClass:(HGClassMirror *)definingClass property:(objc_property_t)aProperty;
 
 /**
  * Answers an HGInstanceVariableMirror reflecting the instance variable backing

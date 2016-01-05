@@ -1,8 +1,8 @@
 #import "HGClassMirror.h"
 #import <objc/runtime.h>
-#import "HGMethodMirror.h"
-#import "HGPropertyMirror.h"
-#import "HGInstanceVariableMirror.h"
+#import "HGMethodMirror-Runtime.h"
+#import "HGPropertyMirror-Runtime.h"
+#import "HGInstanceVariableMirror-Runtime.h"
 #import "HGProtocolMirror.h"
 
 

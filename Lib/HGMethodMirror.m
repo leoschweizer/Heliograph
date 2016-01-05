@@ -1,6 +1,14 @@
 #import "HGMethodMirror.h"
+#import "HGMethodMirror-Runtime.h"
 #import <objc/runtime.h>
 #import "HGTypeMirrors.h"
+
+
+@interface HGMethodMirror ()
+
+@property (nonatomic, readonly) Method mirroredMethod;
+
+@end
 
 
 @implementation HGMethodMirror

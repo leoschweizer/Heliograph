@@ -1,4 +1,5 @@
 #import "HGPropertyMirror.h"
+#import "HGPropertyMirror-Runtime.h"
 #import <objc/runtime.h>
 #import "HGClassMirror.h"
 #import "HGTypeMirrors.h"
@@ -70,6 +71,7 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 
 @interface HGPropertyMirror ()
 
+@property (nonatomic, readonly) objc_property_t mirroredProperty;
 @property (nonatomic, readonly) NSString *backingInstanceVariableName;
 @property (nonatomic, readonly) NSString *getterName;
 @property (nonatomic, readonly) NSString *setterName;

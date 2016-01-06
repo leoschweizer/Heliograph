@@ -5,7 +5,7 @@
 
 @interface HGInstanceVariableMirrorTests : XCTestCase
 
-@property (nonatomic, readwrite) NSDictionary *instanceVariables;
+@property (nonatomic, readwrite) NSArray *instanceVariables;
 
 @end
 
@@ -22,35 +22,35 @@
 }
 
 - (void)testInstanceVariableName {
-	HGInstanceVariableMirror *mirror = [self.instanceVariables objectForKey:@"publicIvar"];
+	HGInstanceVariableMirror *mirror = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"publicIvar"];
 	XCTAssertNotNil(mirror);
 	XCTAssertEqualObjects(mirror.name, @"publicIvar");
 }
 
 - (void)testPrivateInstanceVariables {
-	HGInstanceVariableMirror *mirror = [self.instanceVariables objectForKey:@"privateIvar"];
+	HGInstanceVariableMirror *mirror = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"privateIvar"];
 	XCTAssertNotNil(mirror);
 }
 
 - (void)testAutoSynthesizedInstanceVariable {
-	HGInstanceVariableMirror *mirror = [self.instanceVariables objectForKey:@"_propertyWithIvar"];
+	HGInstanceVariableMirror *mirror = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_propertyWithIvar"];
 	XCTAssertNotNil(mirror);
 }
 
 - (void)testReadonlyProperty {
-	HGInstanceVariableMirror *mirror = [self.instanceVariables objectForKey:@"_propertyWithoutIvar"];
+	HGInstanceVariableMirror *mirror = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_propertyWithoutIvar"];
 	XCTAssertNil(mirror);
 }
 
 - (void)testSynthesizedInstanceVariable {
-	HGInstanceVariableMirror *mirror1 = [self.instanceVariables objectForKey:@"_propertyWithSynthesizedIvarBaz"];
+	HGInstanceVariableMirror *mirror1 = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_propertyWithSynthesizedIvarBaz"];
 	XCTAssertNotNil(mirror1);
-	HGInstanceVariableMirror *mirror2 = [self.instanceVariables objectForKey:@"_propertyWithSynthesizedIvar"];
+	HGInstanceVariableMirror *mirror2 = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"propertyWithSynthesizedIvar"];
 	XCTAssertNil(mirror2);
 }
 
 - (void)testInstanceVariableType {
-	HGInstanceVariableMirror *mirror = [self.instanceVariables objectForKey:@"privateIvar"];
+	HGInstanceVariableMirror *mirror = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"privateIvar"];
 	XCTAssertEqual([[mirror type] class], [HGCharTypeMirror class]);
 }
 

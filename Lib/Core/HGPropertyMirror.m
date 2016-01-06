@@ -100,8 +100,7 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 	if (!self.backingInstanceVariableName) {
 		return nil;
 	}
-	NSDictionary *instanceVariables = [self.definingClass instanceVariables];
-	return [instanceVariables objectForKey:self.backingInstanceVariableName];
+	return [self.definingClass instanceVariableNamed:self.backingInstanceVariableName];
 }
 
 - (HGMethodMirror *)getter {

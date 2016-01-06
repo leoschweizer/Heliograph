@@ -1,6 +1,9 @@
 #import <Foundation/Foundation.h>
 
 
+@class HGInstanceVariableMirror;
+
+
 @interface HGClassMirror : NSObject
 
 /**
@@ -38,10 +41,16 @@
 - (HGClassMirror *)classMirror;
 
 /**
- * Answers an NSDictionary mapping instance variable names to HGInstanceVariableMirror
- * instances reflecting the instance variables defined by the receiver's mirrored class.
+ * Answers an NSArray of HGInstanceVariableMirror instances reflecting the 
+ * instance variables defined by the receiver's mirrored class.
  */
-- (NSDictionary *)instanceVariables;
+- (NSArray *)instanceVariables;
+
+/**
+ * Answers an HGInstanceVariableMirror reflecting the instance variable named
+ * aName.
+ */
+- (HGInstanceVariableMirror *)instanceVariableNamed:(NSString *)aName;
 
 /**
  * Answers YES if the mirrored class is a metaclass, otherwise NO.

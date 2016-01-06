@@ -76,7 +76,7 @@
 	
 	free(classes);
 	
-	return [NSArray arrayWithArray:result];
+	return result;
 	
 }
 
@@ -92,21 +92,26 @@
 	return [NSString stringWithFormat:@"<HGClassMirror on %@>", self.name];
 }
 
-- (NSDictionary *)instanceVariables {
+- (NSArray *)instanceVariables {
 	
-	NSMutableDictionary *result = [NSMutableDictionary dictionary];
 	unsigned int instanceVariableCount;
 	Ivar *instanceVariables = class_copyIvarList(self.mirroredClass, &instanceVariableCount);
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:instanceVariableCount];
 	
 	for (int i = 0; i < instanceVariableCount; i++) {
 		Ivar var = instanceVariables[i];
 		HGInstanceVariableMirror *mirror = [[HGInstanceVariableMirror alloc] initWithDefiningClass:self instanceVariable:var];
-		[result setObject:mirror forKey:mirror.name];
+		[result addObject:mirror];
 	}
 	
 	free(instanceVariables);
-	return [NSDictionary dictionaryWithDictionary:result];
+	return result;
 	
+}
+
+- (HGInstanceVariableMirror *)instanceVariableNamed:(NSString *)aName {
+	Ivar instanceVariable = class_getInstanceVariable(self.mirroredClass, [aName UTF8String]);
+	return instanceVariable ? [[HGInstanceVariableMirror alloc] initWithDefiningClass:self instanceVariable:instanceVariable] : nil;
 }
 
 - (BOOL)isMetaclass {
@@ -126,7 +131,7 @@
 	}
 	
 	free(methods);
-	return [NSDictionary dictionaryWithDictionary:result];
+	return result;
 	
 }
 

@@ -83,4 +83,10 @@
 	XCTAssertEqualObjects([[adoptedProtocols firstObject] mirroredProtocol], @protocol(NSObject));
 }
 
+- (void)testAllClasses {
+	NSArray *allClasses = [HGClassMirror allClasses];
+	XCTAssertGreaterThan([allClasses count], 1);
+	XCTAssertEqual([[allClasses firstObject] class], [HGClassMirror class]);
+}
+
 @end

@@ -28,4 +28,10 @@
 	XCTAssertEqual([adoptedProtocols count], 0);
 }
 
+- (void)testAllProtocols {
+	NSArray *allProtocols = [HGProtocolMirror allProtocols];
+	XCTAssertGreaterThan([allProtocols count], 1);
+	XCTAssertEqual([[allProtocols firstObject] class], [HGProtocolMirror class]);
+}
+
 @end

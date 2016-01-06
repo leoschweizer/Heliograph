@@ -4,6 +4,17 @@
 
 @implementation HGProtocolMirror
 
++ (NSArray *)allProtocols {
+	unsigned int protocolCount;
+	Protocol * __unsafe_unretained *protocols = objc_copyProtocolList(&protocolCount);
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:protocolCount];
+	for(int i = 0; i < protocolCount; i++) {
+		[result addObject:[[self alloc] initWithProtocol:protocols[i]]];
+	}
+	free(protocols);
+	return [NSArray arrayWithArray:result];
+}
+
 - (instancetype)initWithProtocol:(Protocol *)aProtocol {
 	if (self = [super init]) {
 		_mirroredProtocol = aProtocol;

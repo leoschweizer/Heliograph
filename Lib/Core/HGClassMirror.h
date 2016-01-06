@@ -4,6 +4,12 @@
 @interface HGClassMirror : NSObject
 
 /**
+ * Answers an NSArray of HGClassMirrors reflecting all the known classes of
+ * the current runtime environment.
+ */
++ (NSArray *)allClasses;
+
+/**
  * The mirrored class.
  */
 @property (nonatomic, readonly) Class mirroredClass;

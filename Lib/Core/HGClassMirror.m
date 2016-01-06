@@ -6,11 +6,31 @@
 #import "HGProtocolMirror.h"
 
 
+@interface HGClassMirror ()
+
+@property (nonatomic, readonly) NSValue *mirroredClassStorage;
+
+@end
+
+
 @implementation HGClassMirror
+
++ (NSArray *)allClasses {
+	unsigned int numberOfClasses = objc_getClassList(NULL, 0);
+	Class *classes = objc_copyClassList(&numberOfClasses);
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:numberOfClasses];
+	for (int i = 0; i < numberOfClasses; i++) {
+		Class class = classes[i];
+		HGClassMirror *mirror = [[HGClassMirror alloc] initWithClass:class];
+		[result addObject:mirror];
+	}
+	free(classes);
+	return [NSArray arrayWithArray:result];
+}
 
 - (instancetype)initWithClass:(Class)aClass {
 	if (self = [super init]) {
-		_mirroredClass = aClass;
+		_mirroredClassStorage = [NSValue valueWithNonretainedObject:aClass];
 	}
 	return self;
 }
@@ -108,6 +128,10 @@
 	free(methods);
 	return [NSDictionary dictionaryWithDictionary:result];
 	
+}
+
+- (Class)mirroredClass {
+	return [self.mirroredClassStorage nonretainedObjectValue];
 }
 
 - (NSString *)name {

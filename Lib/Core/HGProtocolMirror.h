@@ -4,6 +4,12 @@
 @interface HGProtocolMirror : NSObject
 
 /**
+ * Answers an NSArray of HGProtocolMirrors reflecting all the known protocols of
+ * the current runtime environment.
+ */
++ (NSArray *)allProtocols;
+
+/**
  * The reflected protocol.
  */
 @property (nonatomic, readonly) Protocol *mirroredProtocol;

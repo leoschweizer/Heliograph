@@ -5,20 +5,13 @@
 
 @interface HGTypeMirrorTests : XCTestCase
 
-@property (nonatomic, readwrite) NSDictionary *properties;
-
 @end
 
 
 @implementation HGTypeMirrorTests
 
-- (void)setUp {
-	[super setUp];
-	self.properties = [reflect([HGTypeTestClass class]) properties];
-}
-
 - (void)testObjectType {
-	HGPropertyMirror *mirror = [self.properties objectForKey:@"stringProperty"];
+	HGPropertyMirror *mirror = [reflect([HGTypeTestClass class]) propertyNamed:@"stringProperty"];
 	XCTAssertNotNil(mirror);
 	id typeMirror = [mirror type];
 	XCTAssertEqual([typeMirror class], [HGObjectTypeMirror class]);
@@ -26,7 +19,7 @@
 }
 
 - (void)testIdType {
-	HGPropertyMirror *mirror = [self.properties objectForKey:@"idProperty"];
+	HGPropertyMirror *mirror = [reflect([HGTypeTestClass class]) propertyNamed:@"idProperty"];
 	XCTAssertNotNil(mirror);
 	id typeMirror = [mirror type];
 	XCTAssertEqual([typeMirror class], [HGObjectTypeMirror class]);
@@ -34,28 +27,28 @@
 }
 
 - (void)testClassType {
-	HGPropertyMirror *mirror = [self.properties objectForKey:@"classProperty"];
+	HGPropertyMirror *mirror = [reflect([HGTypeTestClass class]) propertyNamed:@"classProperty"];
 	XCTAssertNotNil(mirror);
 	id typeMirror = [mirror type];
 	XCTAssertEqual([typeMirror class], [HGClassTypeMirror class]);
 }
 
 - (void)testCharType {
-	HGPropertyMirror *mirror = [self.properties objectForKey:@"charProperty"];
+	HGPropertyMirror *mirror = [reflect([HGTypeTestClass class]) propertyNamed:@"charProperty"];
 	XCTAssertNotNil(mirror);
 	id typeMirror = [mirror type];
 	XCTAssertEqual([typeMirror class], [HGCharTypeMirror class]);
 }
 
 - (void)testIntType {
-	HGPropertyMirror *mirror = [self.properties objectForKey:@"intProperty"];
+	HGPropertyMirror *mirror = [reflect([HGTypeTestClass class]) propertyNamed:@"intProperty"];
 	XCTAssertNotNil(mirror);
 	id typeMirror = [mirror type];
 	XCTAssertEqual([typeMirror class], [HGIntTypeMirror class]);
 }
 
 - (void)testBoolType {
-	HGPropertyMirror *mirror = [self.properties objectForKey:@"boolProperty"];
+	HGPropertyMirror *mirror = [reflect([HGTypeTestClass class]) propertyNamed:@"boolProperty"];
 	XCTAssertNotNil(mirror);
 	id typeMirror = [mirror type];
 	XCTAssertEqual([typeMirror class], [HGBoolTypeMirror class]);

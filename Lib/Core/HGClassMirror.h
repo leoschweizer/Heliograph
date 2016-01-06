@@ -2,6 +2,7 @@
 
 
 @class HGInstanceVariableMirror;
+@class HGPropertyMirror;
 
 
 @interface HGClassMirror : NSObject
@@ -69,10 +70,15 @@
 - (NSString *)name;
 
 /**
- * Answers an NSDictionary mapping property names to HGPropertyMirror instances
- * reflecting the properties defined by the receiver's mirrored class.
+ * Answers an NSArray of HGPropertyMirror instances reflecting the properties 
+ * defined by the receiver's mirrored class.
  */
-- (NSDictionary *)properties;
+- (NSArray *)properties;
+
+/**
+ * Answers an HGPropertyMirror reflecting the property named aName.
+ */
+- (HGPropertyMirror *)propertyNamed:(NSString *)aName;
 
 /**
  * Answers an array of HGClassMirrors reflecting the receiver's mirrored subclasses.

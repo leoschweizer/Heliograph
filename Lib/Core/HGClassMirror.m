@@ -143,16 +143,21 @@
 	return [NSString stringWithUTF8String:class_getName(self.mirroredClass)];
 }
 
-- (NSDictionary *)properties {
-	NSMutableDictionary *result = [NSMutableDictionary dictionary];
-	unsigned int outCount, i;
+- (NSArray *)properties {
+	unsigned int outCount = 0;
 	objc_property_t *properties = class_copyPropertyList(self.mirroredClass, &outCount);
-	for (i = 0; i < outCount; i++) {
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:outCount];
+	for (int i = 0; i < outCount; i++) {
 		objc_property_t property = properties[i];
 		HGPropertyMirror *mirror = [[HGPropertyMirror alloc] initWithDefiningClass:self property:property];
-		[result setObject:mirror forKey:mirror.name];
+		[result addObject:mirror];
 	}
-	return [NSDictionary dictionaryWithDictionary:result];
+	return result;
+}
+
+- (HGPropertyMirror *)propertyNamed:(NSString *)aName {
+	objc_property_t property = class_getProperty(self.mirroredClass, [aName UTF8String]);
+	return property ? [[HGPropertyMirror alloc] initWithDefiningClass:self property:property] : nil;
 }
 
 - (NSArray *)subclasses {

@@ -100,4 +100,10 @@
 	XCTAssertNotNil(methodMirror);
 }
 
+- (void)testGetMethodFromSuperclass {
+	HGMethodMirror *mirror = [reflect([HGDescendant1Descendant2 class]) methodWithSelector:@selector(methodDefinedInDescendant1)];
+	XCTAssertNotNil(mirror);
+	XCTAssertEqual([[mirror definingClass] mirroredClass], [HGDescendant1 class]);
+}
+
 @end

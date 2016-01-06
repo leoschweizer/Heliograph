@@ -133,7 +133,18 @@
 
 - (HGMethodMirror *)methodWithSelector:(SEL)aSelector {
 	Method method = class_getInstanceMethod(self.mirroredClass, aSelector);
-	return method ? [[HGMethodMirror alloc] initWithDefiningClass:self method:method] : nil;
+	HGClassMirror *definingClass = nil;
+	HGClassMirror *inspectedClass = self;
+	while (method && !definingClass) {
+		for (HGMethodMirror *m in [inspectedClass methods]) {
+			if ([m selector] == aSelector) {
+				definingClass = inspectedClass;
+				continue;
+			}
+		}
+		inspectedClass = [inspectedClass superclass];
+	}
+	return method ? [[HGMethodMirror alloc] initWithDefiningClass:definingClass method:method] : nil;
 }
 
 - (Class)mirroredClass {

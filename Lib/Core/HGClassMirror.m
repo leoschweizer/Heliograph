@@ -36,28 +36,25 @@
 }
 
 - (NSArray *)adoptedProtocols {
-	NSMutableArray *result = [NSMutableArray array];
 	unsigned int protocolCount = 0;
 	Protocol * __unsafe_unretained *protocols = class_copyProtocolList(self.mirroredClass, &protocolCount);
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:protocolCount];
 	for (int i = 0; i < protocolCount; i++) {
 		Protocol *protocol = protocols[i];
 		HGProtocolMirror *mirror = [[HGProtocolMirror alloc] initWithProtocol:protocol];
 		[result addObject:mirror];
 	}
 	free(protocols);
-	return [NSArray arrayWithArray:result];
+	return result;
 }
 
 - (NSArray *)allSubclasses {
 	
-	int numClasses = objc_getClassList(NULL, 0);
-	Class *classes = NULL;
-	
-	classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numClasses);
-	numClasses = objc_getClassList(classes, numClasses);
-	
+	unsigned int numberOfClasses = objc_getClassList(NULL, 0);
+	Class *classes = objc_copyClassList(&numberOfClasses);
 	NSMutableArray *result = [NSMutableArray array];
-	for (NSInteger i = 0; i < numClasses; i++) {
+	
+	for (int i = 0; i < numberOfClasses; i++) {
 		
 		Class superClass = classes[i];
 		
@@ -75,7 +72,6 @@
 	}
 	
 	free(classes);
-	
 	return result;
 	
 }
@@ -167,14 +163,11 @@
 
 - (NSArray *)subclasses {
 	
-	int numClasses = objc_getClassList(NULL, 0);
-	Class *classes = NULL;
-	
-	classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numClasses);
-	numClasses = objc_getClassList(classes, numClasses);
-	
+	unsigned int numberOfClasses = objc_getClassList(NULL, 0);
+	Class *classes = objc_copyClassList(&numberOfClasses);
 	NSMutableArray *result = [NSMutableArray array];
-	for (NSInteger i = 0; i < numClasses; i++) {
+	
+	for (int i = 0; i < numberOfClasses; i++) {
 		Class superClass = class_getSuperclass(classes[i]);
 		if (superClass == self.mirroredClass) {
 			HGClassMirror *mirror = [[HGClassMirror alloc] initWithClass:classes[i]];
@@ -183,7 +176,7 @@
 	}
 	
 	free(classes);
-	return [NSArray arrayWithArray:result];
+	return result;
 	
 }
 

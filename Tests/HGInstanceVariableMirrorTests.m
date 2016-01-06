@@ -54,4 +54,9 @@
 	XCTAssertEqual([[mirror type] class], [HGCharTypeMirror class]);
 }
 
+- (void)testGetMissingInstanceVariable {
+	HGInstanceVariableMirror *mirror = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"missing"];
+	XCTAssertNil(mirror);
+}
+
 @end

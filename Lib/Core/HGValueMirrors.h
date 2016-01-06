@@ -22,10 +22,10 @@
 - (instancetype)initWithObject:(id)anObject;
 
 /**
- * Answers a NSDictionary mapping each of the receiver's class method selectors
- * to a corresponding HGMethodMirror instance.
+ * Answers an NSArray of HGMethodMirrors reflecting the class methods of the
+ * receiver's mirrored object's class.
  */
-- (NSDictionary *)classMethods;
+- (NSArray *)classMethods;
 
 /**
  * Answers an HGClassMirror instance reflecting the class of the receiver's
@@ -34,9 +34,9 @@
 - (HGClassMirror *)classMirror;
 
 /**
- * Answers a NSDictionary mapping each of the receiver's instance method
- * selectors to a corresponding HGMethodMirror instance.
+ * Answers an NSArray of HGMethodMirrors reflecting the instance methods of the
+ * receiver's mirrored object's class.
  */
-- (NSDictionary *)instanceMethods;
+- (NSArray *)instanceMethods;
 
 @end

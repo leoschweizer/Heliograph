@@ -104,8 +104,7 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 }
 
 - (HGMethodMirror *)getter {
-	NSDictionary *methods = [self.definingClass methods];
-	return [methods objectForKey:self.getterName];
+	return [self.definingClass methodWithSelector:NSSelectorFromString(self.getterName)];
 }
 
 - (BOOL)isCopied {
@@ -137,8 +136,7 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 }
 
 - (HGMethodMirror *)setter {
-	NSDictionary *methods = [self.definingClass methods];
-	return [methods objectForKey:self.setterName];
+	return [self.definingClass methodWithSelector:NSSelectorFromString(self.setterName)];
 }
 
 @end

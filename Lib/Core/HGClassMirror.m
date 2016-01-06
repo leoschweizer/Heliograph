@@ -118,21 +118,26 @@
 	return class_isMetaClass(self.mirroredClass);
 }
 
-- (NSDictionary *)methods {
+- (NSArray *)methods {
 	
-	NSMutableDictionary *result = [NSMutableDictionary dictionary];
 	unsigned int methodCount = 0;
 	Method *methods = class_copyMethodList(self.mirroredClass, &methodCount);
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:methodCount];
 	
 	for (unsigned int i = 0; i < methodCount; i++) {
 		Method method = methods[i];
 		HGMethodMirror *methodMirror = [[HGMethodMirror alloc] initWithDefiningClass:self method:method];
-		[result setObject:methodMirror forKey:NSStringFromSelector(methodMirror.selector)];
+		[result addObject:methodMirror];
 	}
 	
 	free(methods);
 	return result;
 	
+}
+
+- (HGMethodMirror *)methodWithSelector:(SEL)aSelector {
+	Method method = class_getInstanceMethod(self.mirroredClass, aSelector);
+	return method ? [[HGMethodMirror alloc] initWithDefiningClass:self method:method] : nil;
 }
 
 - (Class)mirroredClass {

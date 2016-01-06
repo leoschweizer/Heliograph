@@ -2,6 +2,7 @@
 
 
 @class HGInstanceVariableMirror;
+@class HGMethodMirror;
 @class HGPropertyMirror;
 
 
@@ -62,7 +63,12 @@
  * Answers an NSDictionary mapping selector names to HGMethodMirror instances
  * reflecting the methods defined by the receiver's mirrored class.
  */
-- (NSDictionary *)methods;
+- (NSArray *)methods;
+
+/**
+ * Answers an HGMethodMirror reflecting the method with the selector aSelector.
+ */
+- (HGMethodMirror *)methodWithSelector:(SEL)aSelector;
 
 /**
  * Answers the name of the receiver's mirrored class.

@@ -22,9 +22,9 @@
 
 - (void)testClassMethods {
 	HGObjectMirror *mirror = reflect([HGDescendant1Descendant1 new]);
-	NSDictionary *classMethods = [mirror classMethods];
+	NSArray *classMethods = [mirror classMethods];
 	XCTAssertEqual([classMethods count], 1);
-	XCTAssertNotNil([classMethods objectForKey:@"classMethodDefinedInDescendant1Descendant1"]);
+	XCTAssertEqual([[classMethods firstObject] selector], @selector(classMethodDefinedInDescendant1Descendant1));
 }
 
 - (void)testClassMirror {
@@ -34,9 +34,9 @@
 
 - (void)testInstanceMethods {
 	HGObjectMirror *mirror = reflect([HGDescendant1Descendant1 new]);
-	NSDictionary *instanceMethods = [mirror instanceMethods];
+	NSArray *instanceMethods = [mirror instanceMethods];
 	XCTAssertEqual([instanceMethods count], 1);
-	XCTAssertNotNil([instanceMethods objectForKey:@"methodDefinedInDescendant1Descendant1"]);
+	XCTAssertEqual([[instanceMethods firstObject] selector], @selector(methodDefinedInDescendant1Descendant1));
 }
 
 @end

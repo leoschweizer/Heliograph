@@ -17,7 +17,7 @@
 	return self;
 }
 
-- (NSDictionary *)classMethods {
+- (NSArray *)classMethods {
 	return [[[self classMirror] classMirror] methods];
 }
 
@@ -26,7 +26,7 @@
 	return [[HGClassMirror alloc] initWithClass:class];
 }
 
-- (NSDictionary *)instanceMethods {
+- (NSArray *)instanceMethods {
 	return [[self classMirror] methods];
 }
 

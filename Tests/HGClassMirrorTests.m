@@ -36,21 +36,21 @@
 
 - (void)testMethods {
 	HGClassMirror *mirror1 = reflect([HGDescendant1 class]);
-	NSDictionary *methods1 = [mirror1 methods];
+	NSArray *methods1 = [mirror1 methods];
 	HGClassMirror *mirror2 = reflect([HGDescendant1Descendant1 class]);
-	NSDictionary *methods2 = [mirror2 methods];
+	NSArray *methods2 = [mirror2 methods];
 	XCTAssertEqual([methods1 count], 1);
-	XCTAssertNotNil([methods1 objectForKey:@"methodDefinedInDescendant1"]);
+	XCTAssertEqual([[methods1 firstObject] selector], @selector(methodDefinedInDescendant1));
 	XCTAssertEqual([methods2 count], 1);
-	XCTAssertNotNil([methods2 objectForKey:@"methodDefinedInDescendant1Descendant1"]);
+	XCTAssertEqual([[methods2 firstObject] selector], @selector(methodDefinedInDescendant1Descendant1));
 }
 
 - (void)testMetaclassMethods {
 	HGClassMirror *mirror = reflect([HGDescendant1Descendant1 class]);
 	HGClassMirror *metaMirror = [mirror classMirror];
-	NSDictionary *methodDictionary = [metaMirror methods];
-	XCTAssertEqual([methodDictionary count], 1);
-	XCTAssertNotNil([methodDictionary objectForKey:@"classMethodDefinedInDescendant1Descendant1"]);
+	NSArray *methods = [metaMirror methods];
+	XCTAssertEqual([methods count], 1);
+	XCTAssertEqual([[methods firstObject] selector], @selector(classMethodDefinedInDescendant1Descendant1));
 }
 
 - (void)testDescription {
@@ -87,6 +87,17 @@
 	NSArray *allClasses = [HGClassMirror allClasses];
 	XCTAssertGreaterThan([allClasses count], 1);
 	XCTAssertEqual([[allClasses firstObject] class], [HGClassMirror class]);
+}
+
+- (void)testGetMissingMethod {
+	HGMethodMirror *mirror = [reflect([HGRootClass class]) methodWithSelector:@selector(methodDefinedInDescendant1)];
+	XCTAssertNil(mirror);
+}
+
+- (void)testGetClassMethod {
+	HGClassMirror *metaMirror = [reflect([HGDescendant1Descendant1 class]) classMirror];
+	HGMethodMirror *methodMirror = [metaMirror methodWithSelector:@selector(classMethodDefinedInDescendant1Descendant1)];
+	XCTAssertNotNil(methodMirror);
 }
 
 @end

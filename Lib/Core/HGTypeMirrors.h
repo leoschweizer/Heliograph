@@ -77,17 +77,17 @@
 @end
 
 
+@interface HGUnsignedLongLongTypeMirror : HGPrimitiveTypeMirror
+
+@end
+
+
 @interface HGFloatTypeMirror : HGPrimitiveTypeMirror
 
 @end
 
 
 @interface HGDoubleTypeMirror : HGPrimitiveTypeMirror
-
-@end
-
-
-@interface HGUnsignedLongLongTypeMirror : HGPrimitiveTypeMirror
 
 @end
 

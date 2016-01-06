@@ -8,34 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		B349BE1F1C37E17B00B66CB5 /* Heliograph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B349BE141C37E17A00B66CB5 /* Heliograph.framework */; };
-		B349BE321C37E1B800B66CB5 /* Heliograph.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE301C37E1B800B66CB5 /* Heliograph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B349BE381C37E26600B66CB5 /* HGClassMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE351C37E1C300B66CB5 /* HGClassMirrorTests.m */; };
-		B349BE3B1C37E29600B66CB5 /* HGTypeMirrors.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE391C37E29600B66CB5 /* HGTypeMirrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B349BE3C1C37E29600B66CB5 /* HGTypeMirrors.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE3A1C37E29600B66CB5 /* HGTypeMirrors.m */; };
-		B349BE421C37E70800B66CB5 /* HGReflect.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE411C37E69300B66CB5 /* HGReflect.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B349BE451C37ECB500B66CB5 /* HGTestHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE441C37ECB500B66CB5 /* HGTestHierarchy.m */; };
-		B349BE481C380C5300B66CB5 /* HGMethodMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE461C380C5300B66CB5 /* HGMethodMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B349BE491C380C5300B66CB5 /* HGMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE471C380C5300B66CB5 /* HGMethodMirror.m */; };
 		B349BE4B1C38242500B66CB5 /* HGMethodMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE4A1C38242500B66CB5 /* HGMethodMirrorTests.m */; };
-		B349BE4D1C3827C400B66CB5 /* HGReflect.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE4C1C3827C400B66CB5 /* HGReflect.m */; };
-		B349BE501C383FA000B66CB5 /* HGValueMirrors.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE4E1C383FA000B66CB5 /* HGValueMirrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B349BE511C383FA000B66CB5 /* HGValueMirrors.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE4F1C383FA000B66CB5 /* HGValueMirrors.m */; };
 		B349BE531C3840FD00B66CB5 /* HGObjectMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE521C3840FD00B66CB5 /* HGObjectMirrorTests.m */; };
-		B349BE561C384A9C00B66CB5 /* HGPropertyMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE541C384A9C00B66CB5 /* HGPropertyMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B349BE571C384A9C00B66CB5 /* HGPropertyMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE551C384A9C00B66CB5 /* HGPropertyMirror.m */; };
 		B349BE591C386B9100B66CB5 /* HGPropertyMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE581C386B9100B66CB5 /* HGPropertyMirrorTests.m */; };
-		B349BE5C1C392C9400B66CB5 /* HGInstanceVariableMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE5A1C392C9400B66CB5 /* HGInstanceVariableMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B349BE5D1C392C9400B66CB5 /* HGInstanceVariableMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE5B1C392C9400B66CB5 /* HGInstanceVariableMirror.m */; };
 		B349BE5F1C392EC200B66CB5 /* HGInstanceVariableMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE5E1C392EC200B66CB5 /* HGInstanceVariableMirrorTests.m */; };
-		B349BE621C3957C300B66CB5 /* HGClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B349BE601C3957C300B66CB5 /* HGClassMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B349BE631C3957C300B66CB5 /* HGClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE611C3957C300B66CB5 /* HGClassMirror.m */; };
 		B349BE651C39618C00B66CB5 /* HGTypeMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE641C39618C00B66CB5 /* HGTypeMirrorTests.m */; };
-		B3C802061C3A94F300E8F25E /* HGProtocolMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802041C3A94F300E8F25E /* HGProtocolMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B3C802071C3A94F300E8F25E /* HGProtocolMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802051C3A94F300E8F25E /* HGProtocolMirror.m */; };
 		B3C802091C3A95C100E8F25E /* HGProtocolMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802081C3A95C100E8F25E /* HGProtocolMirrorTests.m */; };
-		B3C8020B1C3C5A7E00E8F25E /* HGMethodMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8020A1C3C5A7E00E8F25E /* HGMethodMirror-Runtime.h */; };
-		B3C8020D1C3C5BE500E8F25E /* HGPropertyMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8020C1C3C5BE200E8F25E /* HGPropertyMirror-Runtime.h */; };
-		B3C8020F1C3C5C9200E8F25E /* HGInstanceVariableMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8020E1C3C5C9200E8F25E /* HGInstanceVariableMirror-Runtime.h */; };
+		B3C802261C3D99E600E8F25E /* HGClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802121C3D99E600E8F25E /* HGClassMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C802271C3D99E600E8F25E /* HGClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802131C3D99E600E8F25E /* HGClassMirror.m */; };
+		B3C802281C3D99E600E8F25E /* HGInstanceVariableMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802141C3D99E600E8F25E /* HGInstanceVariableMirror-Runtime.h */; };
+		B3C802291C3D99E600E8F25E /* HGInstanceVariableMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802151C3D99E600E8F25E /* HGInstanceVariableMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C8022A1C3D99E600E8F25E /* HGInstanceVariableMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802161C3D99E600E8F25E /* HGInstanceVariableMirror.m */; };
+		B3C8022B1C3D99E600E8F25E /* HGMethodMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802171C3D99E600E8F25E /* HGMethodMirror-Runtime.h */; };
+		B3C8022C1C3D99E600E8F25E /* HGMethodMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802181C3D99E600E8F25E /* HGMethodMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C8022D1C3D99E600E8F25E /* HGMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802191C3D99E600E8F25E /* HGMethodMirror.m */; };
+		B3C8022E1C3D99E600E8F25E /* HGPropertyMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8021A1C3D99E600E8F25E /* HGPropertyMirror-Runtime.h */; };
+		B3C8022F1C3D99E600E8F25E /* HGPropertyMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8021B1C3D99E600E8F25E /* HGPropertyMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C802301C3D99E600E8F25E /* HGPropertyMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C8021C1C3D99E600E8F25E /* HGPropertyMirror.m */; };
+		B3C802311C3D99E600E8F25E /* HGProtocolMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8021D1C3D99E600E8F25E /* HGProtocolMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C802321C3D99E600E8F25E /* HGProtocolMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C8021E1C3D99E600E8F25E /* HGProtocolMirror.m */; };
+		B3C802331C3D99E600E8F25E /* HGReflect.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8021F1C3D99E600E8F25E /* HGReflect.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C802341C3D99E600E8F25E /* HGReflect.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802201C3D99E600E8F25E /* HGReflect.m */; };
+		B3C802351C3D99E600E8F25E /* HGTypeMirrors.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802211C3D99E600E8F25E /* HGTypeMirrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C802361C3D99E600E8F25E /* HGTypeMirrors.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802221C3D99E600E8F25E /* HGTypeMirrors.m */; };
+		B3C802371C3D99E600E8F25E /* HGValueMirrors.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802231C3D99E600E8F25E /* HGValueMirrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C802381C3D99E600E8F25E /* HGValueMirrors.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802241C3D99E600E8F25E /* HGValueMirrors.m */; };
+		B3C8023C1C3D9A0F00E8F25E /* HGTypeMirrorVisitors.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8023A1C3D9A0F00E8F25E /* HGTypeMirrorVisitors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C8023D1C3D9A0F00E8F25E /* HGTypeMirrorVisitors.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C8023B1C3D9A0F00E8F25E /* HGTypeMirrorVisitors.m */; };
+		B3C8023F1C3D9A2D00E8F25E /* Heliograph.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8023E1C3D9A2D00E8F25E /* Heliograph.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C802411C3D9AA500E8F25E /* HGTypeMirrorVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802401C3D9AA500E8F25E /* HGTypeMirrorVisitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3C802431C3D9D0600E8F25E /* HGTypeMirrorVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802421C3D9D0600E8F25E /* HGTypeMirrorVisitor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,36 +56,40 @@
 		B349BE141C37E17A00B66CB5 /* Heliograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Heliograph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B349BE1E1C37E17B00B66CB5 /* Heliograph-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Heliograph-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B349BE2F1C37E1B800B66CB5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B349BE301C37E1B800B66CB5 /* Heliograph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Heliograph.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B349BE341C37E1C300B66CB5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B349BE351C37E1C300B66CB5 /* HGClassMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HGClassMirrorTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		B349BE391C37E29600B66CB5 /* HGTypeMirrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGTypeMirrors.h; sourceTree = "<group>"; };
-		B349BE3A1C37E29600B66CB5 /* HGTypeMirrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGTypeMirrors.m; sourceTree = "<group>"; };
-		B349BE411C37E69300B66CB5 /* HGReflect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGReflect.h; sourceTree = "<group>"; };
 		B349BE431C37ECB500B66CB5 /* HGTestHierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGTestHierarchy.h; sourceTree = "<group>"; };
 		B349BE441C37ECB500B66CB5 /* HGTestHierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGTestHierarchy.m; sourceTree = "<group>"; };
-		B349BE461C380C5300B66CB5 /* HGMethodMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMethodMirror.h; sourceTree = "<group>"; };
-		B349BE471C380C5300B66CB5 /* HGMethodMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodMirror.m; sourceTree = "<group>"; };
 		B349BE4A1C38242500B66CB5 /* HGMethodMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodMirrorTests.m; sourceTree = "<group>"; };
-		B349BE4C1C3827C400B66CB5 /* HGReflect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGReflect.m; sourceTree = "<group>"; };
-		B349BE4E1C383FA000B66CB5 /* HGValueMirrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGValueMirrors.h; sourceTree = "<group>"; };
-		B349BE4F1C383FA000B66CB5 /* HGValueMirrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGValueMirrors.m; sourceTree = "<group>"; };
 		B349BE521C3840FD00B66CB5 /* HGObjectMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGObjectMirrorTests.m; sourceTree = "<group>"; };
-		B349BE541C384A9C00B66CB5 /* HGPropertyMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPropertyMirror.h; sourceTree = "<group>"; };
-		B349BE551C384A9C00B66CB5 /* HGPropertyMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPropertyMirror.m; sourceTree = "<group>"; };
 		B349BE581C386B9100B66CB5 /* HGPropertyMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPropertyMirrorTests.m; sourceTree = "<group>"; };
-		B349BE5A1C392C9400B66CB5 /* HGInstanceVariableMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HGInstanceVariableMirror.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		B349BE5B1C392C9400B66CB5 /* HGInstanceVariableMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGInstanceVariableMirror.m; sourceTree = "<group>"; };
 		B349BE5E1C392EC200B66CB5 /* HGInstanceVariableMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGInstanceVariableMirrorTests.m; sourceTree = "<group>"; };
-		B349BE601C3957C300B66CB5 /* HGClassMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HGClassMirror.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		B349BE611C3957C300B66CB5 /* HGClassMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HGClassMirror.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B349BE641C39618C00B66CB5 /* HGTypeMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGTypeMirrorTests.m; sourceTree = "<group>"; };
-		B3C802041C3A94F300E8F25E /* HGProtocolMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGProtocolMirror.h; sourceTree = "<group>"; };
-		B3C802051C3A94F300E8F25E /* HGProtocolMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGProtocolMirror.m; sourceTree = "<group>"; };
 		B3C802081C3A95C100E8F25E /* HGProtocolMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGProtocolMirrorTests.m; sourceTree = "<group>"; };
-		B3C8020A1C3C5A7E00E8F25E /* HGMethodMirror-Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HGMethodMirror-Runtime.h"; sourceTree = "<group>"; };
-		B3C8020C1C3C5BE200E8F25E /* HGPropertyMirror-Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HGPropertyMirror-Runtime.h"; sourceTree = "<group>"; };
-		B3C8020E1C3C5C9200E8F25E /* HGInstanceVariableMirror-Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HGInstanceVariableMirror-Runtime.h"; sourceTree = "<group>"; };
+		B3C802121C3D99E600E8F25E /* HGClassMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGClassMirror.h; sourceTree = "<group>"; };
+		B3C802131C3D99E600E8F25E /* HGClassMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGClassMirror.m; sourceTree = "<group>"; };
+		B3C802141C3D99E600E8F25E /* HGInstanceVariableMirror-Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HGInstanceVariableMirror-Runtime.h"; sourceTree = "<group>"; };
+		B3C802151C3D99E600E8F25E /* HGInstanceVariableMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGInstanceVariableMirror.h; sourceTree = "<group>"; };
+		B3C802161C3D99E600E8F25E /* HGInstanceVariableMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGInstanceVariableMirror.m; sourceTree = "<group>"; };
+		B3C802171C3D99E600E8F25E /* HGMethodMirror-Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HGMethodMirror-Runtime.h"; sourceTree = "<group>"; };
+		B3C802181C3D99E600E8F25E /* HGMethodMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMethodMirror.h; sourceTree = "<group>"; };
+		B3C802191C3D99E600E8F25E /* HGMethodMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodMirror.m; sourceTree = "<group>"; };
+		B3C8021A1C3D99E600E8F25E /* HGPropertyMirror-Runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HGPropertyMirror-Runtime.h"; sourceTree = "<group>"; };
+		B3C8021B1C3D99E600E8F25E /* HGPropertyMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPropertyMirror.h; sourceTree = "<group>"; };
+		B3C8021C1C3D99E600E8F25E /* HGPropertyMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGPropertyMirror.m; sourceTree = "<group>"; };
+		B3C8021D1C3D99E600E8F25E /* HGProtocolMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGProtocolMirror.h; sourceTree = "<group>"; };
+		B3C8021E1C3D99E600E8F25E /* HGProtocolMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGProtocolMirror.m; sourceTree = "<group>"; };
+		B3C8021F1C3D99E600E8F25E /* HGReflect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGReflect.h; sourceTree = "<group>"; };
+		B3C802201C3D99E600E8F25E /* HGReflect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGReflect.m; sourceTree = "<group>"; };
+		B3C802211C3D99E600E8F25E /* HGTypeMirrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGTypeMirrors.h; sourceTree = "<group>"; };
+		B3C802221C3D99E600E8F25E /* HGTypeMirrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGTypeMirrors.m; sourceTree = "<group>"; };
+		B3C802231C3D99E600E8F25E /* HGValueMirrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGValueMirrors.h; sourceTree = "<group>"; };
+		B3C802241C3D99E600E8F25E /* HGValueMirrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGValueMirrors.m; sourceTree = "<group>"; };
+		B3C8023A1C3D9A0F00E8F25E /* HGTypeMirrorVisitors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGTypeMirrorVisitors.h; sourceTree = "<group>"; };
+		B3C8023B1C3D9A0F00E8F25E /* HGTypeMirrorVisitors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGTypeMirrorVisitors.m; sourceTree = "<group>"; };
+		B3C8023E1C3D9A2D00E8F25E /* Heliograph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heliograph.h; sourceTree = "<group>"; };
+		B3C802401C3D9AA500E8F25E /* HGTypeMirrorVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGTypeMirrorVisitor.h; sourceTree = "<group>"; };
+		B3C802421C3D9D0600E8F25E /* HGTypeMirrorVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGTypeMirrorVisitor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,26 +132,9 @@
 		B349BE2E1C37E1B800B66CB5 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				B349BE301C37E1B800B66CB5 /* Heliograph.h */,
-				B349BE601C3957C300B66CB5 /* HGClassMirror.h */,
-				B349BE611C3957C300B66CB5 /* HGClassMirror.m */,
-				B3C8020E1C3C5C9200E8F25E /* HGInstanceVariableMirror-Runtime.h */,
-				B349BE5A1C392C9400B66CB5 /* HGInstanceVariableMirror.h */,
-				B349BE5B1C392C9400B66CB5 /* HGInstanceVariableMirror.m */,
-				B3C8020A1C3C5A7E00E8F25E /* HGMethodMirror-Runtime.h */,
-				B349BE461C380C5300B66CB5 /* HGMethodMirror.h */,
-				B349BE471C380C5300B66CB5 /* HGMethodMirror.m */,
-				B3C8020C1C3C5BE200E8F25E /* HGPropertyMirror-Runtime.h */,
-				B349BE541C384A9C00B66CB5 /* HGPropertyMirror.h */,
-				B349BE551C384A9C00B66CB5 /* HGPropertyMirror.m */,
-				B3C802041C3A94F300E8F25E /* HGProtocolMirror.h */,
-				B3C802051C3A94F300E8F25E /* HGProtocolMirror.m */,
-				B349BE411C37E69300B66CB5 /* HGReflect.h */,
-				B349BE4C1C3827C400B66CB5 /* HGReflect.m */,
-				B349BE391C37E29600B66CB5 /* HGTypeMirrors.h */,
-				B349BE3A1C37E29600B66CB5 /* HGTypeMirrors.m */,
-				B349BE4E1C383FA000B66CB5 /* HGValueMirrors.h */,
-				B349BE4F1C383FA000B66CB5 /* HGValueMirrors.m */,
+				B3C802101C3D99E600E8F25E /* Core */,
+				B3C802391C3D99EC00E8F25E /* Visitors */,
+				B3C8023E1C3D9A2D00E8F25E /* Heliograph.h */,
 				B349BE2F1C37E1B800B66CB5 /* Info.plist */,
 			);
 			path = Lib;
@@ -166,6 +157,43 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		B3C802101C3D99E600E8F25E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B3C802121C3D99E600E8F25E /* HGClassMirror.h */,
+				B3C802131C3D99E600E8F25E /* HGClassMirror.m */,
+				B3C802141C3D99E600E8F25E /* HGInstanceVariableMirror-Runtime.h */,
+				B3C802151C3D99E600E8F25E /* HGInstanceVariableMirror.h */,
+				B3C802161C3D99E600E8F25E /* HGInstanceVariableMirror.m */,
+				B3C802171C3D99E600E8F25E /* HGMethodMirror-Runtime.h */,
+				B3C802181C3D99E600E8F25E /* HGMethodMirror.h */,
+				B3C802191C3D99E600E8F25E /* HGMethodMirror.m */,
+				B3C8021A1C3D99E600E8F25E /* HGPropertyMirror-Runtime.h */,
+				B3C8021B1C3D99E600E8F25E /* HGPropertyMirror.h */,
+				B3C8021C1C3D99E600E8F25E /* HGPropertyMirror.m */,
+				B3C8021D1C3D99E600E8F25E /* HGProtocolMirror.h */,
+				B3C8021E1C3D99E600E8F25E /* HGProtocolMirror.m */,
+				B3C8021F1C3D99E600E8F25E /* HGReflect.h */,
+				B3C802201C3D99E600E8F25E /* HGReflect.m */,
+				B3C802211C3D99E600E8F25E /* HGTypeMirrors.h */,
+				B3C802221C3D99E600E8F25E /* HGTypeMirrors.m */,
+				B3C802231C3D99E600E8F25E /* HGValueMirrors.h */,
+				B3C802241C3D99E600E8F25E /* HGValueMirrors.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B3C802391C3D99EC00E8F25E /* Visitors */ = {
+			isa = PBXGroup;
+			children = (
+				B3C802401C3D9AA500E8F25E /* HGTypeMirrorVisitor.h */,
+				B3C802421C3D9D0600E8F25E /* HGTypeMirrorVisitor.m */,
+				B3C8023A1C3D9A0F00E8F25E /* HGTypeMirrorVisitors.h */,
+				B3C8023B1C3D9A0F00E8F25E /* HGTypeMirrorVisitors.m */,
+			);
+			path = Visitors;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -173,18 +201,20 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B349BE621C3957C300B66CB5 /* HGClassMirror.h in Headers */,
-				B3C8020D1C3C5BE500E8F25E /* HGPropertyMirror-Runtime.h in Headers */,
-				B349BE481C380C5300B66CB5 /* HGMethodMirror.h in Headers */,
-				B349BE421C37E70800B66CB5 /* HGReflect.h in Headers */,
-				B349BE5C1C392C9400B66CB5 /* HGInstanceVariableMirror.h in Headers */,
-				B3C8020B1C3C5A7E00E8F25E /* HGMethodMirror-Runtime.h in Headers */,
-				B3C8020F1C3C5C9200E8F25E /* HGInstanceVariableMirror-Runtime.h in Headers */,
-				B349BE3B1C37E29600B66CB5 /* HGTypeMirrors.h in Headers */,
-				B349BE321C37E1B800B66CB5 /* Heliograph.h in Headers */,
-				B3C802061C3A94F300E8F25E /* HGProtocolMirror.h in Headers */,
-				B349BE561C384A9C00B66CB5 /* HGPropertyMirror.h in Headers */,
-				B349BE501C383FA000B66CB5 /* HGValueMirrors.h in Headers */,
+				B3C802281C3D99E600E8F25E /* HGInstanceVariableMirror-Runtime.h in Headers */,
+				B3C802411C3D9AA500E8F25E /* HGTypeMirrorVisitor.h in Headers */,
+				B3C8022C1C3D99E600E8F25E /* HGMethodMirror.h in Headers */,
+				B3C802291C3D99E600E8F25E /* HGInstanceVariableMirror.h in Headers */,
+				B3C802331C3D99E600E8F25E /* HGReflect.h in Headers */,
+				B3C8022E1C3D99E600E8F25E /* HGPropertyMirror-Runtime.h in Headers */,
+				B3C802351C3D99E600E8F25E /* HGTypeMirrors.h in Headers */,
+				B3C8023C1C3D9A0F00E8F25E /* HGTypeMirrorVisitors.h in Headers */,
+				B3C802261C3D99E600E8F25E /* HGClassMirror.h in Headers */,
+				B3C802371C3D99E600E8F25E /* HGValueMirrors.h in Headers */,
+				B3C802311C3D99E600E8F25E /* HGProtocolMirror.h in Headers */,
+				B3C8022B1C3D99E600E8F25E /* HGMethodMirror-Runtime.h in Headers */,
+				B3C8022F1C3D99E600E8F25E /* HGPropertyMirror.h in Headers */,
+				B3C8023F1C3D9A2D00E8F25E /* Heliograph.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,14 +314,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B349BE511C383FA000B66CB5 /* HGValueMirrors.m in Sources */,
-				B3C802071C3A94F300E8F25E /* HGProtocolMirror.m in Sources */,
-				B349BE4D1C3827C400B66CB5 /* HGReflect.m in Sources */,
-				B349BE3C1C37E29600B66CB5 /* HGTypeMirrors.m in Sources */,
-				B349BE5D1C392C9400B66CB5 /* HGInstanceVariableMirror.m in Sources */,
-				B349BE571C384A9C00B66CB5 /* HGPropertyMirror.m in Sources */,
-				B349BE491C380C5300B66CB5 /* HGMethodMirror.m in Sources */,
-				B349BE631C3957C300B66CB5 /* HGClassMirror.m in Sources */,
+				B3C802301C3D99E600E8F25E /* HGPropertyMirror.m in Sources */,
+				B3C8022A1C3D99E600E8F25E /* HGInstanceVariableMirror.m in Sources */,
+				B3C802361C3D99E600E8F25E /* HGTypeMirrors.m in Sources */,
+				B3C802271C3D99E600E8F25E /* HGClassMirror.m in Sources */,
+				B3C802431C3D9D0600E8F25E /* HGTypeMirrorVisitor.m in Sources */,
+				B3C8023D1C3D9A0F00E8F25E /* HGTypeMirrorVisitors.m in Sources */,
+				B3C802321C3D99E600E8F25E /* HGProtocolMirror.m in Sources */,
+				B3C802381C3D99E600E8F25E /* HGValueMirrors.m in Sources */,
+				B3C802341C3D99E600E8F25E /* HGReflect.m in Sources */,
+				B3C8022D1C3D99E600E8F25E /* HGMethodMirror.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -61,4 +61,42 @@
 	XCTAssertEqual([typeMirror class], [HGBoolTypeMirror class]);
 }
 
+- (void)testTypeDescriptions {
+	
+	NSDictionary *definition = @{
+		@"@" : @"id",
+		@"#" : @"Class",
+		@"c" : @"char",
+		@"s" : @"short",
+		@"i" : @"int",
+		@"l" : @"long",
+		@"q" : @"long long",
+		@"C" : @"unsigned char",
+		@"S" : @"unsigned short",
+		@"I" : @"unsigned int",
+		@"L" : @"unsigned long",
+		@"Q" : @"unsigned long long",
+		@"f" : @"float",
+		@"d" : @"double",
+		@"B" : @"bool",
+		@"*" : @"char *",
+		@":" : @"SEL",
+		@"v" : @"void",
+		@"[" : @"array",
+		@"{" : @"struct",
+		@"(" : @"union",
+		@"b" : @"bitfield",
+		@"^" : @"^",
+		@"?" : @"unknown type"
+	};
+	
+	for (NSString *encoding in definition) {
+		NSString *expectedOutput = [definition objectForKey:encoding];
+		HGTypeMirror *mirror = [HGTypeMirror createForEncoding:encoding];
+		NSString *typeDescription = [mirror typeDescription];
+		XCTAssertEqualObjects(expectedOutput, typeDescription);
+	}
+	
+}
+
 @end

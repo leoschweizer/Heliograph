@@ -10,16 +10,21 @@
 
 @property (nonatomic, readonly) Class wrappedClass;
 @property (nonatomic, readonly) SEL wrappedSelector;
+@property (nonatomic, readonly) SEL backingSelector;
 
-- (void)valueWithReceiver:(id)anObject invocation:(NSInvocation *)invocation;
+- (void)internalValueWithReceiver:(id)anObject invocation:(NSInvocation *)invocation;
 
 @end
 
 
+SEL backingSelectorForSelector(SEL selector) {
+	return NSSelectorFromString([NSString stringWithFormat:@"hg_mw_swizzled_%@", NSStringFromSelector(selector)]);
+}
+
 void genericForwardInvocation(id self, SEL cmd, NSInvocation *invocation) {
-	SEL selector = [invocation selector];
+	SEL selector = backingSelectorForSelector(invocation.selector);
 	HGMethodWrapper *wrapperInstance = objc_getAssociatedObject(object_getClass(self), selector);
-	[wrapperInstance valueWithReceiver:self invocation:invocation];
+	[wrapperInstance internalValueWithReceiver:self invocation:invocation];
 }
 
 
@@ -29,52 +34,71 @@ void genericForwardInvocation(id self, SEL cmd, NSInvocation *invocation) {
 	if (self = [super init]) {
 		_wrappedClass = aClass;
 		_wrappedSelector = aSelector;
+		_backingSelector = backingSelectorForSelector(_wrappedSelector);
 	}
 	return self;
 }
 
-- (void)install {
-	
-	objc_setAssociatedObject(self.wrappedClass, self.wrappedSelector, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-	
-	IMP forwardingProxy = class_getMethodImplementation([NSObject class], NSSelectorFromString(@"hg__this__does__not__exist"));
-	IMP originalImp = class_getMethodImplementation(self.wrappedClass, self.wrappedSelector);
+- (void)injectForwardInvocationImplementation {
 	
 	HGClassMirror *classMirror = reflect(self.wrappedClass);
-	HGMethodMirror *wrappedMethodMirror = [classMirror methodWithSelector:self.wrappedSelector];
 	HGMethodMirror *forwardInvocationMirror = [classMirror methodWithSelector:@selector(forwardInvocation:)];
-	const char *wrappedMethodEncoding = method_getTypeEncoding([wrappedMethodMirror mirroredMethod]);
-	const char *forwardInvocationEncoding = method_getTypeEncoding([forwardInvocationMirror mirroredMethod]);
+	IMP currentForwardInvocationImp = method_getImplementation([forwardInvocationMirror mirroredMethod]);
 	
-	SEL s1 = NSSelectorFromString([NSString stringWithFormat:@"hg_mw_swizzled_%@", NSStringFromSelector(self.wrappedSelector)]);
-	
-	class_addMethod(self.wrappedClass, s1, originalImp, wrappedMethodEncoding);
-	if ([[wrappedMethodMirror definingClass] mirroredClass] != self.wrappedClass) {
-		class_addMethod(self.wrappedClass, self.wrappedSelector, forwardingProxy, wrappedMethodEncoding);
-	} else {
-		method_setImplementation([wrappedMethodMirror mirroredMethod], forwardingProxy);
+	if (currentForwardInvocationImp == (IMP)genericForwardInvocation) {
+		return;
 	}
 	
+	const char *forwardInvocationEncoding = method_getTypeEncoding([forwardInvocationMirror mirroredMethod]);
+	class_addMethod(self.wrappedClass, NSSelectorFromString(@"hg_original_forwardInvocation:"), currentForwardInvocationImp, forwardInvocationEncoding);
 	if ([[forwardInvocationMirror definingClass] mirroredClass] != self.wrappedClass) {
 		class_addMethod(self.wrappedClass, @selector(forwardInvocation:), (IMP)genericForwardInvocation, forwardInvocationEncoding);
 	} else {
 		method_setImplementation([forwardInvocationMirror mirroredMethod], (IMP)genericForwardInvocation);
 	}
 	
+}
+
+- (void)injectAssociationToSelf {
+	objc_setAssociatedObject(self.wrappedClass, self.backingSelector, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)injectForwardingProxy {
 	
+	IMP forwardingProxy = class_getMethodImplementation([NSObject class], NSSelectorFromString(@"hg__this__does__not__exist"));
+	IMP originalImp = class_getMethodImplementation(self.wrappedClass, self.wrappedSelector);
+	
+	HGClassMirror *classMirror = reflect(self.wrappedClass);
+	HGMethodMirror *wrappedMethodMirror = [classMirror methodWithSelector:self.wrappedSelector];
+	const char *wrappedMethodEncoding = method_getTypeEncoding([wrappedMethodMirror mirroredMethod]);
+	
+	class_addMethod(self.wrappedClass, self.backingSelector, originalImp, wrappedMethodEncoding);
+	if ([[wrappedMethodMirror definingClass] mirroredClass] != self.wrappedClass) {
+		class_addMethod(self.wrappedClass, self.wrappedSelector, forwardingProxy, wrappedMethodEncoding);
+	} else {
+		method_setImplementation([wrappedMethodMirror mirroredMethod], forwardingProxy);
+	}
+	
+}
+
+- (void)install {
+	[self injectForwardInvocationImplementation];
+	[self injectAssociationToSelf];
+	[self injectForwardingProxy];
 }
 
 - (void)uninstall {
 	objc_setAssociatedObject(self.wrappedClass, self.wrappedSelector, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (void)internalValueWithReceiver:(id)anObject invocation:(NSInvocation *)invocation {
+	invocation.selector = self.backingSelector;
+	[self valueWithReceiver:anObject invocation:invocation];
+}
+
 - (void)valueWithReceiver:(id)anObject invocation:(NSInvocation *)invocation {
 	[self beforeMethod];
-	
-	SEL s1 = NSSelectorFromString([NSString stringWithFormat:@"hg_mw_swizzled_%@", NSStringFromSelector(self.wrappedSelector)]);
-	invocation.selector = s1;
 	[invocation invoke];
-	
 	[self afterMethod];
 }
 

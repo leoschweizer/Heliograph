@@ -11,19 +11,15 @@
 @property (nonatomic, readonly) Class wrappedClass;
 @property (nonatomic, readonly) SEL wrappedSelector;
 
-- (void)valueWithReceiver:(id)anObject returnValue:(void *)returnValue arguments:(va_list)arguments;
+- (void)valueWithReceiver:(id)anObject invocation:(NSInvocation *)invocation;
 
 @end
 
 
-id genericImp(id self, SEL _cmd, ...) {
-	HGMethodWrapper *wrapperInstance = objc_getAssociatedObject(object_getClass(self), _cmd);
-	va_list arguments;
-	va_start(arguments, _cmd);
-	NSLogv(@"%i", arguments);
-	[wrapperInstance valueWithReceiver:self returnValue:NULL arguments:arguments];
-	va_end(arguments);
-	return nil;
+void genericForwardInvocation(id self, SEL cmd, NSInvocation *invocation) {
+	SEL selector = [invocation selector];
+	HGMethodWrapper *wrapperInstance = objc_getAssociatedObject(object_getClass(self), selector);
+	[wrapperInstance valueWithReceiver:self invocation:invocation];
 }
 
 
@@ -38,17 +34,33 @@ id genericImp(id self, SEL _cmd, ...) {
 }
 
 - (void)install {
+	
 	objc_setAssociatedObject(self.wrappedClass, self.wrappedSelector, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 	
+	IMP forwardingProxy = class_getMethodImplementation([NSObject class], NSSelectorFromString(@"hg__this__does__not__exist"));
+	IMP originalImp = class_getMethodImplementation(self.wrappedClass, self.wrappedSelector);
+	
 	HGClassMirror *classMirror = reflect(self.wrappedClass);
-	HGMethodMirror *methodMirror = [classMirror methodWithSelector:self.wrappedSelector];
-	SEL injectedSelector = NSSelectorFromString([NSString stringWithFormat:@"hg__wrapped__%@", NSStringFromSelector(self.wrappedSelector)]);
-	const char * encoding = method_getTypeEncoding(methodMirror.mirroredMethod);
+	HGMethodMirror *wrappedMethodMirror = [classMirror methodWithSelector:self.wrappedSelector];
+	HGMethodMirror *forwardInvocationMirror = [classMirror methodWithSelector:@selector(forwardInvocation:)];
+	const char *wrappedMethodEncoding = method_getTypeEncoding([wrappedMethodMirror mirroredMethod]);
+	const char *forwardInvocationEncoding = method_getTypeEncoding([forwardInvocationMirror mirroredMethod]);
 	
-	BOOL didAdd = class_addMethod(self.wrappedClass, injectedSelector, (IMP)genericImp, encoding);
-	Method genericMethod = [[classMirror methodWithSelector:injectedSelector] mirroredMethod];
+	SEL s1 = NSSelectorFromString([NSString stringWithFormat:@"hg_mw_swizzled_%@", NSStringFromSelector(self.wrappedSelector)]);
 	
-	method_exchangeImplementations(methodMirror.mirroredMethod, genericMethod);
+	class_addMethod(self.wrappedClass, s1, originalImp, wrappedMethodEncoding);
+	if ([[wrappedMethodMirror definingClass] mirroredClass] != self.wrappedClass) {
+		class_addMethod(self.wrappedClass, self.wrappedSelector, forwardingProxy, wrappedMethodEncoding);
+	} else {
+		method_setImplementation([wrappedMethodMirror mirroredMethod], forwardingProxy);
+	}
+	
+	if ([[forwardInvocationMirror definingClass] mirroredClass] != self.wrappedClass) {
+		class_addMethod(self.wrappedClass, @selector(forwardInvocation:), (IMP)genericForwardInvocation, forwardInvocationEncoding);
+	} else {
+		method_setImplementation([forwardInvocationMirror mirroredMethod], (IMP)genericForwardInvocation);
+	}
+	
 	
 }
 
@@ -56,37 +68,12 @@ id genericImp(id self, SEL _cmd, ...) {
 	objc_setAssociatedObject(self.wrappedClass, self.wrappedSelector, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)valueWithReceiver:(id)anObject returnValue:(void *)returnValue arguments:(va_list)arguments {
+- (void)valueWithReceiver:(id)anObject invocation:(NSInvocation *)invocation {
 	[self beforeMethod];
 	
-	SEL injectedSelector = NSSelectorFromString([NSString stringWithFormat:@"hg__wrapped__%@", NSStringFromSelector(self.wrappedSelector)]);
-	NSMethodSignature *signature = [anObject methodSignatureForSelector:injectedSelector];
-	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-	NSUInteger argumentCount = [signature numberOfArguments];
-	
-	[invocation setTarget:anObject];
-	[invocation setSelector:injectedSelector];
-	for(NSUInteger i = 2; i < argumentCount; i++) {
-		const char *type = [signature getArgumentTypeAtIndex:i];
-		NSUInteger arg_size;
-		NSGetSizeAndAlignment(type, &arg_size, NULL);
-		void * arg_buffer = malloc(arg_size);
-		arg_buffer = va_arg(arguments, void *);
-		[invocation setArgument:arg_buffer atIndex:i];
-		free(arg_buffer);
-		//if (strcmp(@encode(int), type) == 0) {
-			// the argument is an int
-		//	int anInt = va_arg(arguments, int);
-		//	[invocation setArgument:&anInt atIndex:i];
-		//}
-		//void *argPtr = va_arg(arguments, void *);
-		//[invocation setArgument: argPtr atIndex: i];
-	}
-	
+	SEL s1 = NSSelectorFromString([NSString stringWithFormat:@"hg_mw_swizzled_%@", NSStringFromSelector(self.wrappedSelector)]);
+	invocation.selector = s1;
 	[invocation invoke];
-	
-	if([signature methodReturnLength] && returnValue)
-		[invocation getReturnValue: returnValue];
 	
 	[self afterMethod];
 }
@@ -98,7 +85,5 @@ id genericImp(id self, SEL _cmd, ...) {
 - (void)afterMethod {
 	;
 }
-
--does
 
 @end

@@ -12,7 +12,7 @@
 @property (nonatomic, readonly) SEL wrappedSelector;
 @property (nonatomic, readonly) SEL backingSelector;
 
-- (void)internalValueWithReceiver:(id)anObject invocation:(NSInvocation *)invocation;
+- (void)internalInvocation:(NSInvocation *)invocation withTarget:(id)anObject;
 
 @end
 
@@ -24,7 +24,7 @@ SEL backingSelectorForSelector(SEL selector) {
 void genericForwardInvocation(id self, SEL cmd, NSInvocation *invocation) {
 	SEL selector = backingSelectorForSelector(invocation.selector);
 	HGMethodWrapper *wrapperInstance = objc_getAssociatedObject(object_getClass(self), selector);
-	[wrapperInstance internalValueWithReceiver:self invocation:invocation];
+	[wrapperInstance internalInvocation:invocation withTarget:self];
 }
 
 
@@ -88,26 +88,22 @@ void genericForwardInvocation(id self, SEL cmd, NSInvocation *invocation) {
 }
 
 - (void)uninstall {
-	objc_setAssociatedObject(self.wrappedClass, self.wrappedSelector, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	objc_setAssociatedObject(self.wrappedClass, self.backingSelector, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)internalValueWithReceiver:(id)anObject invocation:(NSInvocation *)invocation {
+- (void)internalInvocation:(NSInvocation *)invocation withTarget:(id)anObject {
 	invocation.selector = self.backingSelector;
-	[self valueWithReceiver:anObject invocation:invocation];
+	[self invocation:invocation withTarget:anObject];
 }
 
-- (void)valueWithReceiver:(id)anObject invocation:(NSInvocation *)invocation {
+- (void)invocation:(NSInvocation *)invocation withTarget:(id)anObject {
 	[self beforeMethod];
 	[invocation invoke];
 	[self afterMethod];
 }
 
-- (void)beforeMethod {
-	;
-}
+- (void)beforeMethod {}
 
-- (void)afterMethod {
-	;
-}
+- (void)afterMethod {}
 
 @end

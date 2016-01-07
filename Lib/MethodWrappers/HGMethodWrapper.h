@@ -8,7 +8,7 @@
 - (void)install;
 - (void)uninstall;
 
-- (void)valueWithReceiver:(id)anObject invocation:(NSInvocation *)invocation;
+- (void)invocation:(NSInvocation *)invocation withTarget:(id)anObject;
 - (void)beforeMethod;
 - (void)afterMethod;
 

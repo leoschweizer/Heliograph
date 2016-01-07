@@ -21,7 +21,7 @@ SEL backingSelectorForSelector(SEL selector) {
 	return NSSelectorFromString([NSString stringWithFormat:@"hg_mw_swizzled_%@", NSStringFromSelector(selector)]);
 }
 
-void genericForwardInvocation(id self, SEL cmd, NSInvocation *invocation) {
+void HGDispatchWrappedMethod(id self, SEL cmd, NSInvocation *invocation) {
 	SEL selector = backingSelectorForSelector(invocation.selector);
 	HGMethodWrapper *wrapperInstance = objc_getAssociatedObject(object_getClass(self), selector);
 	[wrapperInstance internalInvocation:invocation withTarget:self];
@@ -45,16 +45,16 @@ void genericForwardInvocation(id self, SEL cmd, NSInvocation *invocation) {
 	HGMethodMirror *forwardInvocationMirror = [classMirror methodWithSelector:@selector(forwardInvocation:)];
 	IMP currentForwardInvocationImp = method_getImplementation([forwardInvocationMirror mirroredMethod]);
 	
-	if (currentForwardInvocationImp == (IMP)genericForwardInvocation) {
+	if (currentForwardInvocationImp == (IMP)HGDispatchWrappedMethod) {
 		return;
 	}
 	
 	const char *forwardInvocationEncoding = method_getTypeEncoding([forwardInvocationMirror mirroredMethod]);
 	class_addMethod(self.wrappedClass, NSSelectorFromString(@"hg_original_forwardInvocation:"), currentForwardInvocationImp, forwardInvocationEncoding);
 	if ([[forwardInvocationMirror definingClass] mirroredClass] != self.wrappedClass) {
-		class_addMethod(self.wrappedClass, @selector(forwardInvocation:), (IMP)genericForwardInvocation, forwardInvocationEncoding);
+		class_addMethod(self.wrappedClass, @selector(forwardInvocation:), (IMP)HGDispatchWrappedMethod, forwardInvocationEncoding);
 	} else {
-		method_setImplementation([forwardInvocationMirror mirroredMethod], (IMP)genericForwardInvocation);
+		method_setImplementation([forwardInvocationMirror mirroredMethod], (IMP)HGDispatchWrappedMethod);
 	}
 	
 }

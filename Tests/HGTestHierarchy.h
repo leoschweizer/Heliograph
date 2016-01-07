@@ -61,3 +61,10 @@
 @property _Bool boolProperty;
 
 @end
+
+
+@interface HGWrapperTestClass : NSObject
+
+- (int)testMethodWithArg:(int)arg;
+
+@end

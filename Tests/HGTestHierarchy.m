@@ -56,3 +56,12 @@
 @implementation HGTypeTestClass
 
 @end
+
+
+@implementation HGWrapperTestClass
+
+- (int)testMethodWithArg:(int)arg {
+	return arg * 2;
+}
+
+@end

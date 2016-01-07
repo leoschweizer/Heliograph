@@ -10,3 +10,5 @@
 
 #import <Heliograph/HGTypeMirrorVisitor.h>
 #import <Heliograph/HGTypeMirrorVisitors.h>
+
+#import <Heliograph/HGMethodWrapper.h>

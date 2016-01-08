@@ -37,10 +37,16 @@
 - (NSArray *)adoptedProtocols;
 
 /**
- * Answers an array of HGClassMirrors reflecting the receiver's mirrored subclasses
+ * Answers an NSArray of HGClassMirrors reflecting the receiver's mirrored subclasses
  * and the receiver's descendant's subclasses.
  */
 - (NSArray *)allSubclasses;
+
+/**
+ * Answers an NSArray of HGClassMirrors reflecting the receiver's superclasses,
+ * in the order of the inheritance chain.
+ */
+- (NSArray *)allSuperclasses;
 
 /**
  * Answers an HGClassMirror reflecting the class of the receiver's mirrored 

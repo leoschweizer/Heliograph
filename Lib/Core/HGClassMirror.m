@@ -85,6 +85,16 @@
 	
 }
 
+- (NSArray *)allSuperclasses {
+	NSMutableArray *result = [NSMutableArray array];
+	HGClassMirror *superclass = [self superclass];
+	while (superclass) {
+		[result addObject:superclass];
+		superclass = [superclass superclass];
+	}
+	return result;
+}
+
 - (HGClassMirror *)classMirror {
 	Class class = object_getClass(self.mirroredClass);
 	return class ? [[HGClassMirror alloc] initWithClass:class] : nil;

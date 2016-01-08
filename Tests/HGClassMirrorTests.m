@@ -27,6 +27,20 @@
 	XCTAssertEqual([allSubclasses count], 4);
 }
 
+- (void)testAllSuperclasses {
+	NSArray *superclasses = [reflect([NSMutableString class]) allSuperclasses];
+	XCTAssertNotNil(superclasses);
+	XCTAssertEqual([superclasses count], 2);
+	XCTAssertEqualObjects([superclasses firstObject], reflect([NSString class]));
+	XCTAssertEqualObjects([superclasses lastObject], reflect([NSObject class]));
+}
+
+- (void)testAllSuperclassesEmpty {
+	NSArray *superclasses = [reflect([NSObject class]) allSuperclasses];
+	XCTAssertNotNil(superclasses);
+	XCTAssertEqual([superclasses count], 0);
+}
+
 - (void)testMetaclassMirror {
 	HGClassMirror *mirror = reflect([HGDescendant2 class]);
 	XCTAssertFalse([mirror isMetaclass]);

@@ -246,6 +246,8 @@
 	return superclass ? [[HGClassMirror alloc] initWithClass:superclass] : nil;
 }
 
+#pragma mark - NSObject
+
 - (BOOL)isEqual:(id)anObject {
 	if (anObject == self) {
 		return YES;
@@ -261,7 +263,7 @@
 }
 
 - (NSUInteger)hash {
-	return [@"HGClassMirror" hash] ^ [self.mirroredClassStorage hash];
+	return [super hash] ^ [self.mirroredClassStorage hash];
 }
 
 #pragma mark - NSCopying

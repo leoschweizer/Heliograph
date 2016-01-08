@@ -13,10 +13,10 @@
 
 @implementation HGMethodMirror
 
-- (instancetype)initWithDefiningClass:(HGClassMirror *)classMirror method:(Method)method {
+- (instancetype)initWithDefiningClass:(HGClassMirror *)classMirror method:(Method)aMethod {
 	if (self = [super init]) {
 		_definingClass = classMirror;
-		_mirroredMethod = method;
+		_mirroredMethod = aMethod;
 	}
 	return self;
 }

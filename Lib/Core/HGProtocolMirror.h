@@ -25,4 +25,16 @@
  */
 - (NSArray *)adoptedProtocols;
 
+/**
+ * Answers an NSArray of HGMethodMirrors reflecting the instance methods defined
+ * by the receiver's mirrored protocol.
+ */
+- (NSArray *)instanceMethods;
+
+/**
+ * Answers an NSArray of HGMethodMirrors reflecting the class methods defined
+ * by the receiver's mirrored protocol.
+ */
+- (NSArray *)classMethods;
+
 @end

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B3045DAB1C406FE6001ADBAF"
-               BuildableName = "HeliographIOS.framework"
+               BuildableName = "Heliograph.framework"
                BlueprintName = "HeliographIOS"
                ReferencedContainer = "container:Heliograph.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B3045DAB1C406FE6001ADBAF"
-            BuildableName = "HeliographIOS.framework"
+            BuildableName = "Heliograph.framework"
             BlueprintName = "HeliographIOS"
             ReferencedContainer = "container:Heliograph.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B3045DAB1C406FE6001ADBAF"
-            BuildableName = "HeliographIOS.framework"
+            BuildableName = "Heliograph.framework"
             BlueprintName = "HeliographIOS"
             ReferencedContainer = "container:Heliograph.xcodeproj">
          </BuildableReference>

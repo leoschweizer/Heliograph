@@ -50,6 +50,10 @@
 	return method_getName(self.mirroredMethod);
 }
 
+- (IMP)replaceImplementationWith:(IMP)anImplementation {
+	return method_setImplementation(self.mirroredMethod, anImplementation);
+}
+
 - (HGTypeMirror *)returnType {
 	char *encoding = method_copyReturnType(self.mirroredMethod);
 	HGTypeMirror *mirror = [HGTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];

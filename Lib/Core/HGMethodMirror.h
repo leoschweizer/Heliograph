@@ -35,6 +35,13 @@
 - (NSUInteger)numberOfArguments;
 
 /**
+ * Replaces the implementation of the receiver's mirrored method with 
+ * anImplementation.
+ * @return the old implementation of the receiver's mirrored method.
+ */
+- (IMP)replaceImplementationWith:(IMP)anImplementation;
+
+/**
  * Answers an HGTypeMirror reflecting the return type of the receiver's mirrored
  * method.
  */

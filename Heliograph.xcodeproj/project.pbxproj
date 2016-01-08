@@ -92,7 +92,7 @@
 		B3045DA01C402C5D001ADBAF /* HGMethodDescriptionMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodDescriptionMirror.m; sourceTree = "<group>"; };
 		B3045DA31C402C7E001ADBAF /* HGMethodDescriptionMirror-Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HGMethodDescriptionMirror-Runtime.h"; sourceTree = "<group>"; };
 		B3045DA51C403BDA001ADBAF /* HGMethodDescriptionMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodDescriptionMirrorTests.m; sourceTree = "<group>"; };
-		B3045DAC1C406FE6001ADBAF /* HeliographIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HeliographIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3045DAC1C406FE6001ADBAF /* Heliograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Heliograph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B349BE141C37E17A00B66CB5 /* Heliograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Heliograph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B349BE1E1C37E17B00B66CB5 /* Heliograph-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Heliograph-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B349BE2F1C37E1B800B66CB5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 			children = (
 				B349BE141C37E17A00B66CB5 /* Heliograph.framework */,
 				B349BE1E1C37E17B00B66CB5 /* Heliograph-Tests.xctest */,
-				B3045DAC1C406FE6001ADBAF /* HeliographIOS.framework */,
+				B3045DAC1C406FE6001ADBAF /* Heliograph.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,7 +324,7 @@
 			);
 			name = HeliographIOS;
 			productName = HeliographIOS;
-			productReference = B3045DAC1C406FE6001ADBAF /* HeliographIOS.framework */;
+			productReference = B3045DAC1C406FE6001ADBAF /* Heliograph.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B349BE131C37E17A00B66CB5 /* Heliograph */ = {
@@ -683,6 +683,7 @@
 				B3045DB31C406FE6001ADBAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B349BE0E1C37E17A00B66CB5 /* Build configuration list for PBXProject "Heliograph" */ = {
 			isa = XCConfigurationList;

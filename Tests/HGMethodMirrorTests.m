@@ -36,4 +36,20 @@
 	XCTAssertEqual([[argumentTypes lastObject] class], [HGObjectTypeMirror class]);
 }
 
+NSUInteger hg_fake_implementation(id self, SEL cmd) {
+	return 42;
+}
+
+- (void)testReplaceImplementation {
+	HGClassMirror *class = reflect([NSObject class]);
+	HGMethodMirror *method = [class methodNamed:@selector(hash)];
+	NSObject *subject = [[NSObject alloc] init];
+	NSUInteger oldHash = [subject hash];
+	XCTAssertNotEqual(oldHash, 42);
+	IMP oldImp = [method replaceImplementationWith:(IMP)hg_fake_implementation];
+	XCTAssertEqual([subject hash], 42);
+	[method replaceImplementationWith:oldImp];
+	XCTAssertEqual([subject hash], oldHash);
+}
+
 @end

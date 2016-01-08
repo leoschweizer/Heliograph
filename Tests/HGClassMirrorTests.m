@@ -185,7 +185,7 @@ NSUInteger hg_fake_hash(id self, SEL cmd) {
 	HGClassMirror *m2 = reflect([NSString class]);
 	HGClassMirror *m3 = reflect([NSMutableString class]);
 	HGClassMirror *m4 = [m1 classMirror];
-	XCTAssertEqualObjects(m1, m1);
+	XCTAssertTrue([m1 isEqual:m1]);
 	XCTAssertEqualObjects(m1, m2);
 	XCTAssertNotEqualObjects(m2, m3);
 	XCTAssertNotEqualObjects(m4, m1);

@@ -181,6 +181,16 @@
 	return property ? [[HGPropertyMirror alloc] initWithDefiningClass:self property:property] : nil;
 }
 
+- (NSArray *)siblings {
+	HGClassMirror *superclass = [self superclass];
+	if (!superclass) {
+		return @[];
+	}
+	NSMutableArray *siblings = [[superclass subclasses] mutableCopy];
+	[siblings removeObject:self];
+	return siblings;
+}
+
 - (NSArray *)subclasses {
 	
 	unsigned int numberOfClasses = objc_getClassList(NULL, 0);

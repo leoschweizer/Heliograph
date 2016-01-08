@@ -140,4 +140,19 @@
 	XCTAssertEqualObjects([test objectForKey:[NSValue valueWithNonretainedObject:[NSString class]]], @4);
 }
 
+- (void)testSiblings {
+	HGClassMirror *mirror = reflect([HGDescendant1 class]);
+	NSArray *siblings = [mirror siblings];
+	XCTAssertNotNil(siblings);
+	XCTAssertEqual([siblings count], 1);
+	XCTAssertEqualObjects([siblings firstObject], reflect([HGDescendant2 class]));
+}
+
+- (void)testSiblingsWithoutSuperclass {
+	HGClassMirror *mirror = reflect([NSObject class]);
+	NSArray *siblings = [mirror siblings];
+	XCTAssertNotNil(siblings);
+	XCTAssertEqual([siblings count], 0);
+}
+
 @end

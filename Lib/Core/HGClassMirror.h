@@ -93,7 +93,13 @@
 - (HGPropertyMirror *)propertyNamed:(NSString *)aName;
 
 /**
- * Answers an array of HGClassMirrors reflecting the receiver's mirrored subclasses.
+ * Answers an NSArray of HGClassMirrors reflecting the siblings of the receiver's
+ * mirrored class.
+ */
+- (NSArray *)siblings;
+
+/**
+ * Answers an NSArray of HGClassMirrors reflecting the receiver's mirrored subclasses.
  */
 - (NSArray *)subclasses;
 

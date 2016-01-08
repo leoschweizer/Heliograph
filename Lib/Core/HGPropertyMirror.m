@@ -104,7 +104,7 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 }
 
 - (HGMethodMirror *)getter {
-	return [self.definingClass methodWithSelector:NSSelectorFromString(self.getterName)];
+	return [self.definingClass methodNamed:NSSelectorFromString(self.getterName)];
 }
 
 - (BOOL)isCopied {
@@ -136,7 +136,7 @@ static HGTypeMirror *parseType(NSArray *stringAttributes) {
 }
 
 - (HGMethodMirror *)setter {
-	return [self.definingClass methodWithSelector:NSSelectorFromString(self.setterName)];
+	return [self.definingClass methodNamed:NSSelectorFromString(self.setterName)];
 }
 
 @end

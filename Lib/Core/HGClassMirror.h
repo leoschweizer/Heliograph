@@ -25,6 +25,12 @@
 - (instancetype)initWithClass:(Class)aClass;
 
 /**
+ * Creates a method in the receiver's mirrored class.
+ * @returns an HGMethodMirror reflecting the newly created method.
+ */
+- (HGMethodMirror *)addMethodNamed:(SEL)aSelector withImplementation:(IMP)anImplementation andEncoding:(const char *)anEncoding;
+
+/**
  * Creates a subclass of the receiver's mirrors class with the name aClassName.
  * @returns a HGClassMirror instance reflecting the newly created class.
  */
@@ -80,7 +86,7 @@
 /**
  * Answers an HGMethodMirror reflecting the method with the selector aSelector.
  */
-- (HGMethodMirror *)methodWithSelector:(SEL)aSelector;
+- (HGMethodMirror *)methodNamed:(SEL)aSelector;
 
 /**
  * Answers the name of the receiver's mirrored class.

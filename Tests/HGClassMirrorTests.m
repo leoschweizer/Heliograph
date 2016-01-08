@@ -109,6 +109,28 @@
 	XCTAssertNil(subclass);
 }
 
+NSUInteger hg_fake_hash(id self, SEL cmd) {
+	return 1337;
+}
+
+- (void)testAddMethod {
+	HGClassMirror *superclass = reflect([NSObject class]);
+	HGClassMirror *class = [superclass addSubclassNamed:@"HGFooBarBaz"];
+	HGMethodMirror *originalHash = [superclass methodNamed:@selector(hash)];
+	HGMethodMirror *overriddenHash = [class addMethodNamed:@selector(hash) withImplementation:(IMP)hg_fake_hash andEncoding:originalHash.encoding];
+	XCTAssertNotNil(overriddenHash);
+	XCTAssertEqual([overriddenHash selector], @selector(hash));
+	id instance = [[[class mirroredClass] alloc] init];
+	XCTAssertEqual([instance hash], 1337);
+}
+
+- (void)testAddMethodWithExistingSelector {
+	HGClassMirror *mirror = reflect([NSObject class]);
+	HGMethodMirror *existing = [mirror methodNamed:@selector(hash)];
+	HGMethodMirror *method = [mirror addMethodNamed:@selector(hash) withImplementation:existing.implementation andEncoding:existing.encoding];
+	XCTAssertNil(method);
+}
+
 - (void)testAdoptedProtocols {
 	HGClassMirror *mirror = reflect([NSObject class]);
 	NSArray *adoptedProtocols = [mirror adoptedProtocols];
@@ -123,18 +145,18 @@
 }
 
 - (void)testGetMissingMethod {
-	HGMethodMirror *mirror = [reflect([HGRootClass class]) methodWithSelector:@selector(methodDefinedInDescendant1)];
+	HGMethodMirror *mirror = [reflect([HGRootClass class]) methodNamed:@selector(methodDefinedInDescendant1)];
 	XCTAssertNil(mirror);
 }
 
 - (void)testGetClassMethod {
 	HGClassMirror *metaMirror = [reflect([HGDescendant1Descendant1 class]) classMirror];
-	HGMethodMirror *methodMirror = [metaMirror methodWithSelector:@selector(classMethodDefinedInDescendant1Descendant1)];
+	HGMethodMirror *methodMirror = [metaMirror methodNamed:@selector(classMethodDefinedInDescendant1Descendant1)];
 	XCTAssertNotNil(methodMirror);
 }
 
 - (void)testGetMethodFromSuperclass {
-	HGMethodMirror *mirror = [reflect([HGDescendant1Descendant2 class]) methodWithSelector:@selector(methodDefinedInDescendant1)];
+	HGMethodMirror *mirror = [reflect([HGDescendant1Descendant2 class]) methodNamed:@selector(methodDefinedInDescendant1)];
 	XCTAssertNotNil(mirror);
 	XCTAssertEqual([[mirror definingClass] mirroredClass], [HGDescendant1 class]);
 }

@@ -33,6 +33,14 @@
 	return [NSArray arrayWithArray:result];
 }
 
+- (const char *)encoding {
+	return method_getTypeEncoding(self.mirroredMethod);
+}
+
+- (IMP)implementation {
+	return method_getImplementation(self.mirroredMethod);
+}
+
 - (NSUInteger)numberOfArguments {
 	// we don't want to take account of self and _cmd here, hence subtract 2
 	return method_getNumberOfArguments(self.mirroredMethod) - 2;

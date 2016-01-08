@@ -35,6 +35,14 @@
 	return self;
 }
 
+- (HGMethodMirror *)addMethodNamed:(SEL)aSelector withImplementation:(IMP)anImplementation andEncoding:(const char *)anEncoding {
+	BOOL didAdd = class_addMethod(self.mirroredClass, aSelector, anImplementation, anEncoding);
+	if (!didAdd) {
+		return nil;
+	}
+	return [self methodNamed:aSelector];
+}
+
 - (HGClassMirror *)addSubclassNamed:(NSString *)aClassName {
 	Class class = objc_allocateClassPair(self.mirroredClass, [aClassName UTF8String], 0);
 	if (!class) {
@@ -150,7 +158,7 @@
 	
 }
 
-- (HGMethodMirror *)methodWithSelector:(SEL)aSelector {
+- (HGMethodMirror *)methodNamed:(SEL)aSelector {
 	Method method = class_getInstanceMethod(self.mirroredClass, aSelector);
 	HGClassMirror *definingClass = nil;
 	HGClassMirror *inspectedClass = self;

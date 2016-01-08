@@ -19,6 +19,16 @@
 - (NSArray *)argumentTypes;
 
 /**
+ * Answers the encoding of the receiver's mirrored method.
+ */
+- (const char *)encoding;
+
+/**
+ * Answers the implementation of the receiver's mirrored method.
+ */
+- (IMP)implementation;
+
+/**
  * Answers the number of arguments of the receiver's mirrored method, not
  * including the implicit self and _cmd arguments.
  */

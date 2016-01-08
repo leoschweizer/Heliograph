@@ -36,8 +36,7 @@
 }
 
 - (HGInstanceVariableMirror *)addInstanceVariableNamed:(NSString *)aName withEncoding:(const char *)anEncoding {
-	size_t size;
-	NSUInteger alignment;
+	NSUInteger size, alignment;
 	NSGetSizeAndAlignment(anEncoding, &size, &alignment);
 	BOOL didAdd = class_addIvar(self.mirroredClass, [aName UTF8String], size, alignment, anEncoding);
 	if (!didAdd) {

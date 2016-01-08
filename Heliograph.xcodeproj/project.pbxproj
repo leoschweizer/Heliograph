@@ -14,6 +14,31 @@
 		B3045DA21C402C5D001ADBAF /* HGMethodDescriptionMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3045DA01C402C5D001ADBAF /* HGMethodDescriptionMirror.m */; };
 		B3045DA41C403BB8001ADBAF /* HGMethodDescriptionMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3045DA31C402C7E001ADBAF /* HGMethodDescriptionMirror-Runtime.h */; };
 		B3045DA61C403BDA001ADBAF /* HGMethodDescriptionMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3045DA51C403BDA001ADBAF /* HGMethodDescriptionMirrorTests.m */; };
+		B3045DB41C40706E001ADBAF /* HGClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802121C3D99E600E8F25E /* HGClassMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3045DB51C40706E001ADBAF /* HGClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802131C3D99E600E8F25E /* HGClassMirror.m */; };
+		B3045DB61C40706E001ADBAF /* HGInstanceVariableMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802141C3D99E600E8F25E /* HGInstanceVariableMirror-Runtime.h */; };
+		B3045DB71C40706E001ADBAF /* HGInstanceVariableMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802151C3D99E600E8F25E /* HGInstanceVariableMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3045DB81C40706E001ADBAF /* HGInstanceVariableMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802161C3D99E600E8F25E /* HGInstanceVariableMirror.m */; };
+		B3045DB91C40706E001ADBAF /* HGMethodDescriptionMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3045DA31C402C7E001ADBAF /* HGMethodDescriptionMirror-Runtime.h */; };
+		B3045DBA1C40706E001ADBAF /* HGMethodDescriptionMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3045D9F1C402C5D001ADBAF /* HGMethodDescriptionMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3045DBB1C40706E001ADBAF /* HGMethodDescriptionMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3045DA01C402C5D001ADBAF /* HGMethodDescriptionMirror.m */; };
+		B3045DBC1C40706E001ADBAF /* HGMethodMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802171C3D99E600E8F25E /* HGMethodMirror-Runtime.h */; };
+		B3045DBD1C40706E001ADBAF /* HGMethodMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802181C3D99E600E8F25E /* HGMethodMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3045DBE1C40706E001ADBAF /* HGMethodMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802191C3D99E600E8F25E /* HGMethodMirror.m */; };
+		B3045DBF1C40706E001ADBAF /* HGPropertyMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8021A1C3D99E600E8F25E /* HGPropertyMirror-Runtime.h */; };
+		B3045DC01C40706E001ADBAF /* HGPropertyMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8021B1C3D99E600E8F25E /* HGPropertyMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3045DC11C40706E001ADBAF /* HGPropertyMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C8021C1C3D99E600E8F25E /* HGPropertyMirror.m */; };
+		B3045DC21C40706E001ADBAF /* HGProtocolMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8021D1C3D99E600E8F25E /* HGProtocolMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3045DC31C40706E001ADBAF /* HGProtocolMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C8021E1C3D99E600E8F25E /* HGProtocolMirror.m */; };
+		B3045DC41C40706E001ADBAF /* HGReflect.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802441C3DA95900E8F25E /* HGReflect.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3045DC51C40706E001ADBAF /* HGReflect.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802451C3DA95900E8F25E /* HGReflect.m */; };
+		B3045DC61C40706E001ADBAF /* HGTypeMirrors.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802211C3D99E600E8F25E /* HGTypeMirrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3045DC71C40706E001ADBAF /* HGTypeMirrors.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802221C3D99E600E8F25E /* HGTypeMirrors.m */; };
+		B3045DC81C40706E001ADBAF /* HGValueMirrors.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802231C3D99E600E8F25E /* HGValueMirrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3045DC91C40706E001ADBAF /* HGValueMirrors.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802241C3D99E600E8F25E /* HGValueMirrors.m */; };
+		B3045DCA1C407072001ADBAF /* HGMethodWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = B3045D991C3DD3A1001ADBAF /* HGMethodWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3045DCB1C407072001ADBAF /* HGMethodWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B3045D9A1C3DD3A1001ADBAF /* HGMethodWrapper.m */; };
+		B3045DCC1C407076001ADBAF /* Heliograph.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8023E1C3D9A2D00E8F25E /* Heliograph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B349BE1F1C37E17B00B66CB5 /* Heliograph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B349BE141C37E17A00B66CB5 /* Heliograph.framework */; };
 		B349BE381C37E26600B66CB5 /* HGClassMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE351C37E1C300B66CB5 /* HGClassMirrorTests.m */; };
 		B349BE451C37ECB500B66CB5 /* HGTestHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE441C37ECB500B66CB5 /* HGTestHierarchy.m */; };
@@ -67,6 +92,7 @@
 		B3045DA01C402C5D001ADBAF /* HGMethodDescriptionMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodDescriptionMirror.m; sourceTree = "<group>"; };
 		B3045DA31C402C7E001ADBAF /* HGMethodDescriptionMirror-Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HGMethodDescriptionMirror-Runtime.h"; sourceTree = "<group>"; };
 		B3045DA51C403BDA001ADBAF /* HGMethodDescriptionMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodDescriptionMirrorTests.m; sourceTree = "<group>"; };
+		B3045DAC1C406FE6001ADBAF /* HeliographIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HeliographIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B349BE141C37E17A00B66CB5 /* Heliograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Heliograph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B349BE1E1C37E17B00B66CB5 /* Heliograph-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Heliograph-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B349BE2F1C37E1B800B66CB5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -107,6 +133,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B3045DA81C406FE6001ADBAF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B349BE101C37E17A00B66CB5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -148,6 +181,7 @@
 			children = (
 				B349BE141C37E17A00B66CB5 /* Heliograph.framework */,
 				B349BE1E1C37E17B00B66CB5 /* Heliograph-Tests.xctest */,
+				B3045DAC1C406FE6001ADBAF /* HeliographIOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -226,6 +260,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		B3045DA91C406FE6001ADBAF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3045DC61C40706E001ADBAF /* HGTypeMirrors.h in Headers */,
+				B3045DBF1C40706E001ADBAF /* HGPropertyMirror-Runtime.h in Headers */,
+				B3045DB61C40706E001ADBAF /* HGInstanceVariableMirror-Runtime.h in Headers */,
+				B3045DB91C40706E001ADBAF /* HGMethodDescriptionMirror-Runtime.h in Headers */,
+				B3045DCA1C407072001ADBAF /* HGMethodWrapper.h in Headers */,
+				B3045DBC1C40706E001ADBAF /* HGMethodMirror-Runtime.h in Headers */,
+				B3045DB71C40706E001ADBAF /* HGInstanceVariableMirror.h in Headers */,
+				B3045DC01C40706E001ADBAF /* HGPropertyMirror.h in Headers */,
+				B3045DBA1C40706E001ADBAF /* HGMethodDescriptionMirror.h in Headers */,
+				B3045DC41C40706E001ADBAF /* HGReflect.h in Headers */,
+				B3045DC81C40706E001ADBAF /* HGValueMirrors.h in Headers */,
+				B3045DBD1C40706E001ADBAF /* HGMethodMirror.h in Headers */,
+				B3045DC21C40706E001ADBAF /* HGProtocolMirror.h in Headers */,
+				B3045DB41C40706E001ADBAF /* HGClassMirror.h in Headers */,
+				B3045DCC1C407076001ADBAF /* Heliograph.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B349BE111C37E17A00B66CB5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,6 +309,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		B3045DAB1C406FE6001ADBAF /* HeliographIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3045DB11C406FE6001ADBAF /* Build configuration list for PBXNativeTarget "HeliographIOS" */;
+			buildPhases = (
+				B3045DA71C406FE6001ADBAF /* Sources */,
+				B3045DA81C406FE6001ADBAF /* Frameworks */,
+				B3045DA91C406FE6001ADBAF /* Headers */,
+				B3045DAA1C406FE6001ADBAF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeliographIOS;
+			productName = HeliographIOS;
+			productReference = B3045DAC1C406FE6001ADBAF /* HeliographIOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		B349BE131C37E17A00B66CB5 /* Heliograph */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B349BE281C37E17B00B66CB5 /* Build configuration list for PBXNativeTarget "Heliograph" */;
@@ -298,6 +372,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Leo Schweizer";
 				TargetAttributes = {
+					B3045DAB1C406FE6001ADBAF = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					B349BE131C37E17A00B66CB5 = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -319,12 +396,20 @@
 			projectRoot = "";
 			targets = (
 				B349BE131C37E17A00B66CB5 /* Heliograph */,
+				B3045DAB1C406FE6001ADBAF /* HeliographIOS */,
 				B349BE1D1C37E17B00B66CB5 /* Heliograph-Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B3045DAA1C406FE6001ADBAF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B349BE121C37E17A00B66CB5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,6 +427,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B3045DA71C406FE6001ADBAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3045DB81C40706E001ADBAF /* HGInstanceVariableMirror.m in Sources */,
+				B3045DC71C40706E001ADBAF /* HGTypeMirrors.m in Sources */,
+				B3045DC31C40706E001ADBAF /* HGProtocolMirror.m in Sources */,
+				B3045DBB1C40706E001ADBAF /* HGMethodDescriptionMirror.m in Sources */,
+				B3045DC11C40706E001ADBAF /* HGPropertyMirror.m in Sources */,
+				B3045DCB1C407072001ADBAF /* HGMethodWrapper.m in Sources */,
+				B3045DBE1C40706E001ADBAF /* HGMethodMirror.m in Sources */,
+				B3045DC91C40706E001ADBAF /* HGValueMirrors.m in Sources */,
+				B3045DB51C40706E001ADBAF /* HGClassMirror.m in Sources */,
+				B3045DC51C40706E001ADBAF /* HGReflect.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B349BE0F1C37E17A00B66CB5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -389,6 +491,41 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		B3045DB21C406FE6001ADBAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Lib/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B3045DB31C406FE6001ADBAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Lib/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		B349BE261C37E17B00B66CB5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -426,9 +563,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.opinionatedc.Heliograph;
+				PRODUCT_NAME = Heliograph;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -466,8 +606,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.opinionatedc.Heliograph;
+				PRODUCT_NAME = Heliograph;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -487,7 +630,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.opinionatedc.Heliograph;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -505,7 +647,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.opinionatedc.Heliograph;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -535,6 +676,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B3045DB11C406FE6001ADBAF /* Build configuration list for PBXNativeTarget "HeliographIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3045DB21C406FE6001ADBAF /* Debug */,
+				B3045DB31C406FE6001ADBAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B349BE0E1C37E17A00B66CB5 /* Build configuration list for PBXProject "Heliograph" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

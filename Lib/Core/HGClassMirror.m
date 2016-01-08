@@ -205,4 +205,30 @@
 	return superclass ? [[HGClassMirror alloc] initWithClass:superclass] : nil;
 }
 
+- (BOOL)isEqual:(id)anObject {
+	if (anObject == self) {
+		return YES;
+	}
+	if (!anObject || !([anObject class] == [self class])) {
+		return NO;
+	}
+	return [self isEqualToClassMirror:anObject];
+}
+
+- (BOOL)isEqualToClassMirror:(HGClassMirror *)aClassMirror {
+	return [self.mirroredClassStorage isEqual:aClassMirror.mirroredClassStorage];
+}
+
+- (NSUInteger)hash {
+	return [@"HGClassMirror" hash] ^ [self.mirroredClassStorage hash];
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+	HGClassMirror *newMirror = [[self.class allocWithZone:zone] init];
+	newMirror->_mirroredClassStorage = [_mirroredClassStorage copyWithZone:zone];
+	return newMirror;
+}
+
 @end

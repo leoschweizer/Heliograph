@@ -6,7 +6,7 @@
 @class HGPropertyMirror;
 
 
-@interface HGClassMirror : NSObject
+@interface HGClassMirror : NSObject <NSCopying>
 
 /**
  * Answers an NSArray of HGClassMirrors reflecting all the known classes of
@@ -101,5 +101,12 @@
  * Answers an HGClassMirror reflecting the receiver's mirrored superclass.
  */
 - (HGClassMirror *)superclass;
+
+/**
+ * Compares the receiving HGClassMirror to another HGClassMirror.
+ * @returns YES if the mirrored class of aClassMirror is euqal to the receiver's
+ * mirrored class.
+ */
+- (BOOL)isEqualToClassMirror:(HGClassMirror *)aClassMirror;
 
 @end

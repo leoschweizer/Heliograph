@@ -119,4 +119,25 @@
 	XCTAssertEqual([[mirror definingClass] mirroredClass], [HGDescendant1 class]);
 }
 
+- (void)testIsEqual {
+	HGClassMirror *m1 = reflect([NSString class]);
+	HGClassMirror *m2 = reflect([NSString class]);
+	HGClassMirror *m3 = reflect([NSMutableString class]);
+	HGClassMirror *m4 = [m1 classMirror];
+	XCTAssertEqualObjects(m1, m2);
+	XCTAssertNotEqualObjects(m2, m3);
+	XCTAssertNotEqualObjects(m4, m1);
+}
+
+- (void)testHash {
+	NSDictionary *test = @{
+		reflect([NSString class]) : @1,
+		reflect([NSString class]) : @2,
+		reflect([NSMutableString class]) : @3,
+		[NSValue valueWithNonretainedObject:[NSString class]] : @4
+	};
+	XCTAssertEqual([test count], 3);
+	XCTAssertEqualObjects([test objectForKey:[NSValue valueWithNonretainedObject:[NSString class]]], @4);
+}
+
 @end

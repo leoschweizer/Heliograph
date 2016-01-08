@@ -1,6 +1,19 @@
 #import <Foundation/Foundation.h>
 
 
+@protocol HGTestProtocol
+
+@required
+- (void)requiredInstanceMethod;
++ (id)requiredClassMethodWithArgument:(BOOL)arg;
+
+@optional
+- (NSString *)optionalInstanceMethod;
++ (id<NSSecureCoding>)optionalClassMethod:(NSUInteger)arg;
+
+@end
+
+
 @interface HGRootClass : NSObject
 
 @end

@@ -1,18 +1,6 @@
 #import <XCTest/XCTest.h>
 #import <Heliograph/Heliograph.h>
-
-
-@protocol HGTestProtocol
-
-@required
-- (void)requiredInstanceMethod;
-+ (id)requiredClassMethodWithArgument:(BOOL)arg;
-
-@optional
-- (NSString *)optionalInstanceMethod;
-+ (id<NSSecureCoding>)optionalClassMethod:(NSUInteger)arg;
-
-@end
+#import "HGTestHierarchy.h"
 
 
 @interface HGProtocolMirrorTests : XCTestCase

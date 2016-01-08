@@ -29,4 +29,13 @@
 	return !self.isRequired;
 }
 
+- (NSUInteger)numberOfArguments {
+	NSString *sel = NSStringFromSelector(self.mirroredMethodDescription.name);
+	return [[sel componentsSeparatedByString:@":"] count] - 1;
+}
+
+- (SEL)selector {
+	return self.mirroredMethodDescription.name;
+}
+
 @end

@@ -52,4 +52,27 @@ NSUInteger hg_fake_implementation(id self, SEL cmd) {
 	XCTAssertEqual([subject hash], oldHash);
 }
 
+- (void)testIsEqual {
+	HGMethodMirror *m1 = [reflect([NSString class]) methodNamed:@selector(hash)];
+	HGMethodMirror *m2 = [reflect([NSString class]) methodNamed:@selector(hash)];
+	HGMethodMirror *m3 = [reflect([NSString class]) methodNamed:@selector(isEqual:)];
+	HGMethodMirror *m4 = [[reflect([NSString class]) classMirror] methodNamed:@selector(hash)];
+	XCTAssertTrue([m1 isEqual:m1]);
+	XCTAssertEqualObjects(m1, m2);
+	XCTAssertNotEqualObjects(m2, m3);
+	XCTAssertNotEqualObjects(m4, m1);
+	XCTAssertNotEqualObjects(m1, @"");
+	XCTAssertNotEqualObjects(m1, nil);
+}
+
+- (void)testHash {
+	HGMethodMirror *m1 = [reflect([NSString class]) methodNamed:@selector(hash)];
+	NSDictionary *test = @{
+		m1 : @1,
+		m1 : @2,
+		[reflect([NSString class]) methodNamed:@selector(isEqual:)] : @3
+	};
+	XCTAssertEqual([test count], 2);
+}
+
 @end

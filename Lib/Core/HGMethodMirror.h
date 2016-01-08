@@ -5,7 +5,7 @@
 @class HGTypeMirror;
 
 
-@interface HGMethodMirror : NSObject
+@interface HGMethodMirror : NSObject <NSCopying>
 
 /**
  * The HGClassMirror reflecting the receiver's mirrored method's defining class.
@@ -51,5 +51,10 @@
  * Answers the selector of the receiver's mirrored method.
  */
 - (SEL)selector;
+
+/**
+ * Compares the receiving HGMethodMirror to another HGMethodMirror.
+ */
+- (BOOL)isEqualToMethodMirror:(HGMethodMirror *)aMethodMirror;
 
 @end

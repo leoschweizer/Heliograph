@@ -171,7 +171,7 @@
 	Method method = class_getInstanceMethod(self.mirroredClass, aSelector);
 	HGClassMirror *definingClass = nil;
 	HGClassMirror *inspectedClass = self;
-	while (method && !definingClass) {
+	while (method && !definingClass && inspectedClass) {
 		for (HGMethodMirror *m in [inspectedClass methods]) {
 			if ([m selector] == aSelector) {
 				definingClass = inspectedClass;

@@ -76,6 +76,19 @@
 	XCTAssertNil([mirror superclass]);
 }
 
+- (void)testAddSubclass {
+	HGClassMirror *superclass = reflect([NSObject class]);
+	HGClassMirror *subclass = [superclass addSubclassNamed:@"HGThisIsATestSubclass"];
+	XCTAssertNotNil(subclass);
+	XCTAssertEqualObjects([subclass name], @"HGThisIsATestSubclass");
+}
+
+- (void)testAddSubclassFailure {
+	HGClassMirror *superclass = reflect([NSObject class]);
+	HGClassMirror *subclass = [superclass addSubclassNamed:@"NSObject"];
+	XCTAssertNil(subclass);
+}
+
 - (void)testAdoptedProtocols {
 	HGClassMirror *mirror = reflect([NSObject class]);
 	NSArray *adoptedProtocols = [mirror adoptedProtocols];

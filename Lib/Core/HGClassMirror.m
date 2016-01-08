@@ -35,6 +35,15 @@
 	return self;
 }
 
+- (HGClassMirror *)addSubclassNamed:(NSString *)aClassName {
+	Class class = objc_allocateClassPair(self.mirroredClass, [aClassName UTF8String], 0);
+	if (!class) {
+		return 0;
+	}
+	objc_registerClassPair(class);
+	return [[[self class] alloc] initWithClass:class];
+}
+
 - (NSArray *)adoptedProtocols {
 	unsigned int protocolCount = 0;
 	Protocol * __unsafe_unretained *protocols = class_copyProtocolList(self.mirroredClass, &protocolCount);

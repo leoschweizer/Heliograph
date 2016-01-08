@@ -25,6 +25,12 @@
 - (instancetype)initWithClass:(Class)aClass;
 
 /**
+ * Creates a subclass of the receiver's mirrors class with the name aClassName.
+ * @returns a HGClassMirror instance reflecting the newly created class.
+ */
+- (HGClassMirror *)addSubclassNamed:(NSString *)aClassName;
+
+/**
  * Answers an NSArray of OCProtocolMirrors reflecting the protocols adopted
  * by the receiver's mirrored class.
  */

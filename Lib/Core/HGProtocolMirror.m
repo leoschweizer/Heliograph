@@ -52,6 +52,8 @@
 		HGMethodDescriptionMirror *mirror = [[HGMethodDescriptionMirror alloc] initWithDefiningProtocol:self methodDescription:description isRequired:NO isInstanceMethod:isInstanceMethod];
 		[result addObject:mirror];
 	}
+	free(requiredMethods);
+	free(optionalMethods);
 	return result;
 }
 

@@ -74,6 +74,12 @@
 	XCTAssertEqualObjects(metaDescription, @"<HGClassMirror on NSString class>");
 }
 
+- (void)testProperties {
+	HGClassMirror *classMirror = reflect([HGPropertyClass class]);
+	NSArray *properties = [classMirror properties];
+	XCTAssertGreaterThan([properties count], 1);
+}
+
 - (void)testSubclasses {
 	HGClassMirror *classMirror = reflect([HGRootClass class]);
 	NSArray *subclasses = [classMirror subclasses];
@@ -138,9 +144,12 @@
 	HGClassMirror *m2 = reflect([NSString class]);
 	HGClassMirror *m3 = reflect([NSMutableString class]);
 	HGClassMirror *m4 = [m1 classMirror];
+	XCTAssertEqualObjects(m1, m1);
 	XCTAssertEqualObjects(m1, m2);
 	XCTAssertNotEqualObjects(m2, m3);
 	XCTAssertNotEqualObjects(m4, m1);
+	XCTAssertNotEqualObjects(m1, @"");
+	XCTAssertNotEqualObjects(m1, nil);
 }
 
 - (void)testHash {

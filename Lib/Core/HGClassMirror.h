@@ -25,6 +25,12 @@
 - (instancetype)initWithClass:(Class)aClass;
 
 /**
+ * Creates an instance variable named aName in the receiver's mirrored class.
+ * @returns an HGInstanceVariableMirror reflecting the newly added instance variable.
+ */
+- (HGInstanceVariableMirror *)addInstanceVariableNamed:(NSString *)aName withEncoding:(const char *)anEncoding;
+
+/**
  * Creates a method in the receiver's mirrored class.
  * @returns an HGMethodMirror reflecting the newly created method.
  */
@@ -32,7 +38,10 @@
 
 /**
  * Creates a subclass of the receiver's mirrors class with the name aClassName.
- * @returns a HGClassMirror instance reflecting the newly created class.
+ * @return a HGClassMirror instance reflecting the newly created class.
+ * @note The created class will not be registered in order to allow adding 
+ *  instance variables. Call [aClassMirror registerClass] to finalize the class 
+ *  creation process.
  */
 - (HGClassMirror *)addSubclassNamed:(NSString *)aClassName;
 
@@ -103,6 +112,12 @@
  * Answers an HGPropertyMirror reflecting the property named aName.
  */
 - (HGPropertyMirror *)propertyNamed:(NSString *)aName;
+
+/**
+ * Registeres the receiver's mirrored class. Call this after creating a new class
+ * to finalize the class creation process.
+ */
+- (void)registerClass;
 
 /**
  * Answers an NSArray of HGClassMirrors reflecting the siblings of the receiver's

@@ -96,6 +96,25 @@
 	XCTAssertNil([mirror superclass]);
 }
 
+- (void)testAddInstanceVariable {
+	HGClassMirror *superclass = reflect([NSObject class]);
+	HGClassMirror *class = [superclass addSubclassNamed:@"HGFooBarBazIvarTest"];
+	HGInstanceVariableMirror *mirror = [class addInstanceVariableNamed:@"_testIvar" withEncoding:@encode(BOOL)];
+	[class registerClass];
+	XCTAssertNotNil(mirror);
+	XCTAssertEqualObjects(mirror.name, @"_testIvar");
+}
+
+- (void)testAddExistingInstanceVariable {
+	HGClassMirror *superclass = reflect([NSObject class]);
+	HGClassMirror *class = [superclass addSubclassNamed:@"HGFooBarBazIvarTest2"];
+	HGInstanceVariableMirror *mirror1 = [class addInstanceVariableNamed:@"_testIvar" withEncoding:@encode(BOOL)];
+	HGInstanceVariableMirror *mirror2 = [class addInstanceVariableNamed:@"_testIvar" withEncoding:@encode(BOOL)];
+	[class registerClass];
+	XCTAssertNotNil(mirror1);
+	XCTAssertNil(mirror2);
+}
+
 - (void)testAddSubclass {
 	HGClassMirror *superclass = reflect([NSObject class]);
 	HGClassMirror *subclass = [superclass addSubclassNamed:@"HGThisIsATestSubclass"];

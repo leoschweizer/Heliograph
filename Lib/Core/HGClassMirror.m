@@ -35,6 +35,17 @@
 	return self;
 }
 
+- (HGInstanceVariableMirror *)addInstanceVariableNamed:(NSString *)aName withEncoding:(const char *)anEncoding {
+	size_t size;
+	NSUInteger alignment;
+	NSGetSizeAndAlignment(anEncoding, &size, &alignment);
+	BOOL didAdd = class_addIvar(self.mirroredClass, [aName UTF8String], size, alignment, anEncoding);
+	if (!didAdd) {
+		return nil;
+	}
+	return [self instanceVariableNamed:aName];
+}
+
 - (HGMethodMirror *)addMethodNamed:(SEL)aSelector withImplementation:(IMP)anImplementation andEncoding:(const char *)anEncoding {
 	BOOL didAdd = class_addMethod(self.mirroredClass, aSelector, anImplementation, anEncoding);
 	if (!didAdd) {
@@ -48,7 +59,6 @@
 	if (!class) {
 		return 0;
 	}
-	objc_registerClassPair(class);
 	return [[[self class] alloc] initWithClass:class];
 }
 
@@ -197,6 +207,10 @@
 - (HGPropertyMirror *)propertyNamed:(NSString *)aName {
 	objc_property_t property = class_getProperty(self.mirroredClass, [aName UTF8String]);
 	return property ? [[HGPropertyMirror alloc] initWithDefiningClass:self property:property] : nil;
+}
+
+- (void)registerClass {
+	objc_registerClassPair(self.mirroredClass);
 }
 
 - (NSArray *)siblings {

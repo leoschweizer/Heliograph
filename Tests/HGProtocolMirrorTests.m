@@ -67,4 +67,16 @@
 	XCTAssertFalse(m2.isRequired);
 }
 
+- (void)testAddProtocol {
+	HGProtocolMirror *mirror = [HGProtocolMirror addProtocolNamed:@"HGTestProtocol123"];
+	XCTAssertNotNil(mirror);
+	[mirror registerProtocol];
+	XCTAssertEqual(mirror.mirroredProtocol, NSProtocolFromString(@"HGTestProtocol123"));
+}
+
+- (void)testAddProtocolFailure {
+	HGProtocolMirror *mirror = [HGProtocolMirror addProtocolNamed:@"NSObject"];
+	XCTAssertNil(mirror);
+}
+
 @end

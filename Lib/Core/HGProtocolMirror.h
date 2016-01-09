@@ -4,6 +4,14 @@
 @interface HGProtocolMirror : NSObject
 
 /**
+ * Creates a new protocol with aName.
+ * @return an HGProtocolMirror reflecting the newly created protocol.
+ * @note the new protocol has to be finalized with a call to 
+ *  [protocolMirror registerProtocol] and will be immutable after that.
+ */
++ (HGProtocolMirror *)addProtocolNamed:(NSString *)aName;
+
+/**
  * Answers an NSArray of HGProtocolMirrors reflecting all the known protocols of
  * the current runtime environment.
  */
@@ -26,15 +34,21 @@
 - (NSArray *)adoptedProtocols;
 
 /**
+ * Answers an NSArray of HGMethodDescriptionMirrors reflecting the class methods
+ * defined by the receiver's mirrored protocol.
+ */
+- (NSArray *)classMethods;
+
+/**
  * Answers an NSArray of HGMethodDescriptionMirrors reflecting the instance 
  * methods defined by the receiver's mirrored protocol.
  */
 - (NSArray *)instanceMethods;
 
 /**
- * Answers an NSArray of HGMethodDescriptionMirrors reflecting the class methods 
- * defined by the receiver's mirrored protocol.
+ * Registeres the receiver's mirrored protocol. Call this after creating a new 
+ * protocol to finalize the protocol creation process.
  */
-- (NSArray *)classMethods;
+- (void)registerProtocol;
 
 @end

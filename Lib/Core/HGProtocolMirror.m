@@ -5,6 +5,14 @@
 
 @implementation HGProtocolMirror
 
++ (HGProtocolMirror *)addProtocolNamed:(NSString *)aName {
+	Protocol *newProtocol = objc_allocateProtocol([aName UTF8String]);
+	if (!newProtocol) {
+		return nil;
+	}
+	return [[self alloc] initWithProtocol:newProtocol];
+}
+
 + (NSArray *)allProtocols {
 	unsigned int protocolCount;
 	Protocol * __unsafe_unretained *protocols = objc_copyProtocolList(&protocolCount);
@@ -63,6 +71,10 @@
 
 - (NSArray *)classMethods {
 	return [self getMethods:NO];
+}
+
+- (void)registerProtocol {
+	objc_registerProtocol(self.mirroredProtocol);
 }
 
 @end

@@ -207,6 +207,10 @@
 	return [self.mirroredClassStorage nonretainedObjectValue];
 }
 
+- (NSValue *)mirroredValue {
+	return [NSValue valueWithNonretainedObject:self.mirroredClass];
+}
+
 - (NSString *)name {
 	return [NSString stringWithUTF8String:class_getName(self.mirroredClass)];
 }

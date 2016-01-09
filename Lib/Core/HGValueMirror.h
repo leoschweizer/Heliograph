@@ -30,7 +30,7 @@
 
 @protocol HGValueMirror <NSObject>
 
-@property (nonatomic, readonly) void *value;
+@property (nonatomic, readonly) NSValue *mirroredValue;
 
 - (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor;
 

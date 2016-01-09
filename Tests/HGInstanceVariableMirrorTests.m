@@ -85,7 +85,7 @@
 	id testObject = [[HGInstanceVariableClass alloc] init];
 	id<HGValueMirror> value = [ivar valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGStructureValueMirror class]]);
-	CGRect rect = *(CGRect *)value.value;
+	CGRect rect = *(CGRect *)[value.mirroredValue pointerValue];
 	XCTAssertTrue(CGRectEqualToRect(rect, CGRectMake(1337, 42, 100, 100)));
 }
 

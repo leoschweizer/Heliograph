@@ -32,8 +32,9 @@
 	self.value = [[HGClassMirror alloc] initWithClass:value];
 }
 
-- (void *)getPrimitiveValue {
-	return (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
+- (NSValue *)getPrimitiveValue {
+	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
+	return [NSValue valueWithPointer:value];
 }
 
 - (void)visitCharTypeMirror:(HGCharTypeMirror *)typeMirror {

@@ -7,9 +7,9 @@
 
 - (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor {}
 
-- (instancetype)initWithValue:(void *)aValue {
+- (instancetype)initWithValue:(NSValue *)aValue {
 	if (self = [super init]) {
-		_value = aValue;
+		_mirroredValue = aValue;
 	}
 	return self;
 }

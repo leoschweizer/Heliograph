@@ -7,9 +7,9 @@
 
 @interface HGBaseValueMirror : NSObject <HGValueMirror>
 
-@property (nonatomic, readonly) void *value;
+@property (nonatomic, readonly) NSValue *mirroredValue;
 
-- (instancetype)initWithValue:(void *)aValue;
+- (instancetype)initWithValue:(NSValue *)aValue;
 
 @end
 

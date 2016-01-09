@@ -66,10 +66,9 @@ NSUInteger hg_fake_implementation(id self, SEL cmd) {
 }
 
 - (void)testHash {
-	HGMethodMirror *m1 = [reflect([NSString class]) methodNamed:@selector(hash)];
 	NSDictionary *test = @{
-		m1 : @1,
-		m1 : @2,
+		[reflect([NSString class]) methodNamed:@selector(hash)] : @1,
+		[reflect([NSString class]) methodNamed:@selector(hash)] : @2,
 		[reflect([NSString class]) methodNamed:@selector(isEqual:)] : @3
 	};
 	XCTAssertEqual([test count], 2);

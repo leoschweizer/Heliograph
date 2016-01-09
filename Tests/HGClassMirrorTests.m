@@ -194,10 +194,9 @@ NSUInteger hg_fake_hash(id self, SEL cmd) {
 }
 
 - (void)testHash {
-	HGClassMirror *m1 = reflect([NSObject class]);
 	NSDictionary *test = @{
-		m1 : @1,
-		m1 : @2,
+		reflect([NSObject class]) : @1,
+		reflect([NSObject class]) : @2,
 		reflect([NSMutableString class]) : @3,
 		[NSValue valueWithNonretainedObject:[NSString class]] : @4
 	};

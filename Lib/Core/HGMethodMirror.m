@@ -86,7 +86,7 @@
 }
 
 - (NSUInteger)hash {
-	return [super hash] ^ [self.mirroredMethodStorage hash];
+	return [self.definingClass hash] ^ [self.mirroredMethodStorage hash];
 }
 
 #pragma mark - NSCopying

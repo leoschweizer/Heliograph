@@ -263,7 +263,7 @@
 }
 
 - (NSUInteger)hash {
-	return [super hash] ^ [self.mirroredClassStorage hash];
+	return [@"HGClassMirror" hash] ^ [self.mirroredClassStorage hash];
 }
 
 #pragma mark - NSCopying

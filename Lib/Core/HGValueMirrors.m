@@ -26,6 +26,10 @@
 	return self;
 }
 
+- (NSValue *)mirroredValue {
+	return [NSValue valueWithNonretainedObject:self.mirroredObject];
+}
+
 - (NSArray *)classMethods {
 	return [[[self classMirror] classMirror] methods];
 }

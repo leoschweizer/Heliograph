@@ -53,9 +53,39 @@
 @end
 
 
+union HGMixedType {
+	int i;
+	float f;
+	char c;
+};
+
 @interface HGInstanceVariableClass : NSObject {
+	
 	id publicIvar;
-	CGRect rectIvar;
+	
+	@public
+	id _objectIvar;
+	Class _classIvar;
+	char _charIvar;
+	short _shortIvar;
+	int _intIvar;
+	long _longIvar;
+	long long _longLongIvar;
+	unsigned char _ucharIvar;
+	unsigned short _ushortIvar;
+	unsigned int _uintIvar;
+	unsigned long _ulongIvar;
+	unsigned long long _ulongLongIvar;
+	float _floatIvar;
+	double _doubleIvar;
+	_Bool _boolIvar;
+	SEL _selIvar;
+	char *_charPointerIvar;
+	int _arrayIvar[2];
+	CGRect _structIvar;
+	union HGMixedType _unionIvar;
+	void *_pointerIvar;
+	
 }
 
 @property (nonatomic, readonly) id propertyWithoutIvar;

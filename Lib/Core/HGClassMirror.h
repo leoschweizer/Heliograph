@@ -4,6 +4,7 @@
 @class HGInstanceVariableMirror;
 @class HGMethodMirror;
 @class HGPropertyMirror;
+@class HGProtocolMirror;
 
 
 @interface HGClassMirror : NSObject <NSCopying>
@@ -50,6 +51,12 @@
  * by the receiver's mirrored class.
  */
 - (NSArray *)adoptedProtocols;
+
+/**
+ * Adds aProtocol to the receiver's mirrored classe's list of adopted protocols.
+ * @return an HGProtocolMirror reflecting the adopted protocol if successfull.
+ */
+- (HGProtocolMirror *)adoptProtocol:(Protocol *)aProtocol;
 
 /**
  * Answers an NSArray of HGClassMirrors reflecting the receiver's mirrored subclasses

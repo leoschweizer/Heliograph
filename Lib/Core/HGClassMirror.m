@@ -74,6 +74,14 @@
 	return result;
 }
 
+- (HGProtocolMirror *)adoptProtocol:(Protocol *)aProtocol {
+	BOOL didAdopt = class_addProtocol(self.mirroredClass, aProtocol);
+	if (!didAdopt) {
+		return nil;
+	}
+	return [[HGProtocolMirror alloc] initWithProtocol:aProtocol];
+}
+
 - (NSArray *)allSubclasses {
 	
 	unsigned int numberOfClasses = objc_getClassList(NULL, 0);

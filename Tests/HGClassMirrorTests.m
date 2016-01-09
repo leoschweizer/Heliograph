@@ -157,6 +157,21 @@ NSUInteger hg_fake_hash(id self, SEL cmd) {
 	XCTAssertEqualObjects([[adoptedProtocols firstObject] mirroredProtocol], @protocol(NSObject));
 }
 
+- (void)testAdoptProtocol {
+	HGClassMirror *mirror = reflect([NSObject class]);
+	HGClassMirror *subclass = [mirror addSubclassNamed:@"HGProtocolAdoptionTest"];
+	[subclass registerClass];
+	HGProtocolMirror *protocol = [subclass adoptProtocol:@protocol(HGTestProtocol)];
+	XCTAssertNotNil(protocol);
+	XCTAssertTrue([NSClassFromString(@"HGProtocolAdoptionTest") conformsToProtocol:@protocol(HGTestProtocol)]);
+}
+
+- (void)testAdoptProtocolFailure {
+	HGClassMirror *mirror = reflect([NSObject class]);
+	HGProtocolMirror *protocol = [mirror adoptProtocol:@protocol(NSObject)];
+	XCTAssertNil(protocol);
+}
+
 - (void)testAllClasses {
 	NSArray *allClasses = [HGClassMirror allClasses];
 	XCTAssertGreaterThan([allClasses count], 1);

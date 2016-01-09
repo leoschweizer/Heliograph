@@ -2,7 +2,7 @@
 
 
 @class HGClassMirror;
-@class HGTypeMirror;
+@protocol HGTypeMirror;
 
 
 @interface HGMethodMirror : NSObject <NSCopying>
@@ -45,7 +45,7 @@
  * Answers an HGTypeMirror reflecting the return type of the receiver's mirrored
  * method.
  */
-- (HGTypeMirror *)returnType;
+- (id<HGTypeMirror>)returnType;
 
 /**
  * Answers the selector of the receiver's mirrored method.

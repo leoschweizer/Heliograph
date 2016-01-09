@@ -85,10 +85,13 @@
 	
 	for (NSString *encoding in definition) {
 		NSString *expectedOutput = [definition objectForKey:encoding];
-		HGTypeMirror *mirror = [HGTypeMirror createForEncoding:encoding];
+		HGBaseTypeMirror *mirror = [HGBaseTypeMirror createForEncoding:encoding];
 		NSString *typeDescription = [mirror typeDescription];
 		XCTAssertEqualObjects(expectedOutput, typeDescription);
 	}
+	
+	XCTAssertEqualObjects([reflect([NSString class]) typeDescription], @"NSString");
+	XCTAssertEqualObjects([[reflect([NSString class]) classMirror] typeDescription], @"NSString class");
 	
 }
 

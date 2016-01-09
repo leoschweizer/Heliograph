@@ -1,4 +1,6 @@
 #import <Foundation/Foundation.h>
+#import "HGTypeMirror.h"
+#import "HGValueMirror.h"
 
 
 @class HGInstanceVariableMirror;
@@ -7,7 +9,7 @@
 @class HGProtocolMirror;
 
 
-@interface HGClassMirror : NSObject <NSCopying>
+@interface HGClassMirror : NSObject <HGTypeMirror, HGValueMirror, NSCopying>
 
 /**
  * Answers an NSArray of HGClassMirrors reflecting all the known classes of

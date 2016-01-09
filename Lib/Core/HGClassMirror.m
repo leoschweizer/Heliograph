@@ -35,6 +35,12 @@
 	return self;
 }
 
+- (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
+	if ([aVisitor respondsToSelector:@selector(visitClassMirror:)]) {
+		[aVisitor visitClassMirror:self];
+	}
+}
+
 - (HGInstanceVariableMirror *)addInstanceVariableNamed:(NSString *)aName withEncoding:(const char *)anEncoding {
 	NSUInteger size, alignment;
 	NSGetSizeAndAlignment(anEncoding, &size, &alignment);
@@ -252,6 +258,13 @@
 - (HGClassMirror *)superclass {
 	Class superclass = class_getSuperclass(self.mirroredClass);
 	return superclass ? [[HGClassMirror alloc] initWithClass:superclass] : nil;
+}
+
+- (NSString *)typeDescription {
+	if ([self isMetaclass]) {
+		return [NSString stringWithFormat:@"%@ class", self.name];
+	}
+	return self.name;
 }
 
 #pragma mark - NSObject

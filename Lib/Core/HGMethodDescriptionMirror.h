@@ -2,7 +2,6 @@
 
 
 @class HGProtocolMirror;
-@class HGTypeMirror;
 
 
 @interface HGMethodDescriptionMirror : NSObject

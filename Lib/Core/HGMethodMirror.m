@@ -27,7 +27,7 @@
 	unsigned int numberOfArguments = method_getNumberOfArguments(self.mirroredMethod);
 	for (int i = 2; i < numberOfArguments; i++) {
 		char *encoding = method_copyArgumentType(self.mirroredMethod, i);
-		HGTypeMirror *mirror = [HGTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
+		HGBaseTypeMirror *mirror = [HGBaseTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
 		[result addObject:mirror];
 		free(encoding);
 	}
@@ -61,9 +61,9 @@
 	return method_setImplementation(self.mirroredMethod, anImplementation);
 }
 
-- (HGTypeMirror *)returnType {
+- (HGBaseTypeMirror *)returnType {
 	char *encoding = method_copyReturnType(self.mirroredMethod);
-	HGTypeMirror *mirror = [HGTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
+	HGBaseTypeMirror *mirror = [HGBaseTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
 	free(encoding);
 	return mirror;
 }

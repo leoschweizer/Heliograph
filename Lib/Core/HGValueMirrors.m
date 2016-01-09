@@ -3,7 +3,7 @@
 #import <objc/runtime.h>
 
 
-@implementation HGValueMirror
+@implementation HGBaseValueMirror
 
 @end
 

@@ -1,12 +1,4 @@
-#import "HGTypeMirrorVisitors.h"
-#import "HGTypeMirrorVisitor.h"
-
-
-@interface HGTypeMirrorDescriptionVisitor : NSObject <HGTypeMirrorVisitor>
-
-@property (nonatomic, readwrite) NSString *typeDescription;
-
-@end
+#import "HGTypeMirrorDescriptionVisitor.h"
 
 
 @implementation HGTypeMirrorDescriptionVisitor
@@ -105,17 +97,6 @@
 
 - (void)visitUnknownTypeMirror:(HGUnknownTypeMirror *)typeMirror {
 	self.typeDescription = @"unknown type";
-}
-
-@end
-
-
-@implementation HGTypeMirror (HGTypeMirrorDescription)
-
-- (NSString *)typeDescription {
-	HGTypeMirrorDescriptionVisitor *visitor = [[HGTypeMirrorDescriptionVisitor alloc] init];
-	[self accept:visitor];
-	return visitor.typeDescription;
 }
 
 @end

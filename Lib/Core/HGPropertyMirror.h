@@ -2,9 +2,9 @@
 
 
 @class HGClassMirror;
-@class HGTypeMirror;
 @class HGInstanceVariableMirror;
 @class HGMethodMirror;
+@protocol HGTypeMirror;
 
 
 typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
@@ -34,7 +34,7 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
 /**
  * The HGTypeMirror reflecting the receiver's mirrored propertie's type.
  */
-@property (nonatomic, readonly) HGTypeMirror *type;
+@property (nonatomic, readonly) id<HGTypeMirror> type;
 
 /**
  * The name of the receiver's mirrored property.

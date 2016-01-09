@@ -1,12 +1,52 @@
 #import <Foundation/Foundation.h>
-#import "HGTypeMirrors.h"
+
+
+@class HGBaseTypeMirror;
+@class HGObjectTypeMirror;
+@class HGClassMirror;
+@class HGClassTypeMirror;
+@class HGPrimitiveTypeMirror;
+@class HGPrimitiveTypeMirror;
+@class HGCharTypeMirror;
+@class HGShortTypeMirror;
+@class HGIntTypeMirror;
+@class HGLongTypeMirror;
+@class HGLongLongTypeMirror;
+@class HGUnsignedCharTypeMirror;
+@class HGUnsignedShortTypeMirror;
+@class HGUnsignedIntTypeMirror;
+@class HGUnsignedLongTypeMirror;
+@class HGUnsignedLongLongTypeMirror;
+@class HGFloatTypeMirror;
+@class HGDoubleTypeMirror;
+@class HGBoolTypeMirror;
+@class HGCharacterStringTypeMirror;
+@class HGSelectorTypeMirror;
+@class HGVoidTypeMirror;
+@class HGArrayTypeMirror;
+@class HGStructureTypeMirror;
+@class HGUnionTypeMirror;
+@class HGBitFieldTypeMirror;
+@class HGPointerTypeMirror;
+@class HGUnknownTypeMirror;
+@protocol HGTypeMirrorVisitor;
+
+
+@protocol HGTypeMirror <NSObject>
+
+- (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor;
+
+- (NSString *)typeDescription;
+
+@end
 
 
 @protocol HGTypeMirrorVisitor <NSObject>
 
 @optional
-- (void)visitTypeMirror:(HGTypeMirror *)typeMirror;
+- (void)visitTypeMirror:(HGBaseTypeMirror *)typeMirror;
 - (void)visitObjectTypeMirror:(HGObjectTypeMirror *)typeMirror;
+- (void)visitClassMirror:(HGClassMirror *)classMirror;
 - (void)visitClassTypeMirror:(HGClassTypeMirror *)typeMirror;
 - (void)visitPrimitiveTypeMirror:(HGPrimitiveTypeMirror *)typeMirror;
 - (void)visitCharTypeMirror:(HGCharTypeMirror *)typeMirror;
@@ -31,12 +71,5 @@
 - (void)visitBitFieldTypeMirror:(HGBitFieldTypeMirror *)typeMirror;
 - (void)visitPointerTypeMirror:(HGPointerTypeMirror *)typeMirror;
 - (void)visitUnknownTypeMirror:(HGUnknownTypeMirror *)typeMirror;
-
-@end
-
-
-@interface HGTypeMirror (HGTypeMirrorVisitorSupport)
-
-- (void)accept:(id<HGTypeMirrorVisitor>)aVisitor;
 
 @end

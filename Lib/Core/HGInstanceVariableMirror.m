@@ -31,9 +31,9 @@
 	return [NSString stringWithUTF8String:ivar_getName(self.mirroredInstanceVariable)];
 }
 
-- (HGTypeMirror *)type {
+- (HGBaseTypeMirror *)type {
 	const char *encoding = ivar_getTypeEncoding(self.mirroredInstanceVariable);
-	return [HGTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
+	return [HGBaseTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
 }
 
 #pragma mark - NSObject

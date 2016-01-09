@@ -60,12 +60,12 @@ static NSString *parseBackingInstanceVariableName(NSArray *stringAttributes) {
 	return [attribute substringFromIndex:1];
 }
 
-static HGTypeMirror *parseType(NSArray *stringAttributes) {
+static HGBaseTypeMirror *parseType(NSArray *stringAttributes) {
 	NSString *attribute = [stringAttributes firstObject];
 	if (![attribute hasPrefix:@"T"]) {
 		return nil;
 	}
-	return [HGTypeMirror createForEncoding:[attribute substringFromIndex:1]];
+	return [HGBaseTypeMirror createForEncoding:[attribute substringFromIndex:1]];
 }
 
 

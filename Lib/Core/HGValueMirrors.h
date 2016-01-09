@@ -1,15 +1,16 @@
 #import <Foundation/Foundation.h>
+#import "HGValueMirror.h"
 
 
 @class HGClassMirror;
 
 
-@interface HGValueMirror : NSObject
+@interface HGBaseValueMirror : NSObject <HGValueMirror>
 
 @end
 
 
-@interface HGObjectMirror : HGValueMirror
+@interface HGObjectMirror : HGBaseValueMirror
 
 /**
  * The reflected object.

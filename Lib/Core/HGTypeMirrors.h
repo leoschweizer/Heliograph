@@ -1,10 +1,11 @@
 #import <Foundation/Foundation.h>
+#import "HGTypeMirror.h"
 
 
 @class HGClassMirror;
 
 
-@interface HGTypeMirror : NSObject
+@interface HGBaseTypeMirror : NSObject <HGTypeMirror>
 
 @property (nonatomic, readonly) NSString *encoding;
 
@@ -15,19 +16,19 @@
 @end
 
 
-@interface HGObjectTypeMirror : HGTypeMirror
+@interface HGObjectTypeMirror : HGBaseTypeMirror
 
 @property (nonatomic, readonly) HGClassMirror *classMirror;
 
 @end
 
 
-@interface HGClassTypeMirror : HGTypeMirror
+@interface HGClassTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGPrimitiveTypeMirror : HGTypeMirror
+@interface HGPrimitiveTypeMirror : HGBaseTypeMirror
 
 @end
 
@@ -107,7 +108,7 @@
 @end
 
 
-@interface HGVoidTypeMirror : HGTypeMirror
+@interface HGVoidTypeMirror : HGBaseTypeMirror
 
 @end
 
@@ -137,6 +138,6 @@
 @end
 
 
-@interface HGUnknownTypeMirror : HGTypeMirror
+@interface HGUnknownTypeMirror : HGBaseTypeMirror
 
 @end

@@ -34,35 +34,36 @@
 
 - (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor;
 
+- (NSString *)valueDescription;
+
 @end
 
 
 @protocol HGValueMirrorVisitor <NSObject>
 
 @optional
-- (void)visitObjectValueMirror:(HGObjectMirror *)ValueMirror;
+- (void)visitObjectValueMirror:(HGObjectMirror *)valueMirror;
 - (void)visitClassMirror:(HGClassMirror *)classMirror;
-- (void)visitCharValueMirror:(HGCharValueMirror *)ValueMirror;
-- (void)visitShortValueMirror:(HGShortValueMirror *)ValueMirror;
-- (void)visitIntValueMirror:(HGIntValueMirror *)ValueMirror;
-- (void)visitLongValueMirror:(HGLongValueMirror *)ValueMirror;
-- (void)visitLongLongValueMirror:(HGLongLongValueMirror *)ValueMirror;
-- (void)visitUnsignedCharValueMirror:(HGUnsignedCharValueMirror *)ValueMirror;
-- (void)visitUnsignedShortValueMirror:(HGUnsignedShortValueMirror *)ValueMirror;
-- (void)visitUnsignedIntValueMirror:(HGUnsignedIntValueMirror *)ValueMirror;
-- (void)visitUnsignedLongValueMirror:(HGUnsignedLongValueMirror *)ValueMirror;
-- (void)visitUnsignedLongLongValueMirror:(HGUnsignedLongLongValueMirror *)ValueMirror;
-- (void)visitFloatValueMirror:(HGFloatValueMirror *)ValueMirror;
-- (void)visitDoubleValueMirror:(HGDoubleValueMirror *)ValueMirror;
-- (void)visitBoolValueMirror:(HGBoolValueMirror *)ValueMirror;
-- (void)visitCharacterStringValueMirror:(HGCharacterStringValueMirror *)ValueMirror;
-- (void)visitSelectorValueMirror:(HGSelectorValueMirror *)ValueMirror;
-- (void)visitVoidValueMirror:(HGVoidValueMirror *)ValueMirror;
-- (void)visitArrayValueMirror:(HGArrayValueMirror *)ValueMirror;
-- (void)visitStructureValueMirror:(HGStructureValueMirror *)ValueMirror;
-- (void)visitUnionValueMirror:(HGUnionValueMirror *)ValueMirror;
-- (void)visitBitFieldValueMirror:(HGBitFieldValueMirror *)ValueMirror;
-- (void)visitPointerValueMirror:(HGPointerValueMirror *)ValueMirror;
-- (void)visitUnknownValueMirror:(HGUnknownValueMirror *)ValueMirror;
+- (void)visitCharValueMirror:(HGCharValueMirror *)valueMirror;
+- (void)visitShortValueMirror:(HGShortValueMirror *)valueMirror;
+- (void)visitIntValueMirror:(HGIntValueMirror *)valueMirror;
+- (void)visitLongValueMirror:(HGLongValueMirror *)valueMirror;
+- (void)visitLongLongValueMirror:(HGLongLongValueMirror *)valueMirror;
+- (void)visitUnsignedCharValueMirror:(HGUnsignedCharValueMirror *)valueMirror;
+- (void)visitUnsignedShortValueMirror:(HGUnsignedShortValueMirror *)valueMirror;
+- (void)visitUnsignedIntValueMirror:(HGUnsignedIntValueMirror *)valueMirror;
+- (void)visitUnsignedLongValueMirror:(HGUnsignedLongValueMirror *)valueMirror;
+- (void)visitUnsignedLongLongValueMirror:(HGUnsignedLongLongValueMirror *)valueMirror;
+- (void)visitFloatValueMirror:(HGFloatValueMirror *)valueMirror;
+- (void)visitDoubleValueMirror:(HGDoubleValueMirror *)valueMirror;
+- (void)visitBoolValueMirror:(HGBoolValueMirror *)valueMirror;
+- (void)visitCharacterStringValueMirror:(HGCharacterStringValueMirror *)valueMirror;
+- (void)visitSelectorValueMirror:(HGSelectorValueMirror *)valueMirror;
+- (void)visitArrayValueMirror:(HGArrayValueMirror *)valueMirror;
+- (void)visitStructureValueMirror:(HGStructureValueMirror *)valueMirror;
+- (void)visitUnionValueMirror:(HGUnionValueMirror *)valueMirror;
+- (void)visitBitFieldValueMirror:(HGBitFieldValueMirror *)valueMirror;
+- (void)visitPointerValueMirror:(HGPointerValueMirror *)valueMirror;
+- (void)visitUnknownValueMirror:(HGUnknownValueMirror *)valueMirror;
 
 @end

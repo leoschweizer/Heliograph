@@ -93,118 +93,131 @@
 	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_classIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGClassMirror class]]);
 	XCTAssertEqualObjects([[value mirroredValue] nonretainedObjectValue], [NSMutableSet class]);
+	XCTAssertEqualObjects([value valueDescription], @"NSMutableSet");
 }
 
 - (void)testReadCharIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_charIvar = -8;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_charIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_charIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGCharValueMirror class]]);
-	XCTAssertEqual(*(char *)[[value mirroredValue] pointerValue], -8);
+	XCTAssertEqual([value charValue], -8);
+	XCTAssertEqualObjects([value valueDescription], @"-8");
 }
 
 - (void)testReadShortIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_shortIvar = -16;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_shortIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_shortIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGShortValueMirror class]]);
-	XCTAssertEqual(*(short *)[[value mirroredValue] pointerValue], -16);
+	XCTAssertEqual([value shortValue], -16);
+	XCTAssertEqualObjects([value valueDescription], @"-16");
 }
 
 - (void)testReadIntIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_intIvar = -32;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_intIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_intIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGIntValueMirror class]]);
-	XCTAssertEqual(*(short *)[[value mirroredValue] pointerValue], -32);
+	XCTAssertEqual([value intValue], -32);
+	XCTAssertEqualObjects([value valueDescription], @"-32");
 }
 
 - (void)testReadLongIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_longIvar = -64;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_longIvar"] valueIn:testObject];
-	//XCTAssertTrue([value isKindOfClass:[HGLongValueMirror class]]);
-	XCTAssertEqual(*(long *)[[value mirroredValue] pointerValue], -64);
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_longIvar"] valueIn:testObject];
+	XCTAssertEqual([value longValue], -64);
+	XCTAssertEqualObjects([value valueDescription], @"-64");
 }
 
 - (void)testReadLongLongIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_longLongIvar = -128;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_longLongIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_longLongIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGLongLongValueMirror class]]);
-	XCTAssertEqual(*(long long *)[[value mirroredValue] pointerValue], -128);
+	XCTAssertEqual([value longLongValue], -128);
+	XCTAssertEqualObjects([value valueDescription], @"-128");
 }
 
 - (void)testReadUcharIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_ucharIvar = 8;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_ucharIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_ucharIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGUnsignedCharValueMirror class]]);
-	XCTAssertEqual(*(unsigned char *)[[value mirroredValue] pointerValue], 8);
+	XCTAssertEqual([value unsignedCharValue], 8);
+	XCTAssertEqualObjects([value valueDescription], @"8");
 }
 
 - (void)testReadUshortIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_ushortIvar = 16;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_ushortIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_ushortIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGUnsignedShortValueMirror class]]);
-	XCTAssertEqual(*(unsigned short *)[[value mirroredValue] pointerValue], 16);
+	XCTAssertEqual([value unsignedShortValue], 16);
+	XCTAssertEqualObjects([value valueDescription], @"16");
 }
 
 - (void)testReadUintIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_uintIvar = 32;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_uintIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_uintIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGUnsignedIntValueMirror class]]);
-	XCTAssertEqual(*(unsigned int *)[[value mirroredValue] pointerValue], 32);
+	XCTAssertEqual([value unsignedIntValue], 32);
+	XCTAssertEqualObjects([value valueDescription], @"32");
 }
 
 - (void)testReadUlongIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_ulongIvar = 64;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_ulongIvar"] valueIn:testObject];
-	//XCTAssertTrue([value isKindOfClass:[HGUnsignedLongValueMirror class]]);
-	XCTAssertEqual(*(unsigned long *)[[value mirroredValue] pointerValue], 64);
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_ulongIvar"] valueIn:testObject];
+	XCTAssertEqual([value unsignedLongValue], 64);
+	XCTAssertEqualObjects([value valueDescription], @"64");
 }
 
 - (void)testReadUlongLongIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_ulongLongIvar = 128;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_ulongLongIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_ulongLongIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGUnsignedLongLongValueMirror class]]);
-	XCTAssertEqual(*(unsigned long long *)[[value mirroredValue] pointerValue], 128);
+	XCTAssertEqual([value unsignedLongLongValue], 128);
+	XCTAssertEqualObjects([value valueDescription], @"128");
 }
 
 - (void)testReadFloatIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_floatIvar = 3.14f;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_floatIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_floatIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGFloatValueMirror class]]);
-	XCTAssertEqual(*(float *)[[value mirroredValue] pointerValue], 3.14f);
+	XCTAssertEqual([value floatValue], 3.14f);
+	XCTAssertEqualObjects([value valueDescription], @"3.14");
 }
 
 - (void)testReadDoubleIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_doubleIvar = 1.33333;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_doubleIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_doubleIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGDoubleValueMirror class]]);
-	XCTAssertEqual(*(double *)[[value mirroredValue] pointerValue], 1.33333);
+	XCTAssertEqual([value doubleValue], 1.33333);
+	XCTAssertEqualObjects([value valueDescription], @"1.33333");
 }
 
 - (void)testReadBoolIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_boolIvar = true;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_boolIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_boolIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGBoolValueMirror class]]);
-	XCTAssertTrue(*(_Bool *)[[value mirroredValue] pointerValue]);
+	XCTAssertTrue([value boolValue]);
+	XCTAssertEqualObjects([value valueDescription], @"true");
 }
 
 - (void)testReadSelectorIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_selIvar = @selector(didChangeValueForKey:);
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_selIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_selIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGSelectorValueMirror class]]);
-	XCTAssertEqual(*(SEL *)[[value mirroredValue] pointerValue], @selector(didChangeValueForKey:));
+	XCTAssertEqual([value selectorValue], @selector(didChangeValueForKey:));
+	XCTAssertEqualObjects([value valueDescription], @"didChangeValueForKey:");
 }
 
 - (void)testReadArrayIvar {
@@ -216,6 +229,7 @@
 	int *result = [[value mirroredValue] pointerValue];
 	XCTAssertEqual(result[0], 42);
 	XCTAssertEqual(result[1], 1337);
+	XCTAssertEqualObjects([value valueDescription], @"[array]");
 }
 
 - (void)testReadStructIvar {
@@ -225,6 +239,7 @@
 	XCTAssertTrue([value isKindOfClass:[HGStructureValueMirror class]]);
 	CGRect rect = *(CGRect *)[[value mirroredValue] pointerValue];
 	XCTAssertTrue(CGRectEqualToRect(rect, testObject->_structIvar));
+	XCTAssertEqualObjects([value valueDescription], @"{struct}");
 }
 
 - (void)testReadUnionIvar {
@@ -235,6 +250,7 @@
 	XCTAssertTrue([value isKindOfClass:[HGUnionValueMirror class]]);
 	union HGMixedType result = *(union HGMixedType *)[[value mirroredValue] pointerValue];
 	XCTAssertEqual(result.i, 32);
+	XCTAssertEqualObjects([value valueDescription], @"(union)");
 }
 
 - (void)testReadPointerIvar {
@@ -242,8 +258,10 @@
 	testObject->_pointerIvar = &testObject;
 	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_pointerIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGPointerValueMirror class]]);
-	void *p = *(void **)[[value mirroredValue] pointerValue];
+	void *p;
+	[[value mirroredValue] getValue:&p];
 	XCTAssertEqual(p, &testObject);
+	XCTAssertEqualObjects([value valueDescription], @"<^>");
 }
 
 @end

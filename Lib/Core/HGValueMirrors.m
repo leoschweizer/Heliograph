@@ -1,6 +1,7 @@
 #import "HGValueMirrors.h"
 #import "HGClassMirror.h"
 #import <objc/runtime.h>
+#import "HGValueMirrorDescriptionVisitor.h"
 
 
 @implementation HGBaseValueMirror
@@ -12,6 +13,12 @@
 		_mirroredValue = aValue;
 	}
 	return self;
+}
+
+- (NSString *)valueDescription {
+	HGValueMirrorDescriptionVisitor *visitor = [[HGValueMirrorDescriptionVisitor alloc] init];
+	[self acceptValueMirrorVisitor:visitor];
+	return visitor.valueDescription;
 }
 
 @end
@@ -54,6 +61,12 @@
 	}
 }
 
+- (char)charValue {
+	char result;
+	[self.mirroredValue getValue:&result];
+	return result;
+}
+
 @end
 
 
@@ -63,6 +76,12 @@
 	if ([aVisitor respondsToSelector:@selector(visitShortValueMirror:)]) {
 		[aVisitor visitShortValueMirror:self];
 	}
+}
+
+- (short)shortValue {
+	short result;
+	[self.mirroredValue getValue:&result];
+	return result;
 }
 
 @end
@@ -76,6 +95,12 @@
 	}
 }
 
+- (int)intValue {
+	int result;
+	[self.mirroredValue getValue:&result];
+	return result;
+}
+
 @end
 
 
@@ -85,6 +110,12 @@
 	if ([aVisitor respondsToSelector:@selector(visitLongValueMirror:)]) {
 		[aVisitor visitLongValueMirror:self];
 	}
+}
+
+- (long)longValue {
+	long result;
+	[self.mirroredValue getValue:&result];
+	return result;
 }
 
 @end
@@ -98,6 +129,16 @@
 	}
 }
 
+- (long long)longValue {
+	return [self longLongValue];
+}
+
+- (long long)longLongValue {
+	long long result;
+	[self.mirroredValue getValue:&result];
+	return result;
+}
+
 @end
 
 
@@ -107,6 +148,12 @@
 	if ([aVisitor respondsToSelector:@selector(visitUnsignedCharValueMirror:)]) {
 		[aVisitor visitUnsignedCharValueMirror:self];
 	}
+}
+
+- (unsigned char)unsignedCharValue {
+	unsigned char result;
+	[self.mirroredValue getValue:&result];
+	return result;
 }
 
 @end
@@ -120,6 +167,12 @@
 	}
 }
 
+- (unsigned short)unsignedShortValue {
+	unsigned short result;
+	[self.mirroredValue getValue:&result];
+	return result;
+}
+
 @end
 
 
@@ -129,6 +182,12 @@
 	if ([aVisitor respondsToSelector:@selector(visitUnsignedIntValueMirror:)]) {
 		[aVisitor visitUnsignedIntValueMirror:self];
 	}
+}
+
+- (unsigned int)unsignedIntValue {
+	unsigned int result;
+	[self.mirroredValue getValue:&result];
+	return result;
 }
 
 @end
@@ -142,6 +201,12 @@
 	}
 }
 
+- (unsigned long)unsignedLongValue {
+	unsigned long result;
+	[self.mirroredValue getValue:&result];
+	return result;
+}
+
 @end
 
 
@@ -151,6 +216,16 @@
 	if ([aVisitor respondsToSelector:@selector(visitUnsignedLongLongValueMirror:)]) {
 		[aVisitor visitUnsignedLongLongValueMirror:self];
 	}
+}
+
+- (unsigned long long)unsignedLongValue {
+	return [self unsignedLongLongValue];
+}
+
+- (unsigned long long)unsignedLongLongValue {
+	unsigned long long result;
+	[self.mirroredValue getValue:&result];
+	return result;
 }
 
 @end
@@ -164,6 +239,12 @@
 	}
 }
 
+- (float)floatValue {
+	float result;
+	[self.mirroredValue getValue:&result];
+	return result;
+}
+
 @end
 
 
@@ -175,6 +256,12 @@
 	}
 }
 
+- (double)doubleValue {
+	double result;
+	[self.mirroredValue getValue:&result];
+	return result;
+}
+
 @end
 
 
@@ -184,6 +271,12 @@
 	if ([aVisitor respondsToSelector:@selector(visitBoolValueMirror:)]) {
 		[aVisitor visitBoolValueMirror:self];
 	}
+}
+
+- (bool)boolValue {
+	_Bool result;
+	[self.mirroredValue getValue:&result];
+	return result;
 }
 
 @end
@@ -208,15 +301,10 @@
 	}
 }
 
-@end
-
-
-@implementation HGVoidValueMirror
-
-- (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor {
-	if ([aVisitor respondsToSelector:@selector(visitVoidValueMirror:)]) {
-		[aVisitor visitVoidValueMirror:self];
-	}
+- (SEL)selectorValue {
+	SEL result;
+	[self.mirroredValue getValue:&result];
+	return result;
 }
 
 @end

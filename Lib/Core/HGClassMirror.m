@@ -4,6 +4,8 @@
 #import "HGPropertyMirror-Runtime.h"
 #import "HGInstanceVariableMirror-Runtime.h"
 #import "HGProtocolMirror.h"
+#import "HGTypeMirrorDescriptionVisitor.h"
+#import "HGValueMirrorDescriptionVisitor.h"
 
 
 @interface HGClassMirror ()
@@ -271,10 +273,15 @@
 }
 
 - (NSString *)typeDescription {
-	if ([self isMetaclass]) {
-		return [NSString stringWithFormat:@"%@ class", self.name];
-	}
-	return self.name;
+	HGTypeMirrorDescriptionVisitor *visitor = [[HGTypeMirrorDescriptionVisitor alloc] init];
+	[self acceptTypeMirrorVisitor:visitor];
+	return visitor.typeDescription;
+}
+
+- (NSString *)valueDescription {
+	HGValueMirrorDescriptionVisitor *visitor = [[HGValueMirrorDescriptionVisitor alloc] init];
+	[self acceptValueMirrorVisitor:visitor];
+	return visitor.valueDescription;
 }
 
 #pragma mark - NSObject

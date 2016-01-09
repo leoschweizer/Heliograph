@@ -1,10 +1,19 @@
 #import "HGTypeMirrorDescriptionVisitor.h"
+#import "HGClassMirror.h"
 
 
 @implementation HGTypeMirrorDescriptionVisitor
 
 - (void)visitObjectTypeMirror:(HGObjectTypeMirror *)typeMirror {
 	self.typeDescription = [NSString stringWithFormat:@"id"];
+}
+
+- (void)visitClassMirror:(HGClassMirror *)classMirror {
+	if ([classMirror isMetaclass]) {
+		self.typeDescription = [NSString stringWithFormat:@"%@ class", classMirror.name];
+		return;
+	}
+	self.typeDescription = classMirror.name;
 }
 
 - (void)visitClassTypeMirror:(HGClassTypeMirror *)typeMirror {

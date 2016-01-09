@@ -49,65 +49,93 @@
 
 @interface HGCharValueMirror : HGBaseValueMirror
 
+- (char)charValue;
+
 @end
 
 
 @interface HGShortValueMirror : HGBaseValueMirror
+
+- (short)shortValue;
 
 @end
 
 
 @interface HGIntValueMirror : HGBaseValueMirror
 
+- (int)intValue;
+
 @end
 
 
 @interface HGLongValueMirror : HGBaseValueMirror
+
+- (long)longValue;
 
 @end
 
 
 @interface HGLongLongValueMirror : HGBaseValueMirror
 
+- (long long)longValue;
+- (long long)longLongValue;
+
 @end
 
 
 @interface HGUnsignedCharValueMirror : HGBaseValueMirror
+
+- (unsigned char)unsignedCharValue;
 
 @end
 
 
 @interface HGUnsignedShortValueMirror : HGBaseValueMirror
 
+- (unsigned short)unsignedShortValue;
+
 @end
 
 
 @interface HGUnsignedIntValueMirror : HGBaseValueMirror
+
+- (unsigned int)unsignedIntValue;
 
 @end
 
 
 @interface HGUnsignedLongValueMirror : HGBaseValueMirror
 
+- (unsigned long)unsignedLongValue;
+
 @end
 
 
 @interface HGUnsignedLongLongValueMirror : HGBaseValueMirror
+
+- (unsigned long long)unsignedLongValue;
+- (unsigned long long)unsignedLongLongValue;
 
 @end
 
 
 @interface HGFloatValueMirror : HGBaseValueMirror
 
+- (float)floatValue;
+
 @end
 
 
 @interface HGDoubleValueMirror : HGBaseValueMirror
 
+- (double)doubleValue;
+
 @end
 
 
 @interface HGBoolValueMirror : HGBaseValueMirror
+
+- (_Bool)boolValue;
 
 @end
 
@@ -119,10 +147,7 @@
 
 @interface HGSelectorValueMirror : HGBaseValueMirror
 
-@end
-
-
-@interface HGVoidValueMirror : HGBaseValueMirror
+- (SEL)selectorValue;
 
 @end
 

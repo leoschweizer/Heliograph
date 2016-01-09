@@ -34,7 +34,7 @@
 
 - (NSValue *)getPrimitiveValue {
 	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
-	return [NSValue valueWithPointer:value];
+	return [NSValue valueWithBytes:value objCType:ivar_getTypeEncoding(self.instanceVariable.mirroredInstanceVariable)];
 }
 
 - (void)visitCharTypeMirror:(HGCharTypeMirror *)typeMirror {
@@ -90,27 +90,27 @@
 }
 
 - (void)visitCharacterStringTypeMirror:(HGCharacterStringTypeMirror *)typeMirror {
-	self.value = [[HGCharacterStringValueMirror alloc] initWithValue:[self getPrimitiveValue]];
+	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
+	self.value = [[HGCharacterStringValueMirror alloc] initWithValue:[NSValue valueWithPointer:value]];
 }
 
 - (void)visitSelectorTypeMirror:(HGSelectorTypeMirror *)typeMirror {
 	self.value = [[HGSelectorValueMirror alloc] initWithValue:[self getPrimitiveValue]];
 }
 
-- (void)visitVoidTypeMirror:(HGVoidTypeMirror *)typeMirror {
-	self.value = [[HGVoidValueMirror alloc] initWithValue:[self getPrimitiveValue]];
-}
-
 - (void)visitArrayTypeMirror:(HGArrayTypeMirror *)typeMirror {
-	self.value = [[HGArrayValueMirror alloc] initWithValue:[self getPrimitiveValue]];
+	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
+	self.value = [[HGArrayValueMirror alloc] initWithValue:[NSValue valueWithPointer:value]];
 }
 
 - (void)visitStructureTypeMirror:(HGStructureTypeMirror *)typeMirror {
-	self.value = [[HGStructureValueMirror alloc] initWithValue:[self getPrimitiveValue]];
+	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
+	self.value = [[HGStructureValueMirror alloc] initWithValue:[NSValue valueWithPointer:value]];
 }
 
 - (void)visitUnionTypeMirror:(HGUnionTypeMirror *)typeMirror {
-	self.value = [[HGUnionValueMirror alloc] initWithValue:[self getPrimitiveValue]];
+	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
+	self.value = [[HGUnionValueMirror alloc] initWithValue:[NSValue valueWithPointer:value]];
 }
 
 - (void)visitBitFieldTypeMirror:(HGBitFieldTypeMirror *)typeMirror {

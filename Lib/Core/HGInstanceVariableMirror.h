@@ -3,6 +3,7 @@
 
 @class HGClassMirror;
 @protocol HGTypeMirror;
+@protocol HGValueMirror;
 
 
 @interface HGInstanceVariableMirror : NSObject <NSCopying>
@@ -23,6 +24,12 @@
  * variable's type.
  */
 - (id<HGTypeMirror>)type;
+
+/**
+ * Answers an HGValueMirror reflecting the value of the receiver's mirrored
+ * instance variable in anObject.
+ */
+- (id<HGValueMirror>)valueIn:(id)anObject;
 
 /**
  * Compares the receiving HGInstanceVariableMirror to another HGInstanceVariableMirror.

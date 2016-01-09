@@ -18,7 +18,7 @@
 }
 
 - (void)testInstanceVariableCount {
-	XCTAssertEqual([self.instanceVariables count], 4);
+	XCTAssertEqual([self.instanceVariables count], 5);
 }
 
 - (void)testInstanceVariableName {
@@ -77,6 +77,16 @@
 		[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_propertyWithSynthesizedIvarBaz"] : @3
 	};
 	XCTAssertEqual([test count], 2);
+}
+
+- (void)testRectValue {
+	HGClassMirror *class = reflect([HGInstanceVariableClass class]);
+	HGInstanceVariableMirror *ivar = [class instanceVariableNamed:@"rectIvar"];
+	id testObject = [[HGInstanceVariableClass alloc] init];
+	id<HGValueMirror> value = [ivar valueIn:testObject];
+	XCTAssertTrue([value isKindOfClass:[HGStructureValueMirror class]]);
+	CGRect rect = *(CGRect *)value.value;
+	XCTAssertTrue(CGRectEqualToRect(rect, CGRectMake(1337, 42, 100, 100)));
 }
 
 @end

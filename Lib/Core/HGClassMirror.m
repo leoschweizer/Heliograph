@@ -41,6 +41,12 @@
 	}
 }
 
+- (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor {
+	if ([aVisitor respondsToSelector:@selector(visitClassMirror:)]) {
+		[aVisitor visitClassMirror:self];
+	}
+}
+
 - (HGInstanceVariableMirror *)addInstanceVariableNamed:(NSString *)aName withEncoding:(const char *)anEncoding {
 	NSUInteger size, alignment;
 	NSGetSizeAndAlignment(anEncoding, &size, &alignment);

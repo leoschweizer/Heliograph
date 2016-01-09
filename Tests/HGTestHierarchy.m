@@ -46,6 +46,13 @@
 
 @synthesize propertyWithSynthesizedIvar = _propertyWithSynthesizedIvarBaz;
 
+- (instancetype)init {
+	if (self = [super init]) {
+		rectIvar = CGRectMake(1337, 42, 100, 100);
+	}
+	return self;
+}
+
 - (id)propertyWithoutIvar {
 	return nil;
 }

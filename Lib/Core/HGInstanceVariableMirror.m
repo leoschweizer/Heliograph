@@ -2,6 +2,7 @@
 #import "HGInstanceVariableMirror-Runtime.h"
 #import "HGClassMirror.h"
 #import "HGTypeMirrors.h"
+#import "HGInstanceVariableExtractionVisitor.h"
 
 
 @interface HGInstanceVariableMirror ()
@@ -34,6 +35,12 @@
 - (HGBaseTypeMirror *)type {
 	const char *encoding = ivar_getTypeEncoding(self.mirroredInstanceVariable);
 	return [HGBaseTypeMirror createForEncoding:[NSString stringWithUTF8String:encoding]];
+}
+
+- (id<HGValueMirror>)valueIn:(id)anObject {
+	HGInstanceVariableExtractionVisitor *visitor = [[HGInstanceVariableExtractionVisitor alloc] initWithInstanceVariable:self target:anObject];
+	[self.type acceptTypeMirrorVisitor:visitor];
+	return visitor.value;
 }
 
 #pragma mark - NSObject

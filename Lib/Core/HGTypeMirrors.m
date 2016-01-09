@@ -55,11 +55,7 @@
 	return self;
 }
 
-- (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	if ([aVisitor respondsToSelector:@selector(visitTypeMirror:)]) {
-		[aVisitor visitTypeMirror:self];
-	}
-}
+- (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {}
 
 - (NSString *)typeDescription {
 	HGTypeMirrorDescriptionVisitor *visitor = [[HGTypeMirrorDescriptionVisitor alloc] init];
@@ -98,21 +94,8 @@
 @implementation HGClassTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitClassTypeMirror:)]) {
 		[aVisitor visitClassTypeMirror:self];
-	}
-}
-
-@end
-
-
-@implementation HGPrimitiveTypeMirror
-
-- (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
-	if ([aVisitor respondsToSelector:@selector(visitPrimitiveTypeMirror:)]) {
-		[aVisitor visitPrimitiveTypeMirror:self];
 	}
 }
 
@@ -122,7 +105,6 @@
 @implementation HGCharTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitCharTypeMirror:)]) {
 		[aVisitor visitCharTypeMirror:self];
 	}
@@ -134,7 +116,6 @@
 @implementation HGShortTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitShortTypeMirror:)]) {
 		[aVisitor visitShortTypeMirror:self];
 	}
@@ -146,7 +127,6 @@
 @implementation HGIntTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitIntTypeMirror:)]) {
 		[aVisitor visitIntTypeMirror:self];
 	}
@@ -158,7 +138,6 @@
 @implementation HGLongTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitLongTypeMirror:)]) {
 		[aVisitor visitLongTypeMirror:self];
 	}
@@ -170,7 +149,6 @@
 @implementation HGLongLongTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitLongLongTypeMirror:)]) {
 		[aVisitor visitLongLongTypeMirror:self];
 	}
@@ -182,7 +160,6 @@
 @implementation HGUnsignedCharTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitUnsignedCharTypeMirror:)]) {
 		[aVisitor visitUnsignedCharTypeMirror:self];
 	}
@@ -194,7 +171,6 @@
 @implementation HGUnsignedShortTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitUnsignedShortTypeMirror:)]) {
 		[aVisitor visitUnsignedShortTypeMirror:self];
 	}
@@ -206,7 +182,6 @@
 @implementation HGUnsignedIntTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitUnsignedIntTypeMirror:)]) {
 		[aVisitor visitUnsignedIntTypeMirror:self];
 	}
@@ -218,7 +193,6 @@
 @implementation HGUnsignedLongTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitUnsignedLongTypeMirror:)]) {
 		[aVisitor visitUnsignedLongTypeMirror:self];
 	}
@@ -230,7 +204,6 @@
 @implementation HGUnsignedLongLongTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitUnsignedLongLongTypeMirror:)]) {
 		[aVisitor visitUnsignedLongLongTypeMirror:self];
 	}
@@ -242,7 +215,6 @@
 @implementation HGFloatTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitFloatTypeMirror:)]) {
 		[aVisitor visitFloatTypeMirror:self];
 	}
@@ -254,7 +226,6 @@
 @implementation HGDoubleTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitDoubleTypeMirror:)]) {
 		[aVisitor visitDoubleTypeMirror:self];
 	}
@@ -266,7 +237,6 @@
 @implementation HGBoolTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitBoolTypeMirror:)]) {
 		[aVisitor visitBoolTypeMirror:self];
 	}
@@ -278,7 +248,6 @@
 @implementation HGCharacterStringTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitCharacterStringTypeMirror:)]) {
 		[aVisitor visitCharacterStringTypeMirror:self];
 	}
@@ -290,7 +259,6 @@
 @implementation HGSelectorTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitSelectorTypeMirror:)]) {
 		[aVisitor visitSelectorTypeMirror:self];
 	}
@@ -302,7 +270,6 @@
 @implementation HGVoidTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitVoidTypeMirror:)]) {
 		[aVisitor visitVoidTypeMirror:self];
 	}
@@ -314,7 +281,6 @@
 @implementation HGArrayTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitArrayTypeMirror:)]) {
 		[aVisitor visitArrayTypeMirror:self];
 	}
@@ -326,7 +292,6 @@
 @implementation HGStructureTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitStructureTypeMirror:)]) {
 		[aVisitor visitStructureTypeMirror:self];
 	}
@@ -338,7 +303,6 @@
 @implementation HGUnionTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitUnionTypeMirror:)]) {
 		[aVisitor visitUnionTypeMirror:self];
 	}
@@ -350,7 +314,6 @@
 @implementation HGBitFieldTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitBitFieldTypeMirror:)]) {
 		[aVisitor visitBitFieldTypeMirror:self];
 	}
@@ -362,7 +325,6 @@
 @implementation HGPointerTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitPointerTypeMirror:)]) {
 		[aVisitor visitPointerTypeMirror:self];
 	}
@@ -374,7 +336,6 @@
 @implementation HGUnknownTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitUnknownTypeMirror:)]) {
 		[aVisitor visitUnknownTypeMirror:self];
 	}

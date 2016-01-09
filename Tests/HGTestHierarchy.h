@@ -55,6 +55,7 @@
 
 @interface HGInstanceVariableClass : NSObject {
 	id publicIvar;
+	CGRect rectIvar;
 }
 
 @property (nonatomic, readonly) id propertyWithoutIvar;

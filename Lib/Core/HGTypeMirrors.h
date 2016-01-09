@@ -28,82 +28,77 @@
 @end
 
 
-@interface HGPrimitiveTypeMirror : HGBaseTypeMirror
+@interface HGCharTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGCharTypeMirror : HGPrimitiveTypeMirror
+@interface HGShortTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGShortTypeMirror : HGPrimitiveTypeMirror
+@interface HGIntTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGIntTypeMirror : HGPrimitiveTypeMirror
+@interface HGLongTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGLongTypeMirror : HGPrimitiveTypeMirror
+@interface HGLongLongTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGLongLongTypeMirror : HGPrimitiveTypeMirror
+@interface HGUnsignedCharTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGUnsignedCharTypeMirror : HGPrimitiveTypeMirror
+@interface HGUnsignedShortTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGUnsignedShortTypeMirror : HGPrimitiveTypeMirror
+@interface HGUnsignedIntTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGUnsignedIntTypeMirror : HGPrimitiveTypeMirror
+@interface HGUnsignedLongTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGUnsignedLongTypeMirror : HGPrimitiveTypeMirror
+@interface HGUnsignedLongLongTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGUnsignedLongLongTypeMirror : HGPrimitiveTypeMirror
+@interface HGFloatTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGFloatTypeMirror : HGPrimitiveTypeMirror
+@interface HGDoubleTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGDoubleTypeMirror : HGPrimitiveTypeMirror
+@interface HGBoolTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGBoolTypeMirror : HGPrimitiveTypeMirror
+@interface HGCharacterStringTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGCharacterStringTypeMirror : HGPrimitiveTypeMirror
-
-@end
-
-
-@interface HGSelectorTypeMirror : HGPrimitiveTypeMirror
+@interface HGSelectorTypeMirror : HGBaseTypeMirror
 
 @end
 
@@ -113,27 +108,27 @@
 @end
 
 
-@interface HGArrayTypeMirror : HGPrimitiveTypeMirror
+@interface HGArrayTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGStructureTypeMirror : HGPrimitiveTypeMirror
+@interface HGStructureTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGUnionTypeMirror : HGPrimitiveTypeMirror
+@interface HGUnionTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGBitFieldTypeMirror : HGPrimitiveTypeMirror
+@interface HGBitFieldTypeMirror : HGBaseTypeMirror
 
 @end
 
 
-@interface HGPointerTypeMirror : HGPrimitiveTypeMirror
+@interface HGPointerTypeMirror : HGBaseTypeMirror
 
 @end
 

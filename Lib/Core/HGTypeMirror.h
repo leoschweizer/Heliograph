@@ -1,12 +1,9 @@
 #import <Foundation/Foundation.h>
 
 
-@class HGBaseTypeMirror;
 @class HGObjectTypeMirror;
 @class HGClassMirror;
 @class HGClassTypeMirror;
-@class HGPrimitiveTypeMirror;
-@class HGPrimitiveTypeMirror;
 @class HGCharTypeMirror;
 @class HGShortTypeMirror;
 @class HGIntTypeMirror;
@@ -44,11 +41,9 @@
 @protocol HGTypeMirrorVisitor <NSObject>
 
 @optional
-- (void)visitTypeMirror:(HGBaseTypeMirror *)typeMirror;
 - (void)visitObjectTypeMirror:(HGObjectTypeMirror *)typeMirror;
 - (void)visitClassMirror:(HGClassMirror *)classMirror;
 - (void)visitClassTypeMirror:(HGClassTypeMirror *)typeMirror;
-- (void)visitPrimitiveTypeMirror:(HGPrimitiveTypeMirror *)typeMirror;
 - (void)visitCharTypeMirror:(HGCharTypeMirror *)typeMirror;
 - (void)visitShortTypeMirror:(HGShortTypeMirror *)typeMirror;
 - (void)visitIntTypeMirror:(HGIntTypeMirror *)typeMirror;

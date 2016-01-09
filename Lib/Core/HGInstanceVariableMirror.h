@@ -5,7 +5,7 @@
 @class HGTypeMirror;
 
 
-@interface HGInstanceVariableMirror : NSObject
+@interface HGInstanceVariableMirror : NSObject <NSCopying>
 
 /**
  * The HGClassMirror reflecting the receiver's mirrored instance variables'
@@ -14,14 +14,19 @@
 @property (nonatomic, readonly) HGClassMirror *definingClass;
 
 /**
- * The name of the receiver's mirrored instance variable.
+ * Answers the name of the receiver's mirrored instance variable.
  */
-@property (nonatomic, readonly) NSString *name;
+- (NSString *)name;
 
 /**
  * Answers an HGTypeMirror reflecting the receiver's mirrored instance 
  * variable's type.
  */
 - (HGTypeMirror *)type;
+
+/**
+ * Compares the receiving HGInstanceVariableMirror to another HGInstanceVariableMirror.
+ */
+- (BOOL)isEqualToInstanceVariableMirror:(HGInstanceVariableMirror *)anInstanceVariableMirror;
 
 @end

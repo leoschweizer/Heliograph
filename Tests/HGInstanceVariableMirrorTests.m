@@ -59,4 +59,24 @@
 	XCTAssertNil(mirror);
 }
 
+- (void)testIsEqual {
+	HGInstanceVariableMirror *m1 = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"privateIvar"];
+	HGInstanceVariableMirror *m2 = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"privateIvar"];
+	HGInstanceVariableMirror *m3 = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_propertyWithSynthesizedIvarBaz"];
+	XCTAssertTrue([m1 isEqual:m1]);
+	XCTAssertEqualObjects(m1, m2);
+	XCTAssertNotEqualObjects(m2, m3);
+	XCTAssertNotEqualObjects(m1, @"");
+	XCTAssertNotEqualObjects(m1, nil);
+}
+
+- (void)testHash {
+	NSDictionary *test = @{
+		[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"privateIvar"] : @1,
+		[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"privateIvar"] : @2,
+		[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_propertyWithSynthesizedIvarBaz"] : @3
+	};
+	XCTAssertEqual([test count], 2);
+}
+
 @end

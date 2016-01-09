@@ -6,6 +6,11 @@
 @interface HGInstanceVariableMirror (HGRuntimeDependent)
 
 /**
+ * The mirrored instance variable.
+ */
+@property (nonatomic, readonly) Ivar mirroredInstanceVariable;
+
+/**
  * Answers an instance of HGInstanceVariableMirror reflecting instanceVariable. 
  * Don't call this directly, use [reflect(...) instanceVariables] to retrieve 
  * instances of this class.

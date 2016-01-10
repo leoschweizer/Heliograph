@@ -60,11 +60,9 @@ static NSString *parseBackingInstanceVariableName(NSArray *stringAttributes) {
 	return [attribute substringFromIndex:1];
 }
 
-static HGBaseTypeMirror *parseType(NSArray *stringAttributes) {
+static id<HGTypeMirror> parseType(NSArray *stringAttributes) {
 	NSString *attribute = [stringAttributes firstObject];
-	if (![attribute hasPrefix:@"T"]) {
-		return nil;
-	}
+	NSCAssert([attribute hasPrefix:@"T"], @"encountered unexpected encoding");
 	return [HGBaseTypeMirror createForEncoding:[attribute substringFromIndex:1]];
 }
 

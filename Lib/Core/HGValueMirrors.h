@@ -161,6 +161,8 @@
 
 @interface HGStructureValueMirror : HGBaseValueMirror
 
+- (void)readStructureValue:(void *)outStructure;
+
 @end
 
 

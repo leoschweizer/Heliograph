@@ -245,10 +245,13 @@
 - (void)testReadStructIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_structIvar = CGRectMake(10, 10, 1337, 7331);
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_structIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_structIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGStructureValueMirror class]]);
-	CGRect rect = *(CGRect *)[[value mirroredValue] pointerValue];
-	XCTAssertTrue(CGRectEqualToRect(rect, testObject->_structIvar));
+	CGRect rect1 = [[value mirroredValue] rectValue];
+	CGRect rect2;
+	[value readStructureValue:&rect2];
+	XCTAssertTrue(CGRectEqualToRect(rect1, testObject->_structIvar));
+	XCTAssertTrue(CGRectEqualToRect(rect2, testObject->_structIvar));
 	XCTAssertEqualObjects([value valueDescription], @"{struct}");
 }
 

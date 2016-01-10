@@ -340,6 +340,10 @@
 	}
 }
 
+- (void)readStructureValue:(void *)outStructure {
+	[self.mirroredValue getValue:outStructure];
+}
+
 @end
 
 

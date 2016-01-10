@@ -104,8 +104,7 @@
 }
 
 - (void)visitStructureTypeMirror:(HGStructureTypeMirror *)typeMirror {
-	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
-	self.value = [[HGStructureValueMirror alloc] initWithValue:[NSValue valueWithPointer:value]];
+	self.value = [[HGStructureValueMirror alloc] initWithValue:[self getPrimitiveValue]];
 }
 
 - (void)visitUnionTypeMirror:(HGUnionTypeMirror *)typeMirror {

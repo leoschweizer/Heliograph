@@ -85,6 +85,7 @@
 	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_objectIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGObjectMirror class]]);
 	XCTAssertEqualObjects([[value mirroredValue] nonretainedObjectValue], @42);
+	XCTAssertEqualObjects([value valueDescription], [@42 description]);
 }
 
 - (void)testReadClassIvar {

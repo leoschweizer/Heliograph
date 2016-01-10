@@ -6,8 +6,6 @@
 
 @implementation HGBaseValueMirror
 
-- (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor {}
-
 - (instancetype)initWithValue:(NSValue *)aValue {
 	if (self = [super init]) {
 		_mirroredValue = aValue;
@@ -20,6 +18,8 @@
 	[self acceptValueMirrorVisitor:visitor];
 	return visitor.valueDescription;
 }
+
+- (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor {}
 
 @end
 
@@ -48,6 +48,12 @@
 
 - (NSArray *)instanceMethods {
 	return [[self classMirror] methods];
+}
+
+- (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor {
+	if ([aVisitor respondsToSelector:@selector(visitObjectValueMirror:)]) {
+		[aVisitor visitObjectValueMirror:self];
+	}
 }
 
 @end

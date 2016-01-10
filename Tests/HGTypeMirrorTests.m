@@ -80,7 +80,8 @@
 		@"(" : @"union",
 		@"b" : @"bitfield",
 		@"^" : @"^",
-		@"?" : @"unknown type"
+		@"?" : @"unknown type",
+		@"ö" : @"unknown type"
 	};
 	
 	for (NSString *encoding in definition) {

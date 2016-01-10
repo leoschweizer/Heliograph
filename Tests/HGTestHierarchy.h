@@ -59,6 +59,12 @@ union HGMixedType {
 	char c;
 };
 
+typedef struct HGTestStruct {
+	int i;
+	CGRect rect;
+	CGPoint point;
+} HGTestStruct;
+
 @interface HGInstanceVariableClass : NSObject {
 	
 	id publicIvar;

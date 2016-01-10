@@ -66,7 +66,7 @@
 }
 
 - (void)visitCharacterStringValueMirror:(HGCharacterStringValueMirror *)valueMirror {
-	self.valueDescription = @"<char*>";
+	self.valueDescription = [NSString stringWithFormat:@"%s", [valueMirror characterStringValue]];
 }
 
 - (void)visitBoolValueMirror:(HGBoolValueMirror *)valueMirror {

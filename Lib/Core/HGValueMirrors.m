@@ -290,6 +290,11 @@
 	}
 }
 
+- (char *)characterStringValue {
+	char *result = *(char **)[self.mirroredValue pointerValue];
+	return result;
+}
+
 @end
 
 

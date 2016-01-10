@@ -142,6 +142,8 @@
 
 @interface HGCharacterStringValueMirror : HGBaseValueMirror
 
+- (char *)characterStringValue;
+
 @end
 
 

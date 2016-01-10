@@ -211,6 +211,15 @@
 	XCTAssertEqualObjects([value valueDescription], @"true");
 }
 
+- (void)testReadCharPointerIvar {
+	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
+	testObject->_charPointerIvar = "asdfjkl";
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_charPointerIvar"] valueIn:testObject];
+	XCTAssertTrue([value isKindOfClass:[HGCharacterStringValueMirror class]]);
+	XCTAssertTrue(strcmp([value characterStringValue], "asdfjkl") == 0);
+	XCTAssertEqualObjects([value valueDescription], @"asdfjkl");
+}
+
 - (void)testReadSelectorIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_selIvar = @selector(didChangeValueForKey:);

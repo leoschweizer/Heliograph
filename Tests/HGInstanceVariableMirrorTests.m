@@ -104,7 +104,6 @@
 	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_objectIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGObjectMirror class]]);
 	XCTAssertEqualObjects([[value mirroredValue] nonretainedObjectValue], @42);
-	XCTAssertEqualObjects([value valueDescription], [@42 description]);
 }
 
 - (void)testWriteObjectIvar {
@@ -121,7 +120,6 @@
 	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_classIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGClassMirror class]]);
 	XCTAssertEqualObjects([[value mirroredValue] nonretainedObjectValue], [NSMutableSet class]);
-	XCTAssertEqualObjects([value valueDescription], @"NSMutableSet");
 }
 
 - (void)testWriteClassIvar {
@@ -266,7 +264,6 @@
 	[value readArrayValue:&result];
 	XCTAssertEqual(result[0], 42);
 	XCTAssertEqual(result[1], 1337);
-	XCTAssertEqualObjects([value valueDescription], @"[array]");
 }
 
 - (void)testWriteArrayIvar {
@@ -291,7 +288,6 @@
 	[value readStructureValue:&rect2];
 	XCTAssertTrue(CGRectEqualToRect(rect1, testObject->_structIvar));
 	XCTAssertTrue(CGRectEqualToRect(rect2, testObject->_structIvar));
-	XCTAssertEqualObjects([value valueDescription], @"{struct}");
 }
 
 - (void)testWriteStructIvar {
@@ -312,7 +308,6 @@
 	union HGMixedType result;
 	[value readUnionValue:&result];
 	XCTAssertEqual(result.i, 32);
-	XCTAssertEqualObjects([value valueDescription], @"(union)");
 }
 
 - (void)testWriteUnionIvar {
@@ -332,7 +327,6 @@
 	void *p;
 	[[value mirroredValue] getValue:&p];
 	XCTAssertEqual(p, &testObject);
-	XCTAssertEqualObjects([value valueDescription], @"<^>");
 }
 
 - (void)testWritePointerIvar {

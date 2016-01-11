@@ -27,14 +27,11 @@
 @implementation HGObjectMirror
 
 - (instancetype)initWithObject:(id)anObject {
-	if (self = [super init]) {
-		_mirroredObject = anObject;
-	}
-	return self;
+	return [self initWithValue:[NSValue valueWithNonretainedObject:anObject]];
 }
 
-- (NSValue *)mirroredValue {
-	return [NSValue valueWithNonretainedObject:self.mirroredObject];
+- (id)mirroredObject {
+	return [self.mirroredValue nonretainedObjectValue];
 }
 
 - (NSArray *)classMethods {

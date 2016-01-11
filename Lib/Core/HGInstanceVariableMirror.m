@@ -3,6 +3,7 @@
 #import "HGClassMirror.h"
 #import "HGTypeMirrors.h"
 #import "HGInstanceVariableExtractionVisitor.h"
+#import "HGInstanceVariableInjectionVisitor.h"
 
 
 @interface HGInstanceVariableMirror ()
@@ -30,6 +31,11 @@
 
 - (NSString *)name {
 	return [NSString stringWithUTF8String:ivar_getName(self.mirroredInstanceVariable)];
+}
+
+- (void)setValue:(id)aValue in:(id)anObject {
+	HGInstanceVariableInjectionVisitor *visitor = [[HGInstanceVariableInjectionVisitor alloc] initWithInstanceVariable:self target:anObject value:aValue];
+	[self.type acceptTypeMirrorVisitor:visitor];
 }
 
 - (HGBaseTypeMirror *)type {

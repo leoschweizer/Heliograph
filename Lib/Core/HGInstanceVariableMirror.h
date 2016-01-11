@@ -19,6 +19,8 @@
  */
 - (NSString *)name;
 
+- (void)setValue:(id)aValue in:(id)anObject;
+
 /**
  * Answers an HGTypeMirror reflecting the receiver's mirrored instance 
  * variable's type.

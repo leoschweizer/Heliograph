@@ -3,6 +3,18 @@
 #import "HGTestHierarchy.h"
 
 
+#define NSStringize_helper(x) #x
+#define NSStringize(x) @NSStringize_helper(x)
+
+#define TestWrite(TYPE, VALUE, IVAR) \
+	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init]; \
+	TYPE value = VALUE; \
+	HGInstanceVariableMirror *ivar = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:NSStringize(IVAR)]; \
+	XCTAssertNotNil(ivar); \
+	[ivar setValue:[NSValue valueWithBytes:&value objCType:@encode(TYPE)] in:testObject]; \
+	XCTAssertEqual(value, testObject->IVAR);
+
+
 @interface HGInstanceVariableMirrorTests : XCTestCase
 
 @property (nonatomic, readwrite) NSArray *instanceVariables;
@@ -88,6 +100,14 @@
 	XCTAssertEqualObjects([value valueDescription], [@42 description]);
 }
 
+- (void)testWriteObjectIvar {
+	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
+	HGInstanceVariableMirror *ivar = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_objectIvar"];
+	XCTAssertNotNil(ivar);
+	[ivar setValue:@1337 in:testObject];
+	XCTAssertEqualObjects(@1337, testObject->_objectIvar);
+}
+
 - (void)testReadClassIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_classIvar = [NSMutableSet class];
@@ -95,6 +115,14 @@
 	XCTAssertTrue([value isKindOfClass:[HGClassMirror class]]);
 	XCTAssertEqualObjects([[value mirroredValue] nonretainedObjectValue], [NSMutableSet class]);
 	XCTAssertEqualObjects([value valueDescription], @"NSMutableSet");
+}
+
+- (void)testWriteClassIvar {
+	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
+	HGInstanceVariableMirror *ivar = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_classIvar"];
+	XCTAssertNotNil(ivar);
+	[ivar setValue:[NSString class] in:testObject];
+	XCTAssertEqualObjects([NSString class], testObject->_classIvar);
 }
 
 - (void)testReadCharIvar {
@@ -106,6 +134,10 @@
 	XCTAssertEqualObjects([value valueDescription], @"-8");
 }
 
+- (void)testWriteCharIvar {
+	TestWrite(char, -8, _charIvar);
+}
+
 - (void)testReadShortIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_shortIvar = -16;
@@ -113,6 +145,10 @@
 	XCTAssertTrue([value isKindOfClass:[HGShortValueMirror class]]);
 	XCTAssertEqual([value shortValue], -16);
 	XCTAssertEqualObjects([value valueDescription], @"-16");
+}
+
+- (void)testWriteShortIvar {
+	TestWrite(short, -16, _shortIvar);
 }
 
 - (void)testReadIntIvar {
@@ -124,12 +160,20 @@
 	XCTAssertEqualObjects([value valueDescription], @"-32");
 }
 
+- (void)testWriteIntIvar {
+	TestWrite(int, -32, _intIvar);
+}
+
 - (void)testReadLongIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_longIvar = -64;
 	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_longIvar"] valueIn:testObject];
 	XCTAssertEqual([value longValue], -64);
 	XCTAssertEqualObjects([value valueDescription], @"-64");
+}
+
+- (void)testWriteLongIvar {
+	TestWrite(long, -64, _longIvar);
 }
 
 - (void)testReadLongLongIvar {
@@ -141,6 +185,10 @@
 	XCTAssertEqualObjects([value valueDescription], @"-128");
 }
 
+- (void)testWriteLongLongIvar {
+	TestWrite(long long, -128, _longLongIvar);
+}
+
 - (void)testReadUcharIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_ucharIvar = 8;
@@ -148,6 +196,10 @@
 	XCTAssertTrue([value isKindOfClass:[HGUnsignedCharValueMirror class]]);
 	XCTAssertEqual([value unsignedCharValue], 8);
 	XCTAssertEqualObjects([value valueDescription], @"8");
+}
+
+- (void)testWriteUCharIvar {
+	TestWrite(unsigned char, 8, _ucharIvar);
 }
 
 - (void)testReadUshortIvar {
@@ -159,6 +211,10 @@
 	XCTAssertEqualObjects([value valueDescription], @"16");
 }
 
+- (void)testWriteUShortIvar {
+	TestWrite(unsigned short, 16, _ushortIvar);
+}
+
 - (void)testReadUintIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_uintIvar = 32;
@@ -168,12 +224,20 @@
 	XCTAssertEqualObjects([value valueDescription], @"32");
 }
 
+- (void)testWriteUIntIvar {
+	TestWrite(unsigned int, 32, _uintIvar);
+}
+
 - (void)testReadUlongIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_ulongIvar = 64;
 	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_ulongIvar"] valueIn:testObject];
 	XCTAssertEqual([value unsignedLongValue], 64);
 	XCTAssertEqualObjects([value valueDescription], @"64");
+}
+
+- (void)testWriteULongIvar {
+	TestWrite(unsigned long, 64, _ulongIvar);
 }
 
 - (void)testReadUlongLongIvar {
@@ -185,6 +249,10 @@
 	XCTAssertEqualObjects([value valueDescription], @"128");
 }
 
+- (void)testWriteULongLongIvar {
+	TestWrite(unsigned long long, 128, _ulongLongIvar);
+}
+
 - (void)testReadFloatIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_floatIvar = 3.14f;
@@ -192,6 +260,10 @@
 	XCTAssertTrue([value isKindOfClass:[HGFloatValueMirror class]]);
 	XCTAssertEqual([value floatValue], 3.14f);
 	XCTAssertEqualObjects([value valueDescription], @"3.14");
+}
+
+- (void)testWriteFloatIvar {
+	TestWrite(float, 3.14, _floatIvar);
 }
 
 - (void)testReadDoubleIvar {
@@ -203,6 +275,10 @@
 	XCTAssertEqualObjects([value valueDescription], @"1.33333");
 }
 
+- (void)testWriteDoubleIvar {
+	TestWrite(double, 1.33333, _doubleIvar);
+}
+
 - (void)testReadBoolIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_boolIvar = true;
@@ -210,6 +286,10 @@
 	XCTAssertTrue([value isKindOfClass:[HGBoolValueMirror class]]);
 	XCTAssertTrue([value boolValue]);
 	XCTAssertEqualObjects([value valueDescription], @"true");
+}
+
+- (void)testWriteBoolIvar {
+	TestWrite(_Bool, true, _boolIvar);
 }
 
 - (void)testReadCharPointerIvar {
@@ -221,6 +301,10 @@
 	XCTAssertEqualObjects([value valueDescription], @"asdfjkl");
 }
 
+- (void)testWriteCharPointerIvar {
+	TestWrite(char *, "qwerty", _charPointerIvar);
+}
+
 - (void)testReadSelectorIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_selIvar = @selector(didChangeValueForKey:);
@@ -228,6 +312,10 @@
 	XCTAssertTrue([value isKindOfClass:[HGSelectorValueMirror class]]);
 	XCTAssertEqual([value selectorValue], @selector(didChangeValueForKey:));
 	XCTAssertEqualObjects([value valueDescription], @"didChangeValueForKey:");
+}
+
+- (void)testWriteSelectorIvar {
+	TestWrite(SEL, @selector(didChangeValueForKey:withSetMutation:usingObjects:), _selIvar);
 }
 
 - (void)testReadArrayIvar {
@@ -256,6 +344,15 @@
 	XCTAssertEqualObjects([value valueDescription], @"{struct}");
 }
 
+- (void)testWriteStructIvar {
+	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
+	HGInstanceVariableMirror *ivar = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_structIvar"];
+	XCTAssertNotNil(ivar);
+	CGRect rect = CGRectMake(1, 2, 3, 4);
+	[ivar setValue:[NSValue valueWithBytes:&rect objCType:@encode(CGRect)] in:testObject];
+	XCTAssertTrue(CGRectEqualToRect(rect, testObject->_structIvar));
+}
+
 - (void)testReadUnionIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	union HGMixedType u = { 32 };
@@ -268,6 +365,15 @@
 	XCTAssertEqualObjects([value valueDescription], @"(union)");
 }
 
+- (void)testWriteUnionIvar {
+	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
+	HGInstanceVariableMirror *ivar = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_unionIvar"];
+	XCTAssertNotNil(ivar);
+	union HGMixedType u = { 44 };
+	[ivar setValue:[NSValue valueWithBytes:&u objCType:@encode(union HGMixedType)] in:testObject];
+	XCTAssertEqual(testObject->_unionIvar.i, 44);
+}
+
 - (void)testReadPointerIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_pointerIvar = &testObject;
@@ -277,6 +383,14 @@
 	[[value mirroredValue] getValue:&p];
 	XCTAssertEqual(p, &testObject);
 	XCTAssertEqualObjects([value valueDescription], @"<^>");
+}
+
+- (void)testWritePointerIvar {
+	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
+	HGInstanceVariableMirror *ivar = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_pointerIvar"];
+	XCTAssertNotNil(ivar);
+	[ivar setValue:[NSValue valueWithBytes:&testObject objCType:@encode(void *)] in:testObject];
+	XCTAssertEqual(testObject, testObject->_pointerIvar);
 }
 
 @end

@@ -156,6 +156,8 @@
 
 @interface HGArrayValueMirror : HGBaseValueMirror
 
+- (void)readArrayValue:(void *)outArray;
+
 @end
 
 
@@ -167,6 +169,8 @@
 
 
 @interface HGUnionValueMirror : HGBaseValueMirror
+
+- (void)readUnionValue:(void *)outUnion;
 
 @end
 

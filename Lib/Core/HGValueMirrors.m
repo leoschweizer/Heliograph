@@ -297,7 +297,8 @@
 }
 
 - (char *)characterStringValue {
-	char *result = *(char **)[self.mirroredValue pointerValue];
+	char *result;
+	[self.mirroredValue getValue:&result];
 	return result;
 }
 
@@ -329,6 +330,10 @@
 	}
 }
 
+- (void)readArrayValue:(void *)outArray {
+	[self.mirroredValue getValue:outArray];
+}
+
 @end
 
 
@@ -353,6 +358,10 @@
 	if ([aVisitor respondsToSelector:@selector(visitUnionValueMirror:)]) {
 		[aVisitor visitUnionValueMirror:self];
 	}
+}
+
+- (void)readUnionValue:(void *)outUnion {
+	[self.mirroredValue getValue:outUnion];
 }
 
 @end

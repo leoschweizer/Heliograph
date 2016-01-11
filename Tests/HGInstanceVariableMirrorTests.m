@@ -234,9 +234,10 @@
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_arrayIvar[0] = 42;
 	testObject->_arrayIvar[1] = 1337;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_arrayIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_arrayIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGArrayValueMirror class]]);
-	int *result = [[value mirroredValue] pointerValue];
+	int result[2];
+	[value readArrayValue:&result];
 	XCTAssertEqual(result[0], 42);
 	XCTAssertEqual(result[1], 1337);
 	XCTAssertEqualObjects([value valueDescription], @"[array]");
@@ -259,9 +260,10 @@
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	union HGMixedType u = { 32 };
 	testObject->_unionIvar = u;
-	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_unionIvar"] valueIn:testObject];
+	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_unionIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGUnionValueMirror class]]);
-	union HGMixedType result = *(union HGMixedType *)[[value mirroredValue] pointerValue];
+	union HGMixedType result;
+	[value readUnionValue:&result];
 	XCTAssertEqual(result.i, 32);
 	XCTAssertEqualObjects([value valueDescription], @"(union)");
 }

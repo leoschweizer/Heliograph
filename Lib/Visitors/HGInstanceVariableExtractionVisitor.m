@@ -33,7 +33,9 @@
 }
 
 - (NSValue *)getPrimitiveValue {
-	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
+	CFTypeRef targetRef = CFBridgingRetain(self.target);
+	void *value = (void *)((uint8_t *)targetRef + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
+	CFBridgingRelease(targetRef);
 	return [NSValue valueWithBytes:value objCType:ivar_getTypeEncoding(self.instanceVariable.mirroredInstanceVariable)];
 }
 
@@ -90,8 +92,7 @@
 }
 
 - (void)visitCharacterStringTypeMirror:(HGCharacterStringTypeMirror *)typeMirror {
-	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
-	self.value = [[HGCharacterStringValueMirror alloc] initWithValue:[NSValue valueWithPointer:value]];
+	self.value = [[HGCharacterStringValueMirror alloc] initWithValue:[self getPrimitiveValue]];
 }
 
 - (void)visitSelectorTypeMirror:(HGSelectorTypeMirror *)typeMirror {
@@ -99,8 +100,7 @@
 }
 
 - (void)visitArrayTypeMirror:(HGArrayTypeMirror *)typeMirror {
-	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
-	self.value = [[HGArrayValueMirror alloc] initWithValue:[NSValue valueWithPointer:value]];
+	self.value = [[HGArrayValueMirror alloc] initWithValue:[self getPrimitiveValue]];
 }
 
 - (void)visitStructureTypeMirror:(HGStructureTypeMirror *)typeMirror {
@@ -108,8 +108,7 @@
 }
 
 - (void)visitUnionTypeMirror:(HGUnionTypeMirror *)typeMirror {
-	void *value = (void *)((__bridge void *)self.target + ivar_getOffset(self.instanceVariable.mirroredInstanceVariable));
-	self.value = [[HGUnionValueMirror alloc] initWithValue:[NSValue valueWithPointer:value]];
+	self.value = [[HGUnionValueMirror alloc] initWithValue:[self getPrimitiveValue]];
 }
 
 - (void)visitBitFieldTypeMirror:(HGBitFieldTypeMirror *)typeMirror {

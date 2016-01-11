@@ -1,6 +1,7 @@
 #import "HGProtocolMirror.h"
 #import <objc/runtime.h>
 #import "HGMethodDescriptionMirror-Runtime.h"
+#import "HGPropertyMirror-Runtime.h"
 
 
 @implementation HGProtocolMirror
@@ -71,6 +72,19 @@
 
 - (NSArray *)classMethods {
 	return [self getMethods:NO];
+}
+
+- (NSArray *)properties {
+	unsigned int numberOfProperties;
+	objc_property_t *properties = protocol_copyPropertyList(self.mirroredProtocol, &numberOfProperties);
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:numberOfProperties];
+	for (int i = 0; i < numberOfProperties; i++) {
+		objc_property_t property = properties[i];
+		HGPropertyMirror *mirror = [[HGPropertyMirror alloc] initWithDefiningProtocol:self property:property];
+		[result addObject:mirror];
+	}
+	free(properties);
+	return result;
 }
 
 - (void)registerProtocol {

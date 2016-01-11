@@ -14,6 +14,13 @@
 @end
 
 
+@protocol HGPropertyTestProtocol <NSObject>
+
+@property (nonatomic, readwrite) id<HGTestProtocol> property1;
+
+@end
+
+
 @interface HGRootClass : NSObject
 
 @end

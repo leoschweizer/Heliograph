@@ -79,22 +79,34 @@ static id<HGTypeMirror> parseType(NSArray *stringAttributes) {
 
 @implementation HGPropertyMirror
 
+- (void)commonInitWithProperty:(objc_property_t)aProperty {
+	_mirroredProperty = aProperty;
+	NSArray *stringAttributes = parseStringAttributes(property_getAttributes(_mirroredProperty));
+	_attributes = parseAttributes(stringAttributes);
+	_getterName = parseGetterName(stringAttributes, self.name);
+	_setterName = parseSetterName(stringAttributes, self.name);
+	_backingInstanceVariableName = parseBackingInstanceVariableName(stringAttributes);
+	_type = parseType(stringAttributes);
+}
+
 - (instancetype)initWithDefiningClass:(HGClassMirror *)definingClass property:(objc_property_t)aProperty {
 	if (self = [super init]) {
-		_mirroredProperty = aProperty;
 		_definingClass = definingClass;
-		NSArray *stringAttributes = parseStringAttributes(property_getAttributes(_mirroredProperty));
-		_attributes = parseAttributes(stringAttributes);
-		_name = [NSString stringWithUTF8String:property_getName(self.mirroredProperty)];
-		_getterName = parseGetterName(stringAttributes, _name);
-		_setterName = parseSetterName(stringAttributes, _name);
-		_backingInstanceVariableName = parseBackingInstanceVariableName(stringAttributes);
-		_type = parseType(stringAttributes);
+		[self commonInitWithProperty:aProperty];
+	}
+	return self;
+}
+
+- (instancetype)initWithDefiningProtocol:(id)definingProtocol property:(objc_property_t)aProperty {
+	if (self = [super init]) {
+		_definingProtocol = definingProtocol;
+		[self commonInitWithProperty:aProperty];
 	}
 	return self;
 }
 
 - (HGInstanceVariableMirror *)backingInstanceVariable {
+	NSAssert(self.definingClass, @"This method can only be called on properties with an associated class");
 	if (!self.backingInstanceVariableName) {
 		return nil;
 	}
@@ -102,6 +114,7 @@ static id<HGTypeMirror> parseType(NSArray *stringAttributes) {
 }
 
 - (HGMethodMirror *)getter {
+	NSAssert(self.definingClass, @"This method can only be called on properties with an associated class");
 	return [self.definingClass methodNamed:NSSelectorFromString(self.getterName)];
 }
 
@@ -133,7 +146,12 @@ static id<HGTypeMirror> parseType(NSArray *stringAttributes) {
 	return self.attributes & HGPropertyAttributesGarbageCollection;
 }
 
+- (NSString *)name {
+	return [NSString stringWithUTF8String:property_getName(self.mirroredProperty)];
+}
+
 - (HGMethodMirror *)setter {
+	NSAssert(self.definingClass, @"This method can only be called on properties with an associated class");
 	return [self.definingClass methodNamed:NSSelectorFromString(self.setterName)];
 }
 

@@ -79,4 +79,14 @@
 	XCTAssertNil(mirror);
 }
 
+- (void)testProperties {
+	HGProtocolMirror *mirror = reflect(@protocol(HGPropertyTestProtocol));
+	NSArray *properties = [mirror properties];
+	XCTAssertEqual([properties count], 1);
+	HGPropertyMirror *property = [properties firstObject];
+	XCTAssertTrue([property isNonatomic]);
+	XCTAssertFalse([property isReadonly]);
+	XCTAssertEqualObjects(property.name, @"property1");
+}
+
 @end

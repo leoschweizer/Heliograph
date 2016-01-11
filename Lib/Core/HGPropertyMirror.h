@@ -2,6 +2,7 @@
 
 
 @class HGClassMirror;
+@class HGProtocolMirror;
 @class HGInstanceVariableMirror;
 @class HGMethodMirror;
 @protocol HGTypeMirror;
@@ -23,8 +24,15 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
 
 /**
  * The HGClassMirror reflecting the receiver's mirrored propertie's defining class.
+ * This value is only set when retrieving properties defined by a class.
  */
 @property (nonatomic, readonly) HGClassMirror *definingClass;
+
+/**
+ * The HGProtocolMirror reflecting the receiver's mirrored propertie's defining protocol.
+ * This value is only set when retrieving properties defined by a protocol.
+ */
+@property (nonatomic, readonly) HGProtocolMirror *definingProtocol;
 
 /**
  * The attributes of the receiver's mirrored property (see HGPropertyAttributes).
@@ -36,10 +44,6 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
  */
 @property (nonatomic, readonly) id<HGTypeMirror> type;
 
-/**
- * The name of the receiver's mirrored property.
- */
-@property (nonatomic, readonly) NSString *name;
 
 /**
  * Answers an HGInstanceVariableMirror reflecting the instance variable backing
@@ -90,6 +94,11 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
  * garbage collection.
  */
 - (BOOL)isGarbageCollected;
+
+/**
+ * Answers the name of the receiver's mirrored property.
+ */
+- (NSString *)name;
 
 /**
  * Answers an HGMethodMirror reflecting the receiver's mirrored propertie's

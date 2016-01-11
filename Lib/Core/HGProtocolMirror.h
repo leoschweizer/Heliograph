@@ -46,6 +46,12 @@
 - (NSArray *)instanceMethods;
 
 /**
+ * Answers an NSArray of HGPropertyMirrors reflecting the properties defined by
+ * the receiver's mirrored protocol.
+ */
+- (NSArray *)properties;
+
+/**
  * Registeres the receiver's mirrored protocol. Call this after creating a new 
  * protocol to finalize the protocol creation process.
  */

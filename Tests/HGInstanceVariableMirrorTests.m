@@ -12,7 +12,7 @@
 	id value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:NSStringize(IVAR)] valueIn:testObject]; \
 	XCTAssertNotNil(value); \
 	XCTAssertEqual([value ACCESSOR], VALUE);
-	
+
 #define TestWrite(TYPE, VALUE, IVAR) \
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init]; \
 	TYPE value = VALUE; \
@@ -339,8 +339,9 @@
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	HGInstanceVariableMirror *ivar = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_pointerIvar"];
 	XCTAssertNotNil(ivar);
-	[ivar setValue:[NSValue valueWithBytes:&testObject objCType:@encode(void *)] in:testObject];
-	XCTAssertEqual(testObject, testObject->_pointerIvar);
+	void *p = &testObject;
+	[ivar setValue:[NSValue valueWithBytes:&p objCType:@encode(void *)] in:testObject];
+	XCTAssertEqual(p, testObject->_pointerIvar);
 }
 
 @end

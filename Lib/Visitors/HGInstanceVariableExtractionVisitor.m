@@ -12,6 +12,7 @@
 
 @end
 
+
 @implementation HGInstanceVariableExtractionVisitor
 
 - (instancetype)initWithInstanceVariable:(HGInstanceVariableMirror *)instanceVariable target:(id)anObject {

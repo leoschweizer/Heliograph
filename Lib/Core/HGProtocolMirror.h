@@ -34,10 +34,23 @@
 - (NSArray *)adoptedProtocols;
 
 /**
+ * Adds an incorporated protocol to the receiver's mirrored protocol. 
+ * The protocol being added to must still be under construction, while the 
+ * additional protocol must be already constructed.
+ * @return a HGProtocolMirror reflecting the newly adopted protocol if successfull.
+ */
+- (HGProtocolMirror *)adoptProtocol:(Protocol *)aProtocol;
+
+/**
  * Answers an NSArray of HGMethodDescriptionMirrors reflecting the class methods
  * defined by the receiver's mirrored protocol.
  */
 - (NSArray *)classMethods;
+
+/**
+ * Answers the name of the receiver's mirrored protocol;
+ */
+- (NSString *)name;
 
 /**
  * Answers an NSArray of HGMethodDescriptionMirrors reflecting the instance 

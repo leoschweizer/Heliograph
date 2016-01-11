@@ -35,6 +35,11 @@
 	XCTAssertEqual([[allProtocols firstObject] class], [HGProtocolMirror class]);
 }
 
+- (void)testName {
+	HGProtocolMirror *mirror = reflect(@protocol(NSSecureCoding));
+	XCTAssertEqualObjects([mirror name], @"NSSecureCoding");
+}
+
 - (void)testInstanceMethods {
 	HGProtocolMirror *mirror = reflect(@protocol(HGTestProtocol));
 	NSArray *methods = [mirror instanceMethods];
@@ -72,6 +77,31 @@
 	XCTAssertNotNil(mirror);
 	[mirror registerProtocol];
 	XCTAssertEqual(mirror.mirroredProtocol, NSProtocolFromString(@"HGTestProtocol123"));
+}
+
+- (void)testAdoptProtocol {
+	HGProtocolMirror *mirror = [HGProtocolMirror addProtocolNamed:@"HGTestProtocol123baz"];
+	XCTAssertNotNil(mirror);
+	[mirror adoptProtocol:@protocol(NSCopying)];
+	NSArray *adoptedProtocols = [mirror adoptedProtocols];
+	XCTAssertEqual([adoptedProtocols count], 1);
+	HGProtocolMirror *protocol = [adoptedProtocols firstObject];
+	XCTAssertEqualObjects([protocol name], @"NSCopying");
+}
+
+- (void)testAdoptAdoptedProtocol {
+	HGProtocolMirror *mirror = [HGProtocolMirror addProtocolNamed:@"HGTestProtocol1234"];
+	XCTAssertNotNil(mirror);
+	HGProtocolMirror *m1 = [mirror adoptProtocol:@protocol(NSCopying)];
+	HGProtocolMirror *m2 = [mirror adoptProtocol:@protocol(NSCopying)];
+	XCTAssertNotNil(m1);
+	XCTAssertNil(m2);
+}
+
+- (void)testAdoptOnRegisteredProtocol {
+	HGProtocolMirror *mirror = reflect(@protocol(NSObject));
+	HGProtocolMirror *protocol = [mirror adoptProtocol:@protocol(NSSecureCoding)];
+	XCTAssertNil(protocol);
 }
 
 - (void)testAddProtocolFailure {

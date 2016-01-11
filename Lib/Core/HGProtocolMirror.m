@@ -45,6 +45,17 @@
 	return [NSArray arrayWithArray:result];
 }
 
+- (HGProtocolMirror *)adoptProtocol:(Protocol *)aProtocol {
+	if (protocol_conformsToProtocol(self.mirroredProtocol, aProtocol)) {
+		return nil;
+	}
+	protocol_addProtocol(self.mirroredProtocol, aProtocol);
+	if (protocol_conformsToProtocol(self.mirroredProtocol, aProtocol)) {
+		return [[HGProtocolMirror alloc] initWithProtocol:aProtocol];
+	}
+	return nil;
+}
+
 - (NSArray *)getMethods:(BOOL)isInstanceMethod {
 	unsigned int requiredMethodCount;
 	unsigned int optionalMethodCount;
@@ -64,6 +75,10 @@
 	free(requiredMethods);
 	free(optionalMethods);
 	return result;
+}
+
+- (NSString *)name {
+	return [NSString stringWithUTF8String:protocol_getName(self.mirroredProtocol)];
 }
 
 - (NSArray *)instanceMethods {

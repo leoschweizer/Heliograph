@@ -19,6 +19,11 @@
  */
 - (NSString *)name;
 
+/**
+ * Writes aValue into the receiver's mirrored instance variable in anObject.
+ * Primitive types (e.g. int, BOOL, CGRect, ...) have to be wrapped as NSValue
+ * instances, e.g. [NSValue valueWithBytes:&rect encoding:@encode(CGRect)].
+ */
 - (void)setValue:(id)aValue in:(id)anObject;
 
 /**

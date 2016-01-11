@@ -331,6 +331,18 @@
 	XCTAssertEqualObjects([value valueDescription], @"[array]");
 }
 
+- (void)testWriteArrayIvar {
+	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
+	HGInstanceVariableMirror *ivar = [reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_arrayIvar"];
+	XCTAssertNotNil(ivar);
+	int testArray[2];
+	testArray[0] = 1337;
+	testArray[1] = 7331;
+	[ivar setValue:[NSValue valueWithBytes:&testArray objCType:@encode(int[2])] in:testObject];
+	XCTAssertEqual(testObject->_arrayIvar[0], 1337);
+	XCTAssertEqual(testObject->_arrayIvar[1], 7331);
+}
+
 - (void)testReadStructIvar {
 	HGInstanceVariableClass *testObject = [[HGInstanceVariableClass alloc] init];
 	testObject->_structIvar = CGRectMake(10, 10, 1337, 7331);

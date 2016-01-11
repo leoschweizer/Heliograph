@@ -100,7 +100,7 @@
 }
 
 - (void)visitArrayTypeMirror:(HGArrayTypeMirror *)typeMirror {
-	
+	Write(void);
 }
 
 - (void)visitStructureTypeMirror:(HGStructureTypeMirror *)typeMirror {

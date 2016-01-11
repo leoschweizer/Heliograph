@@ -130,6 +130,11 @@
 	XCTAssertEqualObjects([mirror valueDescription], @"<^>");
 }
 
+- (void)testBitFieldDescription {
+	id<HGValueMirror> mirror = [[HGBitFieldValueMirror alloc] initWithValue:nil];
+	XCTAssertEqualObjects([mirror valueDescription], @"<bitfield>");
+}
+
 - (void)testUnknownDescription {
 	id<HGValueMirror> mirror = [[HGUnknownValueMirror alloc] initWithValue:nil];
 	XCTAssertEqualObjects([mirror valueDescription], @"<unknown>");

@@ -96,4 +96,24 @@
 	XCTAssertNil(mirror);
 }
 
+- (void)testIsEqual {
+	HGPropertyMirror *m1 = [reflect([HGPropertyClass class]) propertyNamed:@"property1"];
+	HGPropertyMirror *m2 = [reflect([HGPropertyClass class]) propertyNamed:@"property1"];
+	HGPropertyMirror *m3 = [reflect([HGPropertyClass class]) propertyNamed:@"property2"];
+	XCTAssertTrue([m1 isEqual:m1]);
+	XCTAssertEqualObjects(m1, m2);
+	XCTAssertNotEqualObjects(m2, m3);
+	XCTAssertNotEqualObjects(m1, @"");
+	XCTAssertNotEqualObjects(m1, nil);
+}
+
+- (void)testHash {
+	NSDictionary *test = @{
+		[reflect([HGPropertyClass class]) propertyNamed:@"property1"] : @1,
+		[reflect([HGPropertyClass class]) propertyNamed:@"property1"] : @2,
+		[reflect([HGPropertyClass class]) propertyNamed:@"property2"] : @3
+	};
+	XCTAssertEqual([test count], 2);
+}
+
 @end

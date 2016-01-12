@@ -69,7 +69,7 @@ static id<HGTypeMirror> parseType(NSArray *stringAttributes) {
 
 @interface HGPropertyMirror ()
 
-@property (nonatomic, readonly) objc_property_t mirroredProperty;
+@property (nonatomic, readonly) NSValue *mirroredPropertyStorage;
 @property (nonatomic, readonly) NSString *backingInstanceVariableName;
 @property (nonatomic, readonly) NSString *getterName;
 @property (nonatomic, readonly) NSString *setterName;
@@ -80,8 +80,8 @@ static id<HGTypeMirror> parseType(NSArray *stringAttributes) {
 @implementation HGPropertyMirror
 
 - (void)commonInitWithProperty:(objc_property_t)aProperty {
-	_mirroredProperty = aProperty;
-	NSArray *stringAttributes = parseStringAttributes(property_getAttributes(_mirroredProperty));
+	_mirroredPropertyStorage = [NSValue valueWithBytes:&aProperty objCType:@encode(objc_property_t)];
+	NSArray *stringAttributes = parseStringAttributes(property_getAttributes(self.mirroredProperty));
 	_attributes = parseAttributes(stringAttributes);
 	_getterName = parseGetterName(stringAttributes, self.name);
 	_setterName = parseSetterName(stringAttributes, self.name);
@@ -146,6 +146,12 @@ static id<HGTypeMirror> parseType(NSArray *stringAttributes) {
 	return self.attributes & HGPropertyAttributesGarbageCollection;
 }
 
+- (objc_property_t)mirroredProperty {
+	objc_property_t result;
+	[self.mirroredPropertyStorage getValue:&result];
+	return result;
+}
+
 - (NSString *)name {
 	return [NSString stringWithUTF8String:property_getName(self.mirroredProperty)];
 }
@@ -153,6 +159,37 @@ static id<HGTypeMirror> parseType(NSArray *stringAttributes) {
 - (HGMethodMirror *)setter {
 	NSAssert(self.definingClass, @"This method can only be called on properties with an associated class");
 	return [self.definingClass methodNamed:NSSelectorFromString(self.setterName)];
+}
+
+#pragma mark - NSObject
+
+- (BOOL)isEqual:(id)anObject {
+	if (anObject == self) {
+		return YES;
+	}
+	if (!anObject || !([anObject class] == [self class])) {
+		return NO;
+	}
+	return [self isEqualToPropertyMirror:anObject];
+}
+
+- (BOOL)isEqualToPropertyMirror:(HGPropertyMirror *)aPropertyMirror {
+	return [self.mirroredPropertyStorage isEqual:aPropertyMirror.mirroredPropertyStorage];
+}
+
+- (NSUInteger)hash {
+	return [@"HGPropertyMirror" hash] ^ [self.mirroredPropertyStorage hash];
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+	HGPropertyMirror *newMirror = [[self.class allocWithZone:zone] init];
+	newMirror->_mirroredPropertyStorage = [_mirroredPropertyStorage copyWithZone:zone];
+	newMirror->_backingInstanceVariableName = [_backingInstanceVariableName copyWithZone:zone];
+	newMirror->_getterName = [_getterName copyWithZone:zone];
+	newMirror->_setterName = [_setterName copyWithZone:zone];
+	return newMirror;
 }
 
 @end

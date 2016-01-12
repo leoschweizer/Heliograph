@@ -20,7 +20,7 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
 };
 
 
-@interface HGPropertyMirror : NSObject
+@interface HGPropertyMirror : NSObject <NSCopying>
 
 /**
  * The HGClassMirror reflecting the receiver's mirrored propertie's defining class.
@@ -105,5 +105,10 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
  * setter method.
  */
 - (HGMethodMirror *)setter;
+
+/**
+ * Compares the receiving HGPropertyMirror to another HGPropertyMirror.
+ */
+- (BOOL)isEqualToPropertyMirror:(HGPropertyMirror *)aPropertyMirror;
 
 @end

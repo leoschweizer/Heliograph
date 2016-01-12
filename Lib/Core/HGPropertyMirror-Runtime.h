@@ -6,6 +6,11 @@
 @interface HGPropertyMirror (HGRuntimeDependent)
 
 /**
+ * The mirrored property.
+ */
+@property (nonatomic, readonly) objc_property_t mirroredProperty;
+
+/**
  * Answers an HGPropertyMirror reflecting aProperty. Don't call this yourself,
  * use [reflect(...) properties] instead to retrieve instances of this class.
  */

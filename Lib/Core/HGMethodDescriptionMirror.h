@@ -4,7 +4,7 @@
 @class HGProtocolMirror;
 
 
-@interface HGMethodDescriptionMirror : NSObject
+@interface HGMethodDescriptionMirror : NSObject <NSCopying>
 
 /**
  * The HGProtocolMirror reflecting the receiver's mirrored method description's
@@ -45,5 +45,10 @@
  * Answers the selector of the receiver's mirrored method description.
  */
 - (SEL)selector;
+
+/**
+ * Compares the receiving HGMethodDescriptionMirror to another HGMethodDescriptionMirror.
+ */
+- (BOOL)isEqualToMethodDescriptionMirror:(HGMethodDescriptionMirror *)aMethodDescriptionMirror;
 
 @end

@@ -18,6 +18,14 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.source_files = 'Lib', 'Lib/**/*.{h,m}'
+  spec.default_subspec = 'Core'
+
+  s.subspec 'Core' do |ss|
+    ss.source_files = 'Lib/*.h', 'Lib/Core/**/*.{h,m}', 'Lib/Visitors/**/*.{h,m}'
+  end
+
+  s.subspec 'MethodWrappers' do |ss|
+    ss.source_files= 'Lib/MethodWrappers/**/*.{h,m}'
+  end
   
 end

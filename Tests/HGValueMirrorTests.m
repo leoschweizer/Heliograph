@@ -140,4 +140,33 @@
 	XCTAssertEqualObjects([mirror valueDescription], @"<unknown>");
 }
 
+- (void)testIsEqual {
+	int i = 5;
+	SEL sel = @selector(didChangeValueForKey:);
+	id<HGValueMirror> m1 = [[HGIntValueMirror alloc] initWithValue:[NSValue valueWithBytes:&i objCType:@encode(int)]];
+	id<HGValueMirror> m2 = [[HGIntValueMirror alloc] initWithValue:[NSValue valueWithBytes:&i objCType:@encode(int)]];
+	id<HGValueMirror> m3 = [[HGSelectorValueMirror alloc] initWithValue:[NSValue valueWithBytes:&sel objCType:@encode(SEL)]];
+	id<HGValueMirror> m4 = reflect([NSString class]);
+	XCTAssertTrue([m1 isEqual:m1]);
+	XCTAssertEqualObjects(m1, m2);
+	XCTAssertNotEqualObjects(m2, m3);
+	XCTAssertNotEqualObjects(m4, m1);
+	XCTAssertNotEqualObjects(m1, @"");
+	XCTAssertNotEqualObjects(m1, nil);
+	XCTAssertFalse([m4 isEqualToValueMirror:m1]);
+}
+
+- (void)testHash {
+	int i = 5;
+	SEL sel = @selector(didChangeValueForKey:);
+	NSDictionary *test = @{
+		[[HGIntValueMirror alloc] initWithValue:[NSValue valueWithBytes:&i objCType:@encode(int)]] : @1,
+		[[HGIntValueMirror alloc] initWithValue:[NSValue valueWithBytes:&i objCType:@encode(int)]] : @2,
+		[[HGSelectorValueMirror alloc] initWithValue:[NSValue valueWithBytes:&sel objCType:@encode(SEL)]] : @3,
+		[NSValue valueWithBytes:&sel objCType:@encode(SEL)] : @4
+	};
+	XCTAssertEqual([test count], 3);
+	XCTAssertEqualObjects([test objectForKey:[NSValue valueWithBytes:&sel objCType:@encode(SEL)]], @4);
+}
+
 @end

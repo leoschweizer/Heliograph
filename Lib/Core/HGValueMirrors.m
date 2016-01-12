@@ -21,6 +21,34 @@
 
 - (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor {}
 
+#pragma mark - NSObject
+
+- (BOOL)isEqual:(id)anObject {
+	if (anObject == self) {
+		return YES;
+	}
+	if (!anObject || !([anObject class] == [self class])) {
+		return NO;
+	}
+	return [self isEqualToValueMirror:anObject];
+}
+
+- (BOOL)isEqualToValueMirror:(id<HGValueMirror>)aValueMirror {
+	return [self.mirroredValue isEqual:((HGBaseValueMirror *)aValueMirror).mirroredValue];
+}
+
+- (NSUInteger)hash {
+	return [@"HGValueMirror" hash] ^ [self.mirroredValue hash];
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+	HGBaseValueMirror *newMirror = [[self.class allocWithZone:zone] init];
+	newMirror->_mirroredValue = [_mirroredValue copyWithZone:zone];
+	return newMirror;
+}
+
 @end
 
 

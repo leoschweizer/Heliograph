@@ -28,13 +28,27 @@
 @protocol HGValueMirrorVisitor;
 
 
-@protocol HGValueMirror <NSObject>
+@protocol HGValueMirror <NSObject, NSCopying>
 
+/**
+ * The mirrored value.
+ */
 @property (nonatomic, readonly) NSValue *mirroredValue;
 
+/**
+ * Executes aVisitor on the receiver.
+ */
 - (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor;
 
+/**
+ * Answers a human-readable description of the receiver's mirrored value.
+ */
 - (NSString *)valueDescription;
+
+/**
+ * Compares the receiving id<HGValueMirror> to another id<HGValueMirror>.
+ */
+- (BOOL)isEqualToValueMirror:(id<HGValueMirror>)aValueMirror;
 
 @end
 

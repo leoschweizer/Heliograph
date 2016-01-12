@@ -1,6 +1,9 @@
 #import <Foundation/Foundation.h>
 
 
+@class HGMethodDescriptionMirror;
+
+
 @interface HGProtocolMirror : NSObject <NSCopying>
 
 /**
@@ -42,6 +45,12 @@
 - (HGProtocolMirror *)adoptProtocol:(Protocol *)aProtocol;
 
 /**
+ * Anserts an HGMethodDescriptionMirror reflecting the class method named
+ * aName, if it exists.
+ */
+- (HGMethodDescriptionMirror *)classMethodNamed:(SEL)aName;
+
+/**
  * Answers an NSArray of HGMethodDescriptionMirrors reflecting the class methods
  * defined by the receiver's mirrored protocol.
  */
@@ -51,6 +60,12 @@
  * Answers the name of the receiver's mirrored protocol;
  */
 - (NSString *)name;
+
+/**
+ * Anserts an HGMethodDescriptionMirror reflecting the instance method named
+ * aName, if it exists.
+ */
+- (HGMethodDescriptionMirror *)instanceMethodNamed:(SEL)aName;
 
 /**
  * Answers an NSArray of HGMethodDescriptionMirrors reflecting the instance 

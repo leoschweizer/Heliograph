@@ -92,8 +92,28 @@
 	return [NSString stringWithUTF8String:protocol_getName(self.mirroredProtocol)];
 }
 
+- (HGMethodDescriptionMirror *)instanceMethodNamed:(SEL)aName {
+	NSArray *instanceMethods = [self instanceMethods];
+	for (HGMethodDescriptionMirror *each in instanceMethods) {
+		if (sel_isEqual([each selector], aName)) {
+			return each;
+		}
+	}
+	return nil;
+}
+
 - (NSArray *)instanceMethods {
 	return [self getMethods:YES];
+}
+
+- (HGMethodDescriptionMirror *)classMethodNamed:(SEL)aName {
+	NSArray *classMethods = [self classMethods];
+	for (HGMethodDescriptionMirror *each in classMethods) {
+		if (sel_isEqual([each selector], aName)) {
+			return each;
+		}
+	}
+	return nil;
 }
 
 - (NSArray *)classMethods {

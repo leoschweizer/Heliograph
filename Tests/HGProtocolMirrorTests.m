@@ -40,6 +40,19 @@
 	XCTAssertEqualObjects([mirror name], @"NSSecureCoding");
 }
 
+- (void)testInstanceMethodNamed {
+	HGProtocolMirror *mirror = reflect(@protocol(NSCoding));
+	HGMethodDescriptionMirror *method = [mirror instanceMethodNamed:@selector(initWithCoder:)];
+	XCTAssertNotNil(method);
+	XCTAssertEqual([method selector], @selector(initWithCoder:));
+}
+
+- (void)testInstanceMethodNamedMissing {
+	HGProtocolMirror *mirror = reflect(@protocol(NSCoding));
+	HGMethodDescriptionMirror *method = [mirror instanceMethodNamed:@selector(value:withObjCType:)];
+	XCTAssertNil(method);
+}
+
 - (void)testInstanceMethods {
 	HGProtocolMirror *mirror = reflect(@protocol(HGTestProtocol));
 	NSArray *methods = [mirror instanceMethods];
@@ -54,6 +67,19 @@
 	XCTAssertFalse(m2.isClassMethod);
 	XCTAssertTrue(m2.isOptional);
 	XCTAssertFalse(m2.isRequired);
+}
+
+- (void)testClassMethodNamed {
+	HGProtocolMirror *mirror = reflect(@protocol(HGTestProtocol));
+	HGMethodDescriptionMirror *method = [mirror classMethodNamed:@selector(requiredClassMethodWithArgument:)];
+	XCTAssertNotNil(method);
+	XCTAssertEqual([method selector], @selector(requiredClassMethodWithArgument:));
+}
+
+- (void)testClassMethodNamedMissing {
+	HGProtocolMirror *mirror = reflect(@protocol(NSCoding));
+	HGMethodDescriptionMirror *method = [mirror classMethodNamed:@selector(value:withObjCType:)];
+	XCTAssertNil(method);
 }
 
 - (void)testClassMethods {

@@ -9,6 +9,11 @@
 
 @implementation HGValueMirrorTests
 
+- (void)testBaseTypeAcceptsVisitor {
+	HGBaseValueMirror *mirror = [[HGBaseValueMirror alloc] initWithValue:nil];
+	[mirror acceptValueMirrorVisitor:nil];
+}
+
 - (void)testObjectDescription {
 	id value = @44;
 	id<HGValueMirror> mirror = [[HGObjectMirror alloc] initWithValue:[NSValue valueWithBytes:&value objCType:@encode(id)]];

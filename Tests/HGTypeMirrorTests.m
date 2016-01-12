@@ -10,12 +10,18 @@
 
 @implementation HGTypeMirrorTests
 
+- (void)testBaseTypeAcceptsVisitor {
+	HGBaseTypeMirror *mirror = [[HGBaseTypeMirror alloc] init];
+	[mirror acceptTypeMirrorVisitor:nil];
+}
+
 - (void)testObjectType {
 	HGPropertyMirror *mirror = [reflect([HGTypeTestClass class]) propertyNamed:@"stringProperty"];
 	XCTAssertNotNil(mirror);
 	id typeMirror = [mirror type];
 	XCTAssertEqual([typeMirror class], [HGObjectTypeMirror class]);
 	XCTAssertEqual([[typeMirror classMirror] mirroredClass], [NSString class]);
+	XCTAssertEqualObjects([typeMirror classMirror], [(HGObjectTypeMirror *)typeMirror type]);
 }
 
 - (void)testIdType {

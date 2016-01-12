@@ -75,6 +75,10 @@
 	return [[self classMirror] methods];
 }
 
+- (HGClassMirror *)type {
+	return [self classMirror];
+}
+
 - (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor {
 	if ([aVisitor respondsToSelector:@selector(visitObjectValueMirror:)]) {
 		[aVisitor visitObjectValueMirror:self];

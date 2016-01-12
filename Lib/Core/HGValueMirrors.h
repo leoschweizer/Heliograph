@@ -45,6 +45,11 @@
 - (HGClassMirror *)classMirror;
 
 /**
+ * Alias for classMirror.
+ */
+- (HGClassMirror *)type;
+
+/**
  * Answers an NSArray of HGMethodMirrors reflecting the instance methods of the
  * receiver's mirrored object's class.
  */

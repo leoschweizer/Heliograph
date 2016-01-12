@@ -104,7 +104,6 @@
 @implementation HGObjectTypeMirror
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
-	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitObjectTypeMirror:)]) {
 		[aVisitor visitObjectTypeMirror:self];
 	}

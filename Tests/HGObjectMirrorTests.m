@@ -30,6 +30,7 @@
 - (void)testClassMirror {
 	HGObjectMirror *mirror = reflect(@"Dr. Pepper");
 	XCTAssertTrue([[[mirror classMirror] mirroredClass] isSubclassOfClass:[NSString class]]);
+	XCTAssertEqualObjects([mirror classMirror], [mirror type]);
 }
 
 - (void)testInstanceMethods {

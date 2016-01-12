@@ -300,6 +300,10 @@
 	return [self.mirroredClassStorage isEqual:aClassMirror.mirroredClassStorage];
 }
 
+- (BOOL)isEqualToTypeMirror:(id<HGTypeMirror>)aTypeMirror {
+	return [self isEqual:aTypeMirror];
+}
+
 - (NSUInteger)hash {
 	return [@"HGClassMirror" hash] ^ [self.mirroredClassStorage hash];
 }

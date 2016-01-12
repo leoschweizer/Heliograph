@@ -7,18 +7,31 @@
 
 @interface HGBaseTypeMirror : NSObject <HGTypeMirror>
 
+/**
+ * The encoding of the receiver's mirrored type.
+ */
 @property (nonatomic, readonly) NSString *encoding;
 
-+ (instancetype)createForEncoding:(NSString *)encoding;
-
-- (instancetype)initWithEncoding:(NSString *)encoding;
+/**
+ * Answers an HGTypeMirror reflecting the type specified by anEncoding;
+ */
++ (id<HGTypeMirror>)createForEncoding:(NSString *)anEncoding;
 
 @end
 
 
 @interface HGObjectTypeMirror : HGBaseTypeMirror
 
-@property (nonatomic, readonly) HGClassMirror *classMirror;
+/**
+ * Answers an HGClassMirror reflecting the class of the receiver's mirrored
+ * object.
+ */
+- (HGClassMirror *)classMirror;
+
+/**
+ * Alias for classMirror.
+ */
+- (HGClassMirror *)type;
 
 @end
 

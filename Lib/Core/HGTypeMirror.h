@@ -29,11 +29,22 @@
 @protocol HGTypeMirrorVisitor;
 
 
-@protocol HGTypeMirror <NSObject>
+@protocol HGTypeMirror <NSObject, NSCopying>
 
+/**
+ * Executes aVisitor on the receiver.
+ */
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor;
 
+/**
+ * Answers a human readable description of the receiver's mirrored type.
+ */
 - (NSString *)typeDescription;
+
+/**
+ * Compares the receiving id<HGTypeMirror> to another id<HGTypeMirror>.
+ */
+- (BOOL)isEqualToTypeMirror:(id<HGTypeMirror>)aTypeMirror;
 
 @end
 

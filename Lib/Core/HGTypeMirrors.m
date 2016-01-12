@@ -4,6 +4,13 @@
 #import "HGTypeMirrorDescriptionVisitor.h"
 
 
+@interface HGBaseTypeMirror ()
+
+- (instancetype)initWithEncoding:(NSString *)encoding;
+
+@end
+
+
 @implementation HGBaseTypeMirror
 
 + (NSDictionary *)typeEncodings {
@@ -40,7 +47,7 @@
 	return _dict;
 }
 
-+ (instancetype)createForEncoding:(NSString *)encoding {
++ (id<HGTypeMirror>)createForEncoding:(NSString *)encoding {
 	Class class = [[self typeEncodings] objectForKey:@([encoding characterAtIndex:0])];
 	if (class) {
 		return [[class alloc] initWithEncoding:encoding];
@@ -63,29 +70,59 @@
 	return visitor.typeDescription;
 }
 
+#pragma mark - NSObject
+
+- (BOOL)isEqual:(id)anObject {
+	if (anObject == self) {
+		return YES;
+	}
+	if (!anObject || !([anObject class] == [self class])) {
+		return NO;
+	}
+	return [self isEqualToTypeMirror:anObject];
+}
+
+- (BOOL)isEqualToTypeMirror:(id<HGTypeMirror>)aTypeMirror {
+	return [self.encoding isEqualToString:((HGBaseTypeMirror *)aTypeMirror).encoding];
+}
+
+- (NSUInteger)hash {
+	return [@"HGTypeMirror" hash] ^ [self.encoding hash];
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+	HGBaseTypeMirror *newMirror = [[self.class allocWithZone:zone] init];
+	newMirror->_encoding = [_encoding copyWithZone:zone];
+	return newMirror;
+}
+
 @end
 
 
 @implementation HGObjectTypeMirror
-
-- (instancetype)initWithEncoding:(NSString *)encoding {
-	if (self = [super initWithEncoding:encoding]) {
-		if (encoding.length >= 4) {
-			NSString *className = [encoding substringWithRange:NSMakeRange(2, encoding.length - 3)];
-			Class class = objc_getClass([className cStringUsingEncoding:NSUTF8StringEncoding]);
-			if (class) {
-				_classMirror = [[HGClassMirror alloc] initWithClass:class];
-			}
-		}
-	}
-	return self;
-}
 
 - (void)acceptTypeMirrorVisitor:(id<HGTypeMirrorVisitor>)aVisitor {
 	[super acceptTypeMirrorVisitor:aVisitor];
 	if ([aVisitor respondsToSelector:@selector(visitObjectTypeMirror:)]) {
 		[aVisitor visitObjectTypeMirror:self];
 	}
+}
+
+- (HGClassMirror *)classMirror {
+	if (self.encoding.length >= 4) {
+		NSString *className = [self.encoding substringWithRange:NSMakeRange(2, self.encoding.length - 3)];
+		Class class = objc_getClass([className cStringUsingEncoding:NSUTF8StringEncoding]);
+		if (class) {
+			return [[HGClassMirror alloc] initWithClass:class];
+		}
+	}
+	return nil;
+}
+
+- (HGClassMirror *)type {
+	return [self classMirror];
 }
 
 @end

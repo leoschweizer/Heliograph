@@ -96,4 +96,29 @@
 	
 }
 
+- (void)testIsEqual {
+	id<HGTypeMirror> m1 = [HGBaseTypeMirror createForEncoding:@"q"];
+	id<HGTypeMirror> m2 = [HGBaseTypeMirror createForEncoding:@"q"];
+	id<HGTypeMirror> m3 = [HGBaseTypeMirror createForEncoding:@"@"];
+	id<HGTypeMirror> m4 = reflect([NSString class]);
+	XCTAssertTrue([m1 isEqual:m1]);
+	XCTAssertEqualObjects(m1, m2);
+	XCTAssertNotEqualObjects(m2, m3);
+	XCTAssertNotEqualObjects(m4, m1);
+	XCTAssertNotEqualObjects(m1, @"");
+	XCTAssertNotEqualObjects(m1, nil);
+	XCTAssertFalse([m4 isEqualToTypeMirror:m1]);
+}
+
+- (void)testHash {
+	NSDictionary *test = @{
+		[HGBaseTypeMirror createForEncoding:@"q"] : @1,
+		[HGBaseTypeMirror createForEncoding:@"q"] : @2,
+		[HGBaseTypeMirror createForEncoding:@":"] : @3,
+		@":" : @4
+	};
+	XCTAssertEqual([test count], 3);
+	XCTAssertEqualObjects([test objectForKey:@":"], @4);
+}
+
 @end

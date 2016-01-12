@@ -30,6 +30,10 @@
 /**
  * Creates an instance variable named aName in the receiver's mirrored class.
  * @returns an HGInstanceVariableMirror reflecting the newly added instance variable.
+ * @note This method may only be called as long as the mirrored class is under
+    construction. Adding an instance variable to an existing class is not supported.
+ * @note The class must not be a metaclass. Adding an instance variable to a 
+ *  metaclass is not supported.
  */
 - (HGInstanceVariableMirror *)addInstanceVariableNamed:(NSString *)aName withEncoding:(const char *)anEncoding;
 

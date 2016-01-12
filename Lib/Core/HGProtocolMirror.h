@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface HGProtocolMirror : NSObject
+@interface HGProtocolMirror : NSObject <NSCopying>
 
 /**
  * Creates a new protocol with aName.
@@ -69,5 +69,12 @@
  * protocol to finalize the protocol creation process.
  */
 - (void)registerProtocol;
+
+/**
+ * Compares the receiving HGProtocolMirror to another HGProtocolMirror.
+ * @returns YES if the mirrored protocol of aProtocolMirror is euqal to the 
+ * receiver's mirrored protocol.
+ */
+- (BOOL)isEqualToProtocolMirror:(HGProtocolMirror *)aProtocolMirror;
 
 @end

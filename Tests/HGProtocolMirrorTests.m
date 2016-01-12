@@ -119,4 +119,26 @@
 	XCTAssertEqualObjects(property.name, @"property1");
 }
 
+- (void)testIsEqual {
+	HGProtocolMirror *m1 = reflect(@protocol(NSSecureCoding));
+	HGProtocolMirror *m2 = reflect(@protocol(NSSecureCoding));
+	HGProtocolMirror *m3 = reflect(@protocol(NSObject));
+	XCTAssertTrue([m1 isEqual:m1]);
+	XCTAssertEqualObjects(m1, m2);
+	XCTAssertNotEqualObjects(m2, m3);
+	XCTAssertNotEqualObjects(m1, @"");
+	XCTAssertNotEqualObjects(m1, nil);
+}
+
+- (void)testHash {
+	NSDictionary *test = @{
+		reflect(@protocol(NSSecureCoding)) : @1,
+		reflect(@protocol(NSSecureCoding)) : @2,
+		reflect(@protocol(NSObject)) : @3,
+		[NSValue valueWithNonretainedObject:@protocol(NSObject)] : @4
+	};
+	XCTAssertEqual([test count], 3);
+	XCTAssertEqualObjects([test objectForKey:[NSValue valueWithNonretainedObject:@protocol(NSObject)]], @4);
+}
+
 @end

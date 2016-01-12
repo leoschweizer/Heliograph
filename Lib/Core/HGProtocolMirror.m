@@ -4,6 +4,13 @@
 #import "HGPropertyMirror-Runtime.h"
 
 
+@interface HGProtocolMirror ()
+
+@property (nonatomic, readonly) NSValue *mirroredProtocolStorage;
+
+@end
+
+
 @implementation HGProtocolMirror
 
 + (HGProtocolMirror *)addProtocolNamed:(NSString *)aName {
@@ -27,7 +34,7 @@
 
 - (instancetype)initWithProtocol:(Protocol *)aProtocol {
 	if (self = [super init]) {
-		_mirroredProtocol = aProtocol;
+		_mirroredProtocolStorage = [NSValue valueWithNonretainedObject:aProtocol];
 	}
 	return self;
 }
@@ -77,6 +84,10 @@
 	return result;
 }
 
+- (Protocol *)mirroredProtocol {
+	return [self.mirroredProtocolStorage nonretainedObjectValue];
+}
+
 - (NSString *)name {
 	return [NSString stringWithUTF8String:protocol_getName(self.mirroredProtocol)];
 }
@@ -104,6 +115,34 @@
 
 - (void)registerProtocol {
 	objc_registerProtocol(self.mirroredProtocol);
+}
+
+#pragma mark - NSObject
+
+- (BOOL)isEqual:(id)anObject {
+	if (anObject == self) {
+		return YES;
+	}
+	if (!anObject || !([anObject class] == [self class])) {
+		return NO;
+	}
+	return [self isEqualToProtocolMirror:anObject];
+}
+
+- (BOOL)isEqualToProtocolMirror:(HGProtocolMirror *)aProtocolMirror {
+	return [self.mirroredProtocolStorage isEqual:aProtocolMirror.mirroredProtocolStorage];
+}
+
+- (NSUInteger)hash {
+	return [@"HGProtocolMirror" hash] ^ [self.mirroredProtocolStorage hash];
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+	HGProtocolMirror *newMirror = [[self.class allocWithZone:zone] init];
+	newMirror->_mirroredProtocolStorage = [_mirroredProtocolStorage copyWithZone:zone];
+	return newMirror;
 }
 
 @end

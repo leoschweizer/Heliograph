@@ -31,6 +31,20 @@
 - (instancetype)initWithProtocol:(Protocol *)aProtocol;
 
 /**
+ * Adds a class method description to the receiver's mirrored protocol.
+ * @return an HGMethodDescriptionMirror reflecting the added method description.
+ * @note The protocol must be under construction.
+ */
+- (HGMethodDescriptionMirror *)addClassMethodDescriptionNamed:(SEL)aSelector withEncoding:(const char *)anEncoding isRequired:(BOOL)isRequired;
+
+/**
+ * Adds an instance method description to the receiver's mirrored protocol.
+ * @return an HGMethodDescriptionMirror reflecting the added method description.
+ * @note The protocol must be under construction.
+ */
+- (HGMethodDescriptionMirror *)addInstanceMethodDescriptionNamed:(SEL)aSelector withEncoding:(const char *)anEncoding isRequired:(BOOL)isRequired;
+
+/**
  * Answers an NSArray of OCProtocolMirrors reflecting the protocols adopted
  * by the receiver's mirrored protocol.
  */

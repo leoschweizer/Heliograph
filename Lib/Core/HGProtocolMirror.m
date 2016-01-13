@@ -39,6 +39,16 @@
 	return self;
 }
 
+- (HGMethodDescriptionMirror *)addClassMethodDescriptionNamed:(SEL)aSelector withEncoding:(const char *)anEncoding isRequired:(BOOL)isRequired {
+	protocol_addMethodDescription(self.mirroredProtocol, aSelector, anEncoding, isRequired, NO);
+	return [self classMethodNamed:aSelector];
+}
+
+- (HGMethodDescriptionMirror *)addInstanceMethodDescriptionNamed:(SEL)aSelector withEncoding:(const char *)anEncoding isRequired:(BOOL)isRequired {
+	protocol_addMethodDescription(self.mirroredProtocol, aSelector, anEncoding, isRequired, YES);
+	return [self instanceMethodNamed:aSelector];
+}
+
 - (NSArray *)adoptedProtocols {
 	NSMutableArray *result = [NSMutableArray array];
 	unsigned int protocolCount = 0;

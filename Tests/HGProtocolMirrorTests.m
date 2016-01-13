@@ -16,6 +16,28 @@
 	XCTAssertEqualObjects([mirror mirroredProtocol], @protocol(NSObject));
 }
 
+- (void)testAddInstanceMethod {
+	HGProtocolMirror *mirror = [HGProtocolMirror addProtocolNamed:@"HGInstanceMethodTestProtocol1"];
+	XCTAssertNotNil(mirror);
+	HGMethodMirror *prototype = [reflect([NSMutableArray class]) methodNamed:@selector(initWithCapacity:)];
+	XCTAssertNotNil(prototype);
+	HGMethodDescriptionMirror *method = [mirror addInstanceMethodDescriptionNamed:@selector(initWithCapacity:) withEncoding:[prototype encoding] isRequired:YES];
+	XCTAssertNotNil(method);
+	XCTAssertTrue([method isRequired]);
+	XCTAssertTrue([method isInstanceMethod]);
+}
+
+- (void)testAddClassMethod {
+	HGProtocolMirror *mirror = [HGProtocolMirror addProtocolNamed:@"HGInstanceMethodTestProtocol2"];
+	XCTAssertNotNil(mirror);
+	HGMethodMirror *prototype = [reflect([NSMutableArray class]) methodNamed:@selector(initWithCapacity:)];
+	XCTAssertNotNil(prototype);
+	HGMethodDescriptionMirror *method = [mirror addClassMethodDescriptionNamed:@selector(initWithCapacity:) withEncoding:[prototype encoding] isRequired:NO];
+	XCTAssertNotNil(method);
+	XCTAssertTrue([method isOptional]);
+	XCTAssertTrue([method isClassMethod]);
+}
+
 - (void)testAdoptedProtocols {
 	HGProtocolMirror *mirror = reflect(@protocol(NSSecureCoding));
 	NSArray *adoptedProtocols = [mirror adoptedProtocols];

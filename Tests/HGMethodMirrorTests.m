@@ -1,5 +1,6 @@
 #import <XCTest/XCTest.h>
 #import <Heliograph/Heliograph.h>
+#import "HGTestHierarchy.h"
 
 
 @interface HGMethodMirrorTests : XCTestCase
@@ -34,6 +35,36 @@
 	XCTAssertEqual([argumentTypes count], 2);
 	XCTAssertEqual([[argumentTypes firstObject] class], [HGUnsignedLongLongTypeMirror class]);
 	XCTAssertEqual([[argumentTypes lastObject] class], [HGObjectTypeMirror class]);
+}
+
+- (void)testInvokeOn {
+	HGWrapperTestClass *testObject = [[HGWrapperTestClass alloc] init];
+	HGMethodMirror *method = [reflect([HGWrapperTestClass class]) methodNamed:@selector(testMethodWithArg:)];
+	XCTAssertNotNil(method);
+	id result = [method invokeOn:testObject withArguments:@[@5]];
+	XCTAssertNotNil(result);
+	int intResult;
+	[result getValue:&intResult];
+	XCTAssertEqual(intResult, 10);
+}
+
+- (void)testInvokeOnReturnsId {
+	HGPropertyClass *testObject = [[HGPropertyClass alloc] init];
+	HGMethodMirror *method = [reflect([HGPropertyClass class]) methodNamed:@selector(property1)];
+	XCTAssertNotNil(method);
+	NSString *result;
+	[method invokeOn:testObject withArguments:@[] returnValue:&result];
+	XCTAssertEqualObjects(result, @"Foo");
+}
+
+- (void)testInvokeOnReturnsVoid {
+	HGDescendant1 *testObject = [[HGDescendant1 alloc] init];
+	HGMethodMirror *method = [reflect([HGDescendant1 class]) methodNamed:@selector(methodDefinedInDescendant1)];
+	XCTAssertNotNil(method);
+	XCTAssertNil([method invokeOn:testObject withArguments:@[]]);
+	id result;
+	[method invokeOn:testObject withArguments:@[] returnValue:&result];
+	XCTAssertNil(result);
 }
 
 NSUInteger hg_fake_implementation(id self, SEL cmd) {

@@ -29,6 +29,22 @@
 - (IMP)implementation;
 
 /**
+ * Invokes the receiver's mirrored method on aTarget.
+ * @return an NSValue wrapping the result of the invocation.
+ * @note primitive arguments must be wrapped as NSValue instances, arguments
+ *  of type id can be passed as-is.
+ */
+- (NSValue *)invokeOn:(id)aTarget withArguments:(NSArray *)arguments;
+
+/**
+ * Invokes the receiver's mirrored method on aTarget and writes the result of
+ * the invocation to outPointer.
+ * @note primitive arguments must be wrapped as NSValue instances, arguments
+ *  of type id can be passed as-is.
+ */
+- (void)invokeOn:(id)aTarget withArguments:(NSArray *)arguments returnValue:(void *)outPointer;
+
+/**
  * Answers the number of arguments of the receiver's mirrored method, not
  * including the implicit self and _cmd arguments.
  */

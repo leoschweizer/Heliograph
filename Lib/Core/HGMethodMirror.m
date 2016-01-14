@@ -42,6 +42,53 @@
 	return method_getImplementation(self.mirroredMethod);
 }
 
+- (NSValue *)invokeOn:(id)aTarget withArguments:(NSArray *)arguments {
+	
+	NSMethodSignature *signature = [aTarget methodSignatureForSelector:[self selector]];
+	NSValue *returnValue  = nil;
+	NSUInteger returnValueSize = [signature methodReturnLength];
+	
+	if (returnValueSize > 0) {
+		void *returnValueBuffer = malloc(returnValueSize);
+		[self invokeOn:aTarget withArguments:arguments returnValue:returnValueBuffer];
+		returnValue = [NSValue valueWithBytes:returnValueBuffer objCType:[signature methodReturnType]];
+		free(returnValueBuffer);
+	}
+	
+	return returnValue;
+	
+}
+
+- (void)invokeOn:(id)aTarget withArguments:(NSArray *)arguments returnValue:(void *)outPointer {
+	
+	NSMethodSignature *signature = [aTarget methodSignatureForSelector:[self selector]];
+	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+	
+	[invocation setTarget:aTarget];
+	[invocation setSelector:[self selector]];
+	
+	for (NSUInteger i = 0; i < [signature numberOfArguments] - 2; i++) {
+		id argument = [arguments objectAtIndex:i];
+		if ([argument isKindOfClass:[NSValue class]]) {
+			NSUInteger argumentSize;
+			NSGetSizeAndAlignment([argument objCType], &argumentSize, NULL);
+			void *argumentBuffer = malloc(argumentSize);
+			[argument getValue:argumentBuffer];
+			[invocation setArgument:argumentBuffer atIndex:i + 2];
+			free(argumentBuffer);
+		} else {
+			[invocation setArgument:&argument atIndex:i + 2];
+		}
+	}
+	
+	[invocation invoke];
+	
+	if([signature methodReturnLength] && outPointer) {
+		[invocation getReturnValue:outPointer];
+	}
+	
+}
+
 - (Method)mirroredMethod {
 	Method method;
 	[self.mirroredMethodStorage getValue:&method];

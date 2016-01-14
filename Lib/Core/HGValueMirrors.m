@@ -407,6 +407,17 @@
 @end
 
 
+@implementation HGVoidValueMirror
+
+- (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor {
+	if ([aVisitor respondsToSelector:@selector(visitVoidValueMirror:)]) {
+		[aVisitor visitVoidValueMirror:self];
+	}
+}
+
+@end
+
+
 @implementation HGPointerValueMirror
 
 - (void)acceptValueMirrorVisitor:(id<HGValueMirrorVisitor>)aVisitor {

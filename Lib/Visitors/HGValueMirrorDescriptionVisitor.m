@@ -85,6 +85,10 @@
 	self.valueDescription = @"(union)";
 }
 
+- (void)visitVoidValueMirror:(HGVoidValueMirror *)valueMirror {
+	self.valueDescription = @"void";
+}
+
 - (void)visitPointerValueMirror:(HGPointerValueMirror *)valueMirror {
 	self.valueDescription = @"<^>";
 }

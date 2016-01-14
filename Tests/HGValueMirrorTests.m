@@ -130,6 +130,11 @@
 	XCTAssertEqualObjects([mirror valueDescription], @"(union)");
 }
 
+- (void)testVoidDescription {
+	id<HGValueMirror> mirror = [[HGVoidValueMirror alloc] initWithValue:nil];
+	XCTAssertEqualObjects([mirror valueDescription], @"void");
+}
+
 - (void)testPointerDescription {
 	id<HGValueMirror> mirror = [[HGPointerValueMirror alloc] initWithValue:nil];
 	XCTAssertEqualObjects([mirror valueDescription], @"<^>");

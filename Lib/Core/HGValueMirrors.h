@@ -256,6 +256,11 @@
 @end
 
 
+@interface HGVoidValueMirror : HGBaseValueMirror
+
+@end
+
+
 @interface HGPointerValueMirror : HGBaseValueMirror
 
 @end

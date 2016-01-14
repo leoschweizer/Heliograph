@@ -23,6 +23,7 @@
 @class HGStructureValueMirror;
 @class HGUnionValueMirror;
 @class HGBitFieldValueMirror;
+@class HGVoidTypeMirror;
 @class HGPointerValueMirror;
 @class HGUnknownValueMirror;
 @protocol HGValueMirrorVisitor;
@@ -77,6 +78,7 @@
 - (void)visitStructureValueMirror:(HGStructureValueMirror *)valueMirror;
 - (void)visitUnionValueMirror:(HGUnionValueMirror *)valueMirror;
 - (void)visitBitFieldValueMirror:(HGBitFieldValueMirror *)valueMirror;
+- (void)visitVoidValueMirror:(HGVoidValueMirror *)valueMirror;
 - (void)visitPointerValueMirror:(HGPointerValueMirror *)valueMirror;
 - (void)visitUnknownValueMirror:(HGUnknownValueMirror *)valueMirror;
 

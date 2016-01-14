@@ -18,7 +18,7 @@
 @implementation HGClassMirror
 
 + (NSArray *)allClasses {
-	unsigned int numberOfClasses = objc_getClassList(NULL, 0);
+	unsigned int numberOfClasses;
 	Class *classes = objc_copyClassList(&numberOfClasses);
 	NSMutableArray *result = [NSMutableArray arrayWithCapacity:numberOfClasses];
 	for (int i = 0; i < numberOfClasses; i++) {
@@ -31,7 +31,7 @@
 }
 
 - (instancetype)initWithClass:(Class)aClass {
-	return [self initWithValue:[NSValue valueWithNonretainedObject:aClass]];
+	return [self initWithValue:[NSValue valueWithBytes:&aClass objCType:@encode(Class)]];
 }
 
 - (instancetype)initWithValue:(NSValue *)aValue {
@@ -102,7 +102,7 @@
 
 - (NSArray *)allSubclasses {
 	
-	unsigned int numberOfClasses = objc_getClassList(NULL, 0);
+	unsigned int numberOfClasses;
 	Class *classes = objc_copyClassList(&numberOfClasses);
 	NSMutableArray *result = [NSMutableArray array];
 	
@@ -254,7 +254,7 @@
 
 - (NSArray *)subclasses {
 	
-	unsigned int numberOfClasses = objc_getClassList(NULL, 0);
+	unsigned int numberOfClasses;
 	Class *classes = objc_copyClassList(&numberOfClasses);
 	NSMutableArray *result = [NSMutableArray array];
 	

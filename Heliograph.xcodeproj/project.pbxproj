@@ -360,9 +360,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B3045DAB1C406FE6001ADBAF /* HeliographIOS */ = {
+		B3045DAB1C406FE6001ADBAF /* Heliograph-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B3045DB11C406FE6001ADBAF /* Build configuration list for PBXNativeTarget "HeliographIOS" */;
+			buildConfigurationList = B3045DB11C406FE6001ADBAF /* Build configuration list for PBXNativeTarget "Heliograph-iOS" */;
 			buildPhases = (
 				B3045DA71C406FE6001ADBAF /* Sources */,
 				B3045DA81C406FE6001ADBAF /* Frameworks */,
@@ -373,7 +373,7 @@
 			);
 			dependencies = (
 			);
-			name = HeliographIOS;
+			name = "Heliograph-iOS";
 			productName = HeliographIOS;
 			productReference = B3045DAC1C406FE6001ADBAF /* Heliograph.framework */;
 			productType = "com.apple.product-type.framework";
@@ -447,7 +447,7 @@
 			projectRoot = "";
 			targets = (
 				B349BE131C37E17A00B66CB5 /* Heliograph */,
-				B3045DAB1C406FE6001ADBAF /* HeliographIOS */,
+				B3045DAB1C406FE6001ADBAF /* Heliograph-iOS */,
 				B349BE1D1C37E17B00B66CB5 /* Heliograph-Tests */,
 			);
 		};
@@ -734,7 +734,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B3045DB11C406FE6001ADBAF /* Build configuration list for PBXNativeTarget "HeliographIOS" */ = {
+		B3045DB11C406FE6001ADBAF /* Build configuration list for PBXNativeTarget "Heliograph-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B3045DB21C406FE6001ADBAF /* Debug */,

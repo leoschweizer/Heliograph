@@ -217,6 +217,10 @@
 		XCTAssertEqualObjects([visitor.result class], expected);
 	}
 	
+	HGValueMirrorConstructionVisitor *visitor = [[HGValueMirrorConstructionVisitor alloc] initWithValue:nil];
+	[reflect([NSString class]) acceptTypeMirrorVisitor:visitor];
+	XCTAssertEqualObjects([visitor.result class], [HGClassMirror class]);
+	
 }
 
 @end

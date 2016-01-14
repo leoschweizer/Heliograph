@@ -31,8 +31,12 @@
 }
 
 - (instancetype)initWithClass:(Class)aClass {
+	return [self initWithValue:[NSValue valueWithNonretainedObject:aClass]];
+}
+
+- (instancetype)initWithValue:(NSValue *)aValue {
 	if (self = [super init]) {
-		_mirroredClassStorage = [NSValue valueWithNonretainedObject:aClass];
+		_mirroredClassStorage = aValue;
 	}
 	return self;
 }

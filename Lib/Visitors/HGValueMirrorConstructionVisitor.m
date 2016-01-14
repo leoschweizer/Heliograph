@@ -13,15 +13,15 @@
 }
 
 - (void)visitObjectTypeMirror:(HGObjectTypeMirror *)typeMirror {
-	id object;
-	[self.value getValue:&object];
-	self.result = [[HGObjectMirror alloc] initWithObject:object];
+	self.result = [[HGObjectMirror alloc] initWithValue:self.value];
+}
+
+- (void)visitClassMirror:(HGClassMirror *)classMirror {
+	self.result = [[HGClassMirror alloc] initWithValue:self.value];
 }
 
 - (void)visitClassTypeMirror:(HGClassTypeMirror *)typeMirror {
-	id object;
-	[self.value getValue:&object];
-	self.result = [[HGClassMirror alloc] initWithClass:object];
+	self.result = [[HGClassMirror alloc] initWithValue:self.value];
 }
 
 - (void)visitCharTypeMirror:(HGCharTypeMirror *)typeMirror {

@@ -55,6 +55,26 @@
 	XCTAssertEqualObjects(result, @"Foo");
 }
 
+- (void)testInvokeWithIdArgument {
+	HGPropertyClass *testObject = [[HGPropertyClass alloc] init];
+	HGMethodMirror *method = [reflect([HGPropertyClass class]) methodNamed:@selector(setProperty2:)];
+	XCTAssertNotNil(method);
+	XCTAssertNotEqualObjects(testObject.property2, @"abcdefg");
+	[method invokeOn:testObject withArguments:@[@"abcdefg"] returnValue:nil];
+	XCTAssertEqualObjects(testObject.property2, @"abcdefg");
+}
+
+- (void)testReturnedObjectIsRetained {
+	HGPropertyClass *testObject = [[HGPropertyClass alloc] init];
+	HGMethodMirror *method = [reflect([HGPropertyClass class]) methodNamed:@selector(property1)];
+	XCTAssertNotNil(method);
+	HGObjectMirror *result;
+	@autoreleasepool {
+		result = [method invokeOn:testObject withArguments:@[]];
+	}
+	XCTAssertEqualObjects([result mirroredObject], @"Foo");
+}
+
 - (void)testInvokeOnReturnsVoid {
 	HGDescendant1 *testObject = [[HGDescendant1 alloc] init];
 	HGMethodMirror *method = [reflect([HGDescendant1 class]) methodNamed:@selector(methodDefinedInDescendant1)];

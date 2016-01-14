@@ -28,6 +28,12 @@
 - (instancetype)initWithClass:(Class)aClass;
 
 /**
+ * Answers an HGClassMirror instance reflecting a Class wrapped as NSValue. This
+ * Initializer exists primarily for interface-compatibility with HGValueMirrors.
+ */
+- (instancetype)initWithValue:(NSValue *)aValue;
+
+/**
  * Creates an instance variable named aName in the receiver's mirrored class.
  * @returns an HGInstanceVariableMirror reflecting the newly added instance variable.
  * @note This method may only be called as long as the mirrored class is under

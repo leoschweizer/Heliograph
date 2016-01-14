@@ -1,5 +1,6 @@
 #import <XCTest/XCTest.h>
 #import <Heliograph/Heliograph.h>
+#import "HGValueMirrorConstructionVisitor.h"
 
 
 @interface HGValueMirrorTests : XCTestCase
@@ -177,6 +178,45 @@
 	};
 	XCTAssertEqual([test count], 3);
 	XCTAssertEqualObjects([test objectForKey:[NSValue valueWithBytes:&sel objCType:@encode(SEL)]], @4);
+}
+
+- (void)testConstructionVisitor {
+	
+	NSDictionary *spec = @{
+		@"@" : [HGObjectMirror class],
+		@"#" : [HGClassMirror class],
+		@"c" : [HGCharValueMirror class],
+		@"s" : [HGShortValueMirror class],
+		@"i" : [HGIntValueMirror class],
+		@"l" : [HGLongValueMirror class],
+		@"q" : [HGLongLongValueMirror class],
+		@"C" : [HGUnsignedCharValueMirror class],
+		@"S" : [HGUnsignedShortValueMirror class],
+		@"I" : [HGUnsignedIntValueMirror class],
+		@"L" : [HGUnsignedLongValueMirror class],
+		@"Q" : [HGUnsignedLongLongValueMirror class],
+		@"f" : [HGFloatValueMirror class],
+		@"d" : [HGDoubleValueMirror class],
+		@"B" : [HGBoolValueMirror class],
+		@"*" : [HGCharacterStringValueMirror class],
+		@":" : [HGSelectorValueMirror class],
+		@"v" : [HGVoidValueMirror class],
+		@"[" : [HGArrayValueMirror class],
+		@"{" : [HGStructureValueMirror class],
+		@"(" : [HGUnionValueMirror class],
+		@"b" : [HGBitFieldValueMirror class],
+		@"^" : [HGPointerValueMirror class],
+		@"?" : [HGUnknownValueMirror class]
+	};
+	
+	for (NSString *key in spec) {
+		id<HGTypeMirror> type = [HGBaseTypeMirror createForEncoding:key];
+		Class expected = [spec objectForKey:key];
+		HGValueMirrorConstructionVisitor *visitor = [[HGValueMirrorConstructionVisitor alloc] initWithValue:nil];
+		[type acceptTypeMirrorVisitor:visitor];
+		XCTAssertEqualObjects([visitor.result class], expected);
+	}
+	
 }
 
 @end

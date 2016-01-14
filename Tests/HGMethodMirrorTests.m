@@ -43,9 +43,7 @@
 	XCTAssertNotNil(method);
 	id result = [method invokeOn:testObject withArguments:@[@5]];
 	XCTAssertNotNil(result);
-	int intResult;
-	[result getValue:&intResult];
-	XCTAssertEqual(intResult, 10);
+	XCTAssertEqual([result intValue], 10);
 }
 
 - (void)testInvokeOnReturnsId {
@@ -61,7 +59,7 @@
 	HGDescendant1 *testObject = [[HGDescendant1 alloc] init];
 	HGMethodMirror *method = [reflect([HGDescendant1 class]) methodNamed:@selector(methodDefinedInDescendant1)];
 	XCTAssertNotNil(method);
-	XCTAssertNil([method invokeOn:testObject withArguments:@[]]);
+	XCTAssertTrue([[method invokeOn:testObject withArguments:@[]] isKindOfClass:[HGVoidValueMirror class]]);
 	id result;
 	[method invokeOn:testObject withArguments:@[] returnValue:&result];
 	XCTAssertNil(result);

@@ -3,6 +3,7 @@
 
 @class HGClassMirror;
 @protocol HGTypeMirror;
+@protocol HGValueMirror;
 
 
 @interface HGMethodMirror : NSObject <NSCopying>
@@ -34,7 +35,7 @@
  * @note primitive arguments must be wrapped as NSValue instances, arguments
  *  of type id can be passed as-is.
  */
-- (NSValue *)invokeOn:(id)aTarget withArguments:(NSArray *)arguments;
+- (id<HGValueMirror>)invokeOn:(id)aTarget withArguments:(NSArray *)arguments;
 
 /**
  * Invokes the receiver's mirrored method on aTarget and writes the result of

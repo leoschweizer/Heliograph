@@ -3,6 +3,7 @@
 #import <objc/runtime.h>
 #import "HGClassMirror.h"
 #import "HGTypeMirrors.h"
+#import "HGValueMirrorConstructionVisitor.h"
 
 
 @interface HGMethodMirror ()
@@ -42,7 +43,7 @@
 	return method_getImplementation(self.mirroredMethod);
 }
 
-- (NSValue *)invokeOn:(id)aTarget withArguments:(NSArray *)arguments {
+- (id<HGValueMirror>)invokeOn:(id)aTarget withArguments:(NSArray *)arguments {
 	
 	NSMethodSignature *signature = [aTarget methodSignatureForSelector:[self selector]];
 	NSValue *returnValue  = nil;
@@ -55,7 +56,10 @@
 		free(returnValueBuffer);
 	}
 	
-	return returnValue;
+	id<HGTypeMirror> typeMirror = [HGBaseTypeMirror createForEncoding:[NSString stringWithUTF8String:[signature methodReturnType]]];
+	HGValueMirrorConstructionVisitor *visitor = [[HGValueMirrorConstructionVisitor alloc] initWithValue:returnValue];
+	[typeMirror acceptTypeMirrorVisitor:visitor];
+	return visitor.result;
 	
 }
 

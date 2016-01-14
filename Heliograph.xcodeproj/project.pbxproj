@@ -52,6 +52,10 @@
 		B3BE1E431C441FE400BC1DA0 /* HGInstanceVariableInjectionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BE1E401C441FE400BC1DA0 /* HGInstanceVariableInjectionVisitor.m */; };
 		B3BE1E441C441FE400BC1DA0 /* HGInstanceVariableInjectionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BE1E401C441FE400BC1DA0 /* HGInstanceVariableInjectionVisitor.m */; };
 		B3BE1E461C443AD600BC1DA0 /* HGValueMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BE1E451C443AD600BC1DA0 /* HGValueMirrorTests.m */; };
+		B3BE1E491C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = B3BE1E471C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.h */; };
+		B3BE1E4A1C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = B3BE1E471C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.h */; };
+		B3BE1E4B1C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BE1E481C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.m */; };
+		B3BE1E4C1C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BE1E481C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.m */; };
 		B3C802091C3A95C100E8F25E /* HGProtocolMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802081C3A95C100E8F25E /* HGProtocolMirrorTests.m */; };
 		B3C802261C3D99E600E8F25E /* HGClassMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802121C3D99E600E8F25E /* HGClassMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3C802271C3D99E600E8F25E /* HGClassMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802131C3D99E600E8F25E /* HGClassMirror.m */; };
@@ -125,6 +129,8 @@
 		B3BE1E3F1C441FE400BC1DA0 /* HGInstanceVariableInjectionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGInstanceVariableInjectionVisitor.h; sourceTree = "<group>"; };
 		B3BE1E401C441FE400BC1DA0 /* HGInstanceVariableInjectionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGInstanceVariableInjectionVisitor.m; sourceTree = "<group>"; };
 		B3BE1E451C443AD600BC1DA0 /* HGValueMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGValueMirrorTests.m; sourceTree = "<group>"; };
+		B3BE1E471C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGValueMirrorConstructionVisitor.h; sourceTree = "<group>"; };
+		B3BE1E481C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGValueMirrorConstructionVisitor.m; sourceTree = "<group>"; };
 		B3C802081C3A95C100E8F25E /* HGProtocolMirrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGProtocolMirrorTests.m; sourceTree = "<group>"; };
 		B3C802121C3D99E600E8F25E /* HGClassMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGClassMirror.h; sourceTree = "<group>"; };
 		B3C802131C3D99E600E8F25E /* HGClassMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGClassMirror.m; sourceTree = "<group>"; };
@@ -282,6 +288,8 @@
 				B3BE1E401C441FE400BC1DA0 /* HGInstanceVariableInjectionVisitor.m */,
 				B3C8023A1C3D9A0F00E8F25E /* HGTypeMirrorDescriptionVisitor.h */,
 				B3C8023B1C3D9A0F00E8F25E /* HGTypeMirrorDescriptionVisitor.m */,
+				B3BE1E471C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.h */,
+				B3BE1E481C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.m */,
 				B3DB3A341C41BBCC0028FECE /* HGValueMirrorDescriptionVisitor.h */,
 				B3DB3A351C41BBCC0028FECE /* HGValueMirrorDescriptionVisitor.m */,
 			);
@@ -316,6 +324,7 @@
 				B3045DC21C40706E001ADBAF /* HGProtocolMirror.h in Headers */,
 				B3045DB41C40706E001ADBAF /* HGClassMirror.h in Headers */,
 				B3045DCC1C407076001ADBAF /* Heliograph.h in Headers */,
+				B3BE1E4A1C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +353,7 @@
 				B3C8022F1C3D99E600E8F25E /* HGPropertyMirror.h in Headers */,
 				B3DB3A271C417C0C0028FECE /* HGTypeMirror.h in Headers */,
 				B3C8023F1C3D9A2D00E8F25E /* Heliograph.h in Headers */,
+				B3BE1E491C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3BE1E441C441FE400BC1DA0 /* HGInstanceVariableInjectionVisitor.m in Sources */,
+				B3BE1E4C1C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.m in Sources */,
 				B3045DB81C40706E001ADBAF /* HGInstanceVariableMirror.m in Sources */,
 				B3045DC71C40706E001ADBAF /* HGTypeMirrors.m in Sources */,
 				B3DB3A391C41BBCC0028FECE /* HGValueMirrorDescriptionVisitor.m in Sources */,
@@ -494,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3BE1E431C441FE400BC1DA0 /* HGInstanceVariableInjectionVisitor.m in Sources */,
+				B3BE1E4B1C48070700BC1DA0 /* HGValueMirrorConstructionVisitor.m in Sources */,
 				B3C802471C3DA95900E8F25E /* HGReflect.m in Sources */,
 				B3045DA21C402C5D001ADBAF /* HGMethodDescriptionMirror.m in Sources */,
 				B3DB3A381C41BBCC0028FECE /* HGValueMirrorDescriptionVisitor.m in Sources */,

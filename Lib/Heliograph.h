@@ -13,5 +13,3 @@
 #import <Heliograph/HGTypeMirrors.h>
 #import <Heliograph/HGValueMirror.h>
 #import <Heliograph/HGValueMirrors.h>
-
-#import <Heliograph/HGMethodWrapper.h>

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3045D9E1C3DD5A7001ADBAF /* HGMethodWrapperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B3045D9D1C3DD5A7001ADBAF /* HGMethodWrapperTest.m */; };
 		B3045DA11C402C5D001ADBAF /* HGMethodDescriptionMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3045D9F1C402C5D001ADBAF /* HGMethodDescriptionMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3045DA21C402C5D001ADBAF /* HGMethodDescriptionMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3045DA01C402C5D001ADBAF /* HGMethodDescriptionMirror.m */; };
 		B3045DA41C403BB8001ADBAF /* HGMethodDescriptionMirror-Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = B3045DA31C402C7E001ADBAF /* HGMethodDescriptionMirror-Runtime.h */; };
@@ -102,7 +101,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B3045D9D1C3DD5A7001ADBAF /* HGMethodWrapperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodWrapperTest.m; sourceTree = "<group>"; };
 		B3045D9F1C402C5D001ADBAF /* HGMethodDescriptionMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMethodDescriptionMirror.h; sourceTree = "<group>"; };
 		B3045DA01C402C5D001ADBAF /* HGMethodDescriptionMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodDescriptionMirror.m; sourceTree = "<group>"; };
 		B3045DA31C402C7E001ADBAF /* HGMethodDescriptionMirror-Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HGMethodDescriptionMirror-Runtime.h"; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 				B349BE5E1C392EC200B66CB5 /* HGInstanceVariableMirrorTests.m */,
 				B3045DA51C403BDA001ADBAF /* HGMethodDescriptionMirrorTests.m */,
 				B349BE4A1C38242500B66CB5 /* HGMethodMirrorTests.m */,
-				B3045D9D1C3DD5A7001ADBAF /* HGMethodWrapperTest.m */,
 				B349BE521C3840FD00B66CB5 /* HGObjectMirrorTests.m */,
 				B349BE581C386B9100B66CB5 /* HGPropertyMirrorTests.m */,
 				B3C802081C3A95C100E8F25E /* HGProtocolMirrorTests.m */,
@@ -510,7 +507,6 @@
 				B3C802091C3A95C100E8F25E /* HGProtocolMirrorTests.m in Sources */,
 				B349BE381C37E26600B66CB5 /* HGClassMirrorTests.m in Sources */,
 				B349BE451C37ECB500B66CB5 /* HGTestHierarchy.m in Sources */,
-				B3045D9E1C3DD5A7001ADBAF /* HGMethodWrapperTest.m in Sources */,
 				B349BE5F1C392EC200B66CB5 /* HGInstanceVariableMirrorTests.m in Sources */,
 				B3045DA61C403BDA001ADBAF /* HGMethodDescriptionMirrorTests.m in Sources */,
 				B349BE591C386B9100B66CB5 /* HGPropertyMirrorTests.m in Sources */,

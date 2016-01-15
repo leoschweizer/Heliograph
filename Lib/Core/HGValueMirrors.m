@@ -52,10 +52,22 @@
 @end
 
 
+@interface HGObjectMirror ()
+
+// NSValue will not retain the mirrored object, thus keep it alive by this
+// otherwise unused strong reference.
+@property (nonatomic, readonly) id strongObjectRef;
+
+@end
+
+
 @implementation HGObjectMirror
 
 - (instancetype)initWithObject:(id)anObject {
-	return [self initWithValue:[NSValue valueWithNonretainedObject:anObject]];
+	if (self = [super initWithValue:[NSValue valueWithNonretainedObject:anObject]]) {
+		_strongObjectRef = anObject;
+	}
+	return self;
 }
 
 - (id)mirroredObject {

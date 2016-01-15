@@ -1,6 +1,7 @@
 #import <XCTest/XCTest.h>
 #import <Heliograph/Heliograph.h>
 #import "HGTestHierarchy.h"
+#import <objc/runtime.h>
 
 
 @interface HGClassMirrorsTests : XCTestCase
@@ -13,12 +14,18 @@
 - (void)testInit {
 	Class testClass = [NSString class];
 	HGClassMirror *classMirror = [[HGClassMirror alloc] initWithClass:testClass];
-	XCTAssertEqual(classMirror.mirroredClass, testClass);
+	XCTAssertEqual(HGClassFromClassMirror(classMirror), testClass);
 }
 
 - (void)testInitFromReflect {
 	HGClassMirror *classMirror = reflect([NSNumber class]);
-	XCTAssertEqual(classMirror.mirroredClass, [NSNumber class]);
+	XCTAssertEqual(HGClassFromClassMirror(classMirror), [NSNumber class]);
+}
+
+- (void)testNonNSObjectClass {
+	Class class = objc_getClass("__NSMessageBuilder");
+	HGClassMirror *mirror = [[HGClassMirror alloc] initWithClass:class];
+	XCTAssertEqual(HGClassFromClassMirror(mirror), class);
 }
 
 - (void)testAllSubclasses {
@@ -88,7 +95,7 @@
 
 - (void)testSuperclass {
 	HGClassMirror *mirror = reflect([NSValue class]);
-	XCTAssertEqual([[mirror superclass] mirroredClass], [NSObject class]);
+	XCTAssertEqual(HGClassFromClassMirror([mirror superclass]), [NSObject class]);
 }
 
 - (void)testSuperclassMissing {
@@ -139,7 +146,7 @@ NSUInteger hg_fake_hash(id self, SEL cmd) {
 	HGMethodMirror *overriddenHash = [class addMethodNamed:@selector(hash) withImplementation:(IMP)hg_fake_hash andEncoding:originalHash.encoding];
 	XCTAssertNotNil(overriddenHash);
 	XCTAssertEqual([overriddenHash selector], @selector(hash));
-	id instance = [[[class mirroredClass] alloc] init];
+	id instance = [[HGClassFromClassMirror(class) alloc] init];
 	XCTAssertEqual([instance hash], 1337);
 }
 
@@ -176,6 +183,9 @@ NSUInteger hg_fake_hash(id self, SEL cmd) {
 	NSArray *allClasses = [HGClassMirror allClasses];
 	XCTAssertGreaterThan([allClasses count], 1);
 	XCTAssertEqual([[allClasses firstObject] class], [HGClassMirror class]);
+	for (HGClassMirror *each in allClasses) {
+		XCTAssertNotNil([each name]);
+	}
 }
 
 - (void)testGetMissingMethod {
@@ -192,7 +202,7 @@ NSUInteger hg_fake_hash(id self, SEL cmd) {
 - (void)testGetMethodFromSuperclass {
 	HGMethodMirror *mirror = [reflect([HGDescendant1Descendant2 class]) methodNamed:@selector(methodDefinedInDescendant1)];
 	XCTAssertNotNil(mirror);
-	XCTAssertEqual([[mirror definingClass] mirroredClass], [HGDescendant1 class]);
+	XCTAssertEqual(HGClassFromClassMirror([mirror definingClass]), [HGDescendant1 class]);
 }
 
 - (void)testIsEqual {

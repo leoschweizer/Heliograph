@@ -51,7 +51,7 @@ void HGDispatchWrappedMethod(id self, SEL cmd, NSInvocation *invocation) {
 	
 	const char *forwardInvocationEncoding = method_getTypeEncoding([forwardInvocationMirror mirroredMethod]);
 	class_addMethod(self.wrappedClass, NSSelectorFromString(@"hg_original_forwardInvocation:"), currentForwardInvocationImp, forwardInvocationEncoding);
-	if ([[forwardInvocationMirror definingClass] mirroredClass] != self.wrappedClass) {
+	if (HGClassFromClassMirror([forwardInvocationMirror definingClass]) != self.wrappedClass) {
 		class_addMethod(self.wrappedClass, @selector(forwardInvocation:), (IMP)HGDispatchWrappedMethod, forwardInvocationEncoding);
 	} else {
 		method_setImplementation([forwardInvocationMirror mirroredMethod], (IMP)HGDispatchWrappedMethod);
@@ -73,7 +73,7 @@ void HGDispatchWrappedMethod(id self, SEL cmd, NSInvocation *invocation) {
 	const char *wrappedMethodEncoding = method_getTypeEncoding([wrappedMethodMirror mirroredMethod]);
 	
 	class_addMethod(self.wrappedClass, self.backingSelector, originalImp, wrappedMethodEncoding);
-	if ([[wrappedMethodMirror definingClass] mirroredClass] != self.wrappedClass) {
+	if (HGClassFromClassMirror([wrappedMethodMirror definingClass]) != self.wrappedClass) {
 		class_addMethod(self.wrappedClass, self.wrappedSelector, forwardingProxy, wrappedMethodEncoding);
 	} else {
 		method_setImplementation([wrappedMethodMirror mirroredMethod], forwardingProxy);

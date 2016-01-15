@@ -17,11 +17,15 @@
 }
 
 - (void)visitClassMirror:(HGClassMirror *)classMirror {
-	self.result = [[HGClassMirror alloc] initWithValue:self.value];
+	Class class;
+	[self.value getValue:&class];
+	self.result = [[HGClassMirror alloc] initWithClass:class];
 }
 
 - (void)visitClassTypeMirror:(HGClassTypeMirror *)typeMirror {
-	self.result = [[HGClassMirror alloc] initWithValue:self.value];
+	Class class;
+	[self.value getValue:&class];
+	self.result = [[HGClassMirror alloc] initWithClass:class];
 }
 
 - (void)visitCharTypeMirror:(HGCharTypeMirror *)typeMirror {

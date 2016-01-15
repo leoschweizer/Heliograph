@@ -10,8 +10,6 @@
 
 @interface HGClassMirror ()
 
-@property (nonatomic, readonly) NSValue *mirroredClassStorage;
-
 @end
 
 
@@ -31,12 +29,8 @@
 }
 
 - (instancetype)initWithClass:(Class)aClass {
-	return [self initWithValue:[NSValue valueWithBytes:&aClass objCType:@encode(Class)]];
-}
-
-- (instancetype)initWithValue:(NSValue *)aValue {
 	if (self = [super init]) {
-		_mirroredClassStorage = aValue;
+		_mirroredClassStorage = (__bridge void *)(aClass);
 	}
 	return self;
 }
@@ -56,7 +50,7 @@
 - (HGInstanceVariableMirror *)addInstanceVariableNamed:(NSString *)aName withEncoding:(const char *)anEncoding {
 	NSUInteger size, alignment;
 	NSGetSizeAndAlignment(anEncoding, &size, &alignment);
-	BOOL didAdd = class_addIvar(self.mirroredClass, [aName UTF8String], size, alignment, anEncoding);
+	BOOL didAdd = class_addIvar(self.mirroredClassStorage, [aName UTF8String], size, alignment, anEncoding);
 	if (!didAdd) {
 		return nil;
 	}
@@ -64,7 +58,7 @@
 }
 
 - (HGMethodMirror *)addMethodNamed:(SEL)aSelector withImplementation:(IMP)anImplementation andEncoding:(const char *)anEncoding {
-	BOOL didAdd = class_addMethod(self.mirroredClass, aSelector, anImplementation, anEncoding);
+	BOOL didAdd = class_addMethod(self.mirroredClassStorage, aSelector, anImplementation, anEncoding);
 	if (!didAdd) {
 		return nil;
 	}
@@ -72,7 +66,7 @@
 }
 
 - (HGClassMirror *)addSubclassNamed:(NSString *)aClassName {
-	Class class = objc_allocateClassPair(self.mirroredClass, [aClassName UTF8String], 0);
+	Class class = objc_allocateClassPair(self.mirroredClassStorage, [aClassName UTF8String], 0);
 	if (!class) {
 		return 0;
 	}
@@ -81,7 +75,7 @@
 
 - (NSArray *)adoptedProtocols {
 	unsigned int protocolCount = 0;
-	Protocol * __unsafe_unretained *protocols = class_copyProtocolList(self.mirroredClass, &protocolCount);
+	Protocol * __unsafe_unretained *protocols = class_copyProtocolList(self.mirroredClassStorage, &protocolCount);
 	NSMutableArray *result = [NSMutableArray arrayWithCapacity:protocolCount];
 	for (int i = 0; i < protocolCount; i++) {
 		Protocol *protocol = protocols[i];
@@ -93,7 +87,7 @@
 }
 
 - (HGProtocolMirror *)adoptProtocol:(Protocol *)aProtocol {
-	BOOL didAdopt = class_addProtocol(self.mirroredClass, aProtocol);
+	BOOL didAdopt = class_addProtocol(self.mirroredClassStorage, aProtocol);
 	if (!didAdopt) {
 		return nil;
 	}
@@ -112,7 +106,7 @@
 		
 		do {
 			superClass = class_getSuperclass(superClass);
-		} while(superClass && superClass != self.mirroredClass);
+		} while(superClass && superClass != self.mirroredClassStorage);
 		
 		if (!superClass) {
 			continue;
@@ -139,7 +133,7 @@
 }
 
 - (HGClassMirror *)classMirror {
-	Class class = object_getClass(self.mirroredClass);
+	Class class = object_getClass(self.mirroredClassStorage);
 	return class ? [[HGClassMirror alloc] initWithClass:class] : nil;
 }
 
@@ -153,7 +147,7 @@
 - (NSArray *)instanceVariables {
 	
 	unsigned int instanceVariableCount;
-	Ivar *instanceVariables = class_copyIvarList(self.mirroredClass, &instanceVariableCount);
+	Ivar *instanceVariables = class_copyIvarList(self.mirroredClassStorage, &instanceVariableCount);
 	NSMutableArray *result = [NSMutableArray arrayWithCapacity:instanceVariableCount];
 	
 	for (int i = 0; i < instanceVariableCount; i++) {
@@ -168,18 +162,18 @@
 }
 
 - (HGInstanceVariableMirror *)instanceVariableNamed:(NSString *)aName {
-	Ivar instanceVariable = class_getInstanceVariable(self.mirroredClass, [aName UTF8String]);
+	Ivar instanceVariable = class_getInstanceVariable(self.mirroredClassStorage, [aName UTF8String]);
 	return instanceVariable ? [[HGInstanceVariableMirror alloc] initWithDefiningClass:self instanceVariable:instanceVariable] : nil;
 }
 
 - (BOOL)isMetaclass {
-	return class_isMetaClass(self.mirroredClass);
+	return class_isMetaClass(self.mirroredClassStorage);
 }
 
 - (NSArray *)methods {
 	
 	unsigned int methodCount = 0;
-	Method *methods = class_copyMethodList(self.mirroredClass, &methodCount);
+	Method *methods = class_copyMethodList(self.mirroredClassStorage, &methodCount);
 	NSMutableArray *result = [NSMutableArray arrayWithCapacity:methodCount];
 	
 	for (unsigned int i = 0; i < methodCount; i++) {
@@ -194,7 +188,7 @@
 }
 
 - (HGMethodMirror *)methodNamed:(SEL)aSelector {
-	Method method = class_getInstanceMethod(self.mirroredClass, aSelector);
+	Method method = class_getInstanceMethod(self.mirroredClassStorage, aSelector);
 	HGClassMirror *definingClass = nil;
 	HGClassMirror *inspectedClass = self;
 	while (method && !definingClass && inspectedClass) {
@@ -210,20 +204,20 @@
 }
 
 - (Class)mirroredClass {
-	return [self.mirroredClassStorage nonretainedObjectValue];
+	return self.mirroredClassStorage;
 }
 
 - (NSValue *)mirroredValue {
-	return [NSValue valueWithNonretainedObject:self.mirroredClass];
+	return [NSValue valueWithBytes:&_mirroredClassStorage objCType:@encode(Class)];
 }
 
 - (NSString *)name {
-	return [NSString stringWithUTF8String:class_getName(self.mirroredClass)];
+	return [NSString stringWithUTF8String:class_getName(self.mirroredClassStorage)];
 }
 
 - (NSArray *)properties {
 	unsigned int outCount = 0;
-	objc_property_t *properties = class_copyPropertyList(self.mirroredClass, &outCount);
+	objc_property_t *properties = class_copyPropertyList(self.mirroredClassStorage, &outCount);
 	NSMutableArray *result = [NSMutableArray arrayWithCapacity:outCount];
 	for (int i = 0; i < outCount; i++) {
 		objc_property_t property = properties[i];
@@ -234,12 +228,12 @@
 }
 
 - (HGPropertyMirror *)propertyNamed:(NSString *)aName {
-	objc_property_t property = class_getProperty(self.mirroredClass, [aName UTF8String]);
+	objc_property_t property = class_getProperty(self.mirroredClassStorage, [aName UTF8String]);
 	return property ? [[HGPropertyMirror alloc] initWithDefiningClass:self property:property] : nil;
 }
 
 - (void)registerClass {
-	objc_registerClassPair(self.mirroredClass);
+	objc_registerClassPair(self.mirroredClassStorage);
 }
 
 - (NSArray *)siblings {
@@ -260,7 +254,7 @@
 	
 	for (int i = 0; i < numberOfClasses; i++) {
 		Class superClass = class_getSuperclass(classes[i]);
-		if (superClass == self.mirroredClass) {
+		if (superClass == self.mirroredClassStorage) {
 			HGClassMirror *mirror = [[HGClassMirror alloc] initWithClass:classes[i]];
 			[result addObject:mirror];
 		}
@@ -272,7 +266,7 @@
 }
 
 - (HGClassMirror *)superclass {
-	Class superclass = class_getSuperclass(self.mirroredClass);
+	Class superclass = class_getSuperclass(self.mirroredClassStorage);
 	return superclass ? [[HGClassMirror alloc] initWithClass:superclass] : nil;
 }
 
@@ -301,7 +295,9 @@
 }
 
 - (BOOL)isEqualToClassMirror:(HGClassMirror *)aClassMirror {
-	return [self.mirroredClassStorage isEqual:aClassMirror.mirroredClassStorage];
+	Class c1 = self.mirroredClassStorage;
+	Class c2 = HGClassFromClassMirror(aClassMirror);
+	return c1 == c2;
 }
 
 - (BOOL)isEqualToTypeMirror:(id<HGTypeMirror>)aTypeMirror {
@@ -313,14 +309,14 @@
 }
 
 - (NSUInteger)hash {
-	return [@"HGClassMirror" hash] ^ [self.mirroredClassStorage hash];
+	return [@"HGClassMirror" hash] ^ [self.name hash];
 }
 
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
 	HGClassMirror *newMirror = [[self.class allocWithZone:zone] init];
-	newMirror->_mirroredClassStorage = [_mirroredClassStorage copyWithZone:zone];
+	newMirror->_mirroredClassStorage = _mirroredClassStorage;
 	return newMirror;
 }
 

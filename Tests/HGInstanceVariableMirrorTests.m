@@ -119,7 +119,9 @@
 	testObject->_classIvar = [NSMutableSet class];
 	id<HGValueMirror> value = [[reflect([HGInstanceVariableClass class]) instanceVariableNamed:@"_classIvar"] valueIn:testObject];
 	XCTAssertTrue([value isKindOfClass:[HGClassMirror class]]);
-	XCTAssertEqualObjects([[value mirroredValue] nonretainedObjectValue], [NSMutableSet class]);
+	Class c;
+	[[value mirroredValue] getValue:&c];
+	XCTAssertEqualObjects(c, [NSMutableSet class]);
 }
 
 - (void)testWriteClassIvar {

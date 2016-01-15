@@ -20,7 +20,7 @@
 	XCTAssertNotNil(mirror);
 	id typeMirror = [mirror type];
 	XCTAssertEqual([typeMirror class], [HGObjectTypeMirror class]);
-	XCTAssertEqual([[typeMirror classMirror] mirroredClass], [NSString class]);
+	XCTAssertEqual(HGClassFromClassMirror([typeMirror classMirror]), [NSString class]);
 	XCTAssertEqualObjects([typeMirror classMirror], [(HGObjectTypeMirror *)typeMirror type]);
 }
 

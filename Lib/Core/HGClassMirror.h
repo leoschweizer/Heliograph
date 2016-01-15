@@ -9,6 +9,9 @@
 @class HGProtocolMirror;
 
 
+#define HGClassFromClassMirror(mirror) ((__bridge Class)(mirror.mirroredClassStorage))
+
+
 @interface HGClassMirror : NSObject <HGTypeMirror, HGValueMirror, NSCopying>
 
 /**
@@ -17,10 +20,7 @@
  */
 + (NSArray *)allClasses;
 
-/**
- * The mirrored class.
- */
-@property (nonatomic, readonly) Class mirroredClass;
+@property (nonatomic, readonly) void *mirroredClassStorage;
 
 /**
  * Answers an HGClassMirror instance reflecting aClass.
@@ -31,7 +31,7 @@
  * Answers an HGClassMirror instance reflecting a Class wrapped as NSValue. This
  * Initializer exists primarily for interface-compatibility with HGValueMirrors.
  */
-- (instancetype)initWithValue:(NSValue *)aValue;
+//- (instancetype)initWithValue:(NSValue *)aValue;
 
 /**
  * Creates an instance variable named aName in the receiver's mirrored class.
@@ -115,6 +115,15 @@
  * Answers an HGMethodMirror reflecting the method with the selector aSelector.
  */
 - (HGMethodMirror *)methodNamed:(SEL)aSelector;
+
+/**
+ * Answers the receiver's mirrored class.
+ * @note This is NOT save to use with non-NSObject classes like __NSMessageBuilder
+ *  and the like, since they don't understand ARC retain/release calls which would
+ *  be inserted by the compiler. Use HGClassFromClassMirror(aMirror) to handle
+ *  such cases.
+ */
+- (Class)mirroredClass;
 
 /**
  * Answers the name of the receiver's mirrored class.

@@ -6,6 +6,7 @@
 @class HGInstanceVariableMirror;
 @class HGMethodMirror;
 @protocol HGTypeMirror;
+@protocol HGValueMirror;
 
 
 typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
@@ -105,6 +106,19 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
  * setter method.
  */
 - (HGMethodMirror *)setter;
+
+/**
+ * Sets the receiver's mirrored property to anObject.
+ * Primitive types (e.g. int, BOOL, CGRect, ...) have to be wrapped as NSValue
+ * instances, e.g. [NSValue valueWithBytes:&rect encoding:@encode(CGRect)].
+ */
+- (void)setValue:(id)aValue in:(id)anObject;
+
+/**
+ * Answers an HGValueMirror reflecting the value of the receiver's mirrored
+ * property in anObject.
+ */
+- (id<HGValueMirror>)valueIn:(id)anObject;
 
 /**
  * Compares the receiving HGPropertyMirror to another HGPropertyMirror.

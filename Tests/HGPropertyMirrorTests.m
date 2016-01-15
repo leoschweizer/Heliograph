@@ -96,6 +96,36 @@
 	XCTAssertNil(mirror);
 }
 
+- (void)testGetValue {
+	HGPropertyClass *testObject = [[HGPropertyClass alloc] init];
+	HGPropertyMirror *mirror = [reflect([HGPropertyClass class]) propertyNamed:@"property1"];
+	id<HGValueMirror> value = [mirror valueIn:testObject];
+	XCTAssertEqual([value class], [HGObjectMirror class]);
+	NSString *result = [(HGObjectMirror *)value mirroredObject];
+	XCTAssertEqualObjects(result, @"Foo");
+}
+
+- (void)testSetValue {
+	HGPropertyClass *testObject = [[HGPropertyClass alloc] init];
+	HGPropertyMirror *mirror = [reflect([HGPropertyClass class]) propertyNamed:@"property2"];
+	[mirror setValue:@42 in:testObject];
+	XCTAssertEqualObjects(testObject.property2, @42);
+}
+
+- (void)testSetPrimitiveValue {
+	HGPropertyClass *testObject = [[HGPropertyClass alloc] init];
+	HGPropertyMirror *mirror = [reflect([HGPropertyClass class]) propertyNamed:@"baz"];
+	XCTAssertFalse(testObject.getBar);
+	[mirror setValue:@YES in:testObject];
+	XCTAssertTrue(testObject.getBar);
+}
+
+- (void)testSetValueWithoutSetter {
+	HGPropertyClass *testObject = [[HGPropertyClass alloc] init];
+	HGPropertyMirror *mirror = [reflect([HGPropertyClass class]) propertyNamed:@"property1"];
+	[mirror setValue:@"" in:testObject];
+}
+
 - (void)testIsEqual {
 	HGPropertyMirror *m1 = [reflect([HGPropertyClass class]) propertyNamed:@"property1"];
 	HGPropertyMirror *m2 = [reflect([HGPropertyClass class]) propertyNamed:@"property1"];

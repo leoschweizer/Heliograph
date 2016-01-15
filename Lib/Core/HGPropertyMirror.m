@@ -3,6 +3,7 @@
 #import <objc/runtime.h>
 #import "HGClassMirror.h"
 #import "HGTypeMirrors.h"
+#import "HGMethodMirror.h"
 
 
 static NSString * const cPropertyAttributeReadonly = @"R";
@@ -159,6 +160,14 @@ static id<HGTypeMirror> parseType(NSArray *stringAttributes) {
 - (HGMethodMirror *)setter {
 	NSAssert(self.definingClass, @"This method can only be called on properties with an associated class");
 	return [self.definingClass methodNamed:NSSelectorFromString(self.setterName)];
+}
+
+- (void)setValue:(id)aValue in:(id)anObject {
+	[[self setter] invokeOn:anObject withArguments:@[aValue]];
+}
+
+- (id<HGValueMirror>)valueIn:(id)anObject {
+	return [[self getter] invokeOn:anObject withArguments:@[]];
 }
 
 #pragma mark - NSObject

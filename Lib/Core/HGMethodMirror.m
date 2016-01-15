@@ -54,6 +54,8 @@
 		[self invokeOn:aTarget withArguments:arguments returnValue:returnValueBuffer];
 		returnValue = [NSValue valueWithBytes:returnValueBuffer objCType:[signature methodReturnType]];
 		free(returnValueBuffer);
+	} else {
+		[self invokeOn:aTarget withArguments:arguments returnValue:NULL];
 	}
 	
 	id<HGTypeMirror> typeMirror = [HGBaseTypeMirror createForEncoding:[NSString stringWithUTF8String:[signature methodReturnType]]];
@@ -65,23 +67,25 @@
 
 - (void)invokeOn:(id)aTarget withArguments:(NSArray *)arguments returnValue:(void *)outPointer {
 	
+	NSArray *argumentTypes = [self argumentTypes];
 	NSMethodSignature *signature = [aTarget methodSignatureForSelector:[self selector]];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
 	
 	[invocation setTarget:aTarget];
 	[invocation setSelector:[self selector]];
 	
-	for (NSUInteger i = 0; i < [signature numberOfArguments] - 2; i++) {
-		id argument = [arguments objectAtIndex:i];
-		if ([argument isKindOfClass:[NSValue class]]) {
+	for (NSUInteger i = 2; i < [signature numberOfArguments]; i++) {
+		id argument = [arguments objectAtIndex:i - 2];
+		id<HGTypeMirror> argumentType = [argumentTypes objectAtIndex:i - 2];
+		if (![argumentType isKindOfClass:[HGObjectTypeMirror class]] && [argument isKindOfClass:[NSValue class]]) {
 			NSUInteger argumentSize;
 			NSGetSizeAndAlignment([argument objCType], &argumentSize, NULL);
 			void *argumentBuffer = malloc(argumentSize);
 			[argument getValue:argumentBuffer];
-			[invocation setArgument:argumentBuffer atIndex:i + 2];
+			[invocation setArgument:argumentBuffer atIndex:i];
 			free(argumentBuffer);
 		} else {
-			[invocation setArgument:&argument atIndex:i + 2];
+			[invocation setArgument:&argument atIndex:i];
 		}
 	}
 	

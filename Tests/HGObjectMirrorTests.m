@@ -13,6 +13,7 @@
 - (void)testInit {
 	HGObjectMirror *mirror = [[HGObjectMirror alloc] initWithObject:@42];
 	XCTAssertEqualObjects(mirror.mirroredObject, @42);
+	XCTAssertEqualObjects([mirror valueForKey:@"strongObjectRef"], @42);
 }
 
 - (void)testInitFromReflect {

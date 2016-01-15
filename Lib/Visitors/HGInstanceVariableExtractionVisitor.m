@@ -112,10 +112,6 @@
 	self.value = [[HGUnionValueMirror alloc] initWithValue:[self getPrimitiveValue]];
 }
 
-- (void)visitBitFieldTypeMirror:(HGBitFieldTypeMirror *)typeMirror {
-	self.value = [[HGBitFieldValueMirror alloc] initWithValue:[self getPrimitiveValue]];
-}
-
 - (void)visitPointerTypeMirror:(HGPointerTypeMirror *)typeMirror {
 	self.value = [[HGPointerValueMirror alloc] initWithValue:[self getPrimitiveValue]];
 }

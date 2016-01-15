@@ -111,10 +111,6 @@
 	Write(void);
 }
 
-- (void)visitBitFieldTypeMirror:(HGBitFieldTypeMirror *)typeMirror {
-	Write(void);
-}
-
 - (void)visitPointerTypeMirror:(HGPointerTypeMirror *)typeMirror {
 	Write(void);
 }

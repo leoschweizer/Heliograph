@@ -111,6 +111,7 @@ typedef NS_OPTIONS(NSUInteger, HGPropertyAttributes) {
  * Sets the receiver's mirrored property to anObject.
  * Primitive types (e.g. int, BOOL, CGRect, ...) have to be wrapped as NSValue
  * instances, e.g. [NSValue valueWithBytes:&rect encoding:@encode(CGRect)].
+ * @note calling this on a readonly property is a no-op.
  */
 - (void)setValue:(id)aValue in:(id)anObject;
 

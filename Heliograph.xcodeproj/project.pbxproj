@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3045D9B1C3DD3A1001ADBAF /* HGMethodWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = B3045D991C3DD3A1001ADBAF /* HGMethodWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B3045D9C1C3DD3A1001ADBAF /* HGMethodWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B3045D9A1C3DD3A1001ADBAF /* HGMethodWrapper.m */; };
 		B3045D9E1C3DD5A7001ADBAF /* HGMethodWrapperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B3045D9D1C3DD5A7001ADBAF /* HGMethodWrapperTest.m */; };
 		B3045DA11C402C5D001ADBAF /* HGMethodDescriptionMirror.h in Headers */ = {isa = PBXBuildFile; fileRef = B3045D9F1C402C5D001ADBAF /* HGMethodDescriptionMirror.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3045DA21C402C5D001ADBAF /* HGMethodDescriptionMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = B3045DA01C402C5D001ADBAF /* HGMethodDescriptionMirror.m */; };
@@ -36,8 +34,6 @@
 		B3045DC71C40706E001ADBAF /* HGTypeMirrors.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802221C3D99E600E8F25E /* HGTypeMirrors.m */; };
 		B3045DC81C40706E001ADBAF /* HGValueMirrors.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C802231C3D99E600E8F25E /* HGValueMirrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3045DC91C40706E001ADBAF /* HGValueMirrors.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C802241C3D99E600E8F25E /* HGValueMirrors.m */; };
-		B3045DCA1C407072001ADBAF /* HGMethodWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = B3045D991C3DD3A1001ADBAF /* HGMethodWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B3045DCB1C407072001ADBAF /* HGMethodWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B3045D9A1C3DD3A1001ADBAF /* HGMethodWrapper.m */; };
 		B3045DCC1C407076001ADBAF /* Heliograph.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C8023E1C3D9A2D00E8F25E /* Heliograph.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B349BE1F1C37E17B00B66CB5 /* Heliograph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B349BE141C37E17A00B66CB5 /* Heliograph.framework */; };
 		B349BE381C37E26600B66CB5 /* HGClassMirrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B349BE351C37E1C300B66CB5 /* HGClassMirrorTests.m */; };
@@ -106,8 +102,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B3045D991C3DD3A1001ADBAF /* HGMethodWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HGMethodWrapper.h; path = MethodWrappers/HGMethodWrapper.h; sourceTree = "<group>"; };
-		B3045D9A1C3DD3A1001ADBAF /* HGMethodWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HGMethodWrapper.m; path = MethodWrappers/HGMethodWrapper.m; sourceTree = "<group>"; };
 		B3045D9D1C3DD5A7001ADBAF /* HGMethodWrapperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodWrapperTest.m; sourceTree = "<group>"; };
 		B3045D9F1C402C5D001ADBAF /* HGMethodDescriptionMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMethodDescriptionMirror.h; sourceTree = "<group>"; };
 		B3045DA01C402C5D001ADBAF /* HGMethodDescriptionMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGMethodDescriptionMirror.m; sourceTree = "<group>"; };
@@ -188,15 +182,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B3045D981C3DD24B001ADBAF /* MethodWrappers */ = {
-			isa = PBXGroup;
-			children = (
-				B3045D991C3DD3A1001ADBAF /* HGMethodWrapper.h */,
-				B3045D9A1C3DD3A1001ADBAF /* HGMethodWrapper.m */,
-			);
-			name = MethodWrappers;
-			sourceTree = "<group>";
-		};
 		B349BE0A1C37E17A00B66CB5 = {
 			isa = PBXGroup;
 			children = (
@@ -220,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				B3C802101C3D99E600E8F25E /* Core */,
-				B3045D981C3DD24B001ADBAF /* MethodWrappers */,
 				B3C802391C3D99EC00E8F25E /* Visitors */,
 				B3C8023E1C3D9A2D00E8F25E /* Heliograph.h */,
 				B349BE2F1C37E1B800B66CB5 /* Info.plist */,
@@ -308,7 +292,6 @@
 				B3045DBF1C40706E001ADBAF /* HGPropertyMirror-Runtime.h in Headers */,
 				B3045DB61C40706E001ADBAF /* HGInstanceVariableMirror-Runtime.h in Headers */,
 				B3045DB91C40706E001ADBAF /* HGMethodDescriptionMirror-Runtime.h in Headers */,
-				B3045DCA1C407072001ADBAF /* HGMethodWrapper.h in Headers */,
 				B3DB3A371C41BBCC0028FECE /* HGValueMirrorDescriptionVisitor.h in Headers */,
 				B3DB3A311C4187360028FECE /* HGInstanceVariableExtractionVisitor.h in Headers */,
 				B3DB3A2C1C4180950028FECE /* HGTypeMirrorDescriptionVisitor.h in Headers */,
@@ -347,7 +330,6 @@
 				B3C802311C3D99E600E8F25E /* HGProtocolMirror.h in Headers */,
 				B3BE1E411C441FE400BC1DA0 /* HGInstanceVariableInjectionVisitor.h in Headers */,
 				B3DB3A2A1C417D3A0028FECE /* HGValueMirror.h in Headers */,
-				B3045D9B1C3DD3A1001ADBAF /* HGMethodWrapper.h in Headers */,
 				B3C8022B1C3D99E600E8F25E /* HGMethodMirror-Runtime.h in Headers */,
 				B3C802461C3DA95900E8F25E /* HGReflect.h in Headers */,
 				B3C8022F1C3D99E600E8F25E /* HGPropertyMirror.h in Headers */,
@@ -492,7 +474,6 @@
 				B3045DBB1C40706E001ADBAF /* HGMethodDescriptionMirror.m in Sources */,
 				B3DB3A2D1C41809A0028FECE /* HGTypeMirrorDescriptionVisitor.m in Sources */,
 				B3045DC11C40706E001ADBAF /* HGPropertyMirror.m in Sources */,
-				B3045DCB1C407072001ADBAF /* HGMethodWrapper.m in Sources */,
 				B3045DBE1C40706E001ADBAF /* HGMethodMirror.m in Sources */,
 				B3045DC91C40706E001ADBAF /* HGValueMirrors.m in Sources */,
 				B3045DB51C40706E001ADBAF /* HGClassMirror.m in Sources */,
@@ -512,7 +493,6 @@
 				B3C802301C3D99E600E8F25E /* HGPropertyMirror.m in Sources */,
 				B3DB3A321C4187360028FECE /* HGInstanceVariableExtractionVisitor.m in Sources */,
 				B3C8022A1C3D99E600E8F25E /* HGInstanceVariableMirror.m in Sources */,
-				B3045D9C1C3DD3A1001ADBAF /* HGMethodWrapper.m in Sources */,
 				B3C802361C3D99E600E8F25E /* HGTypeMirrors.m in Sources */,
 				B3C802271C3D99E600E8F25E /* HGClassMirror.m in Sources */,
 				B3C8023D1C3D9A0F00E8F25E /* HGTypeMirrorDescriptionVisitor.m in Sources */,

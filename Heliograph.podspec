@@ -23,9 +23,5 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |ss|
     ss.source_files = 'Lib/*.h', 'Lib/Core/**/*.{h,m}', 'Lib/Visitors/**/*.{h,m}'
   end
-
-  s.subspec 'MethodWrappers' do |ss|
-    ss.source_files= 'Lib/MethodWrappers/**/*.{h,m}'
-  end
   
 end

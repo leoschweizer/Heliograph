@@ -30,11 +30,11 @@ HGObjectMirror *objectMirror = reflect(@"Heliograph");
 ```objectivec
 #import <Heliograph/Heliograph.h>
 
-HGClassMirror *mirror = reflect([HGClassMirror class]);
-for (HGMethodMirror *each in [mirror methods]) {
+HGClassMirror *class = reflect([HGClassMirror class]);
+for (HGMethodMirror *each in [class methods]) {
     NSLog(@"- %@", NSStringFromSelector([each selector]));
 }
-for (HGMethodMirror *each in [[mirror classMirror] methods]) {
+for (HGMethodMirror *each in [[class classMirror] methods]) {
     NSLog(@"+ %@", NSStringFromSelector([each selector]));
 }
 	
@@ -62,6 +62,17 @@ for (HGMethodMirror *each in [[mirror classMirror] methods]) {
 // - siblings
 // ...
 // + allClasses
+
+HGMethodMirror *method = [class methodNamed:@selector(addMethodNamed:withImplementation:andEncoding:)];
+for (id<HGTypeMirror> each in [method argumentTypes]) {
+    NSLog(@"%@", [each typeDescription]);
+}
+
+// =>
+// SEL
+// ^
+// unknown type
+
 ```
 
 ## Example Snippets

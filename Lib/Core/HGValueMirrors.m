@@ -63,6 +63,13 @@
 
 @implementation HGObjectMirror
 
+- (instancetype)initWithValue:(NSValue *)aValue {
+	if (self = [super initWithValue:aValue]) {
+		_strongObjectRef = [aValue nonretainedObjectValue];
+	}
+	return self;
+}
+
 - (instancetype)initWithObject:(id)anObject {
 	if (self = [super initWithValue:[NSValue valueWithNonretainedObject:anObject]]) {
 		_strongObjectRef = anObject;
@@ -95,6 +102,14 @@
 	if ([aVisitor respondsToSelector:@selector(visitObjectValueMirror:)]) {
 		[aVisitor visitObjectValueMirror:self];
 	}
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+	HGObjectMirror *newMirror = [super copyWithZone:zone];
+	newMirror->_strongObjectRef = _strongObjectRef;
+	return newMirror;
 }
 
 @end

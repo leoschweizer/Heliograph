@@ -81,6 +81,7 @@ of the snippets listed here use both Heliograph and OpinionatedC!
 * [Finding the longest class name in your runtime environment](https://gist.github.com/leoschweizer/13d204773c3c65cf9f06)
 * [Finding the longest method name in your runtime environment](https://gist.github.com/leoschweizer/5e2fae183fe4cb53dbde)
 * [Finding the class with the most instance variables in your runtime environment](https://gist.github.com/leoschweizer/f6fc9fe822473b9de0af)
+* [Finding the class with the longest inheritance chain in your runtime environment](https://gist.github.com/leoschweizer/dd121adf4898e0d571d1)
 * [Add your own snippet!](https://github.com/leoschweizer/Heliograph/edit/master/README.md#fork-destination-box)
 
 ## Contributing

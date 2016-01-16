@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/leoschweizer/Heliograph.svg?branch=master)](https://travis-ci.org/leoschweizer/Heliograph)
 [![Coverage Status](https://coveralls.io/repos/leoschweizer/Heliograph/badge.svg?branch=master&service=github)](https://coveralls.io/github/leoschweizer/Heliograph?branch=master)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![CocoaPods Version](https://img.shields.io/cocoapods/v/Heliograph.svg)](https://cocoapods.org/pods/Heliograph)
+[![CocoaPods Version](https://img.shields.io/cocoapods/v/Heliograph.svg?style=flat)](https://cocoapods.org/pods/Heliograph)
 
 Heliograph is an object-oriented, [mirror-based](https://en.wikipedia.org/wiki/Mirror_(programming)), extensible wrapper around Objective-C's runtime reflection capabilities.
 

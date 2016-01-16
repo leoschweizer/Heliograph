@@ -171,12 +171,13 @@
 	int i = 5;
 	SEL sel = @selector(didChangeValueForKey:);
 	NSDictionary *test = @{
+		reflect(@"foo") : @0,
 		[[HGIntValueMirror alloc] initWithValue:[NSValue valueWithBytes:&i objCType:@encode(int)]] : @1,
 		[[HGIntValueMirror alloc] initWithValue:[NSValue valueWithBytes:&i objCType:@encode(int)]] : @2,
 		[[HGSelectorValueMirror alloc] initWithValue:[NSValue valueWithBytes:&sel objCType:@encode(SEL)]] : @3,
 		[NSValue valueWithBytes:&sel objCType:@encode(SEL)] : @4
 	};
-	XCTAssertEqual([test count], 3);
+	XCTAssertEqual([test count], 4);
 	XCTAssertEqualObjects([test objectForKey:[NSValue valueWithBytes:&sel objCType:@encode(SEL)]], @4);
 }
 

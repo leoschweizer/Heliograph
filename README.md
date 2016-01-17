@@ -40,27 +40,13 @@ for (HGMethodMirror *each in [[class classMirror] methods]) {
 }
 	
 // =>
-// - classMirror
 // - adoptedProtocols
 // - adoptProtocol:
-// - isMetaclass
 // - instanceVariableNamed:
 // - methodNamed:
 // - subclasses
 // - addInstanceVariableNamed:withEncoding:
 // - addMethodNamed:withImplementation:andEncoding:
-// - addSubclassNamed:
-// - allSubclasses
-// - allSuperclasses
-// - instanceVariables
-// - mirroredClass
-// - registerClass
-// - methods
-// - name
-// - superclass
-// - properties
-// - propertyNamed:
-// - siblings
 // ...
 // + allClasses
 
@@ -83,6 +69,7 @@ of the snippets listed here use both Heliograph and OpinionatedC!
 * [Finding the longest method name in your runtime environment](https://gist.github.com/leoschweizer/5e2fae183fe4cb53dbde)
 * [Finding the class with the most instance variables in your runtime environment](https://gist.github.com/leoschweizer/f6fc9fe822473b9de0af)
 * [Finding the class with the longest inheritance chain in your runtime environment](https://gist.github.com/leoschweizer/dd121adf4898e0d571d1)
+* [Creating and using a class (including instance variables and methods) at runtime](https://gist.github.com/leoschweizer/38885cb3ea641efe7fcc)
 * [Add your own snippet!](https://github.com/leoschweizer/Heliograph/edit/master/README.md#fork-destination-box)
 
 ## Contributing

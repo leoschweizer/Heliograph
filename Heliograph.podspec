@@ -4,8 +4,8 @@ Pod::Spec.new do |s|
   s.version      = '0.1.0'
   s.summary      = 'Mirror-based reflection for Objective-C'
   s.description  = <<-DESC
-                     Heliograph is an object-oriented, mirror-based wrapper around Objective-C's
-                     runtime reflection capabilities.
+                     Heliograph is an object-oriented, mirror-based, extensible wrapper around 
+                     Objective-C's runtime reflection capabilities.
                    DESC
   s.homepage     = 'https://github.com/leoschweizer/Heliograph'
   s.social_media_url = 'https://twitter.com/leoschweizer' 

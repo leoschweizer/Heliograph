@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  spec.default_subspec = 'Core'
+  s.default_subspec = 'Core'
 
   s.subspec 'Core' do |ss|
     ss.source_files = 'Lib/*.h', 'Lib/Core/**/*.{h,m}', 'Lib/Visitors/**/*.{h,m}'
